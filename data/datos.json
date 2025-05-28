@@ -1,0 +1,31 @@
+{
+  "nodes": [
+    {
+      "id": "heriberto",
+      "label": "Heriberto Zazueta Godoy",
+      "alias": "Capi Beto",
+      "relacion": "Célula del Mayo en Sinaloa",
+      "fecha": "15/5/2014",
+      "permanencia": "Sí",
+      "img": "https://www.proceso.com.mx/u/fotografias/m/2016/7/7/f850x638-56315_133804_5050.jpg"
+    },
+    {
+      "id": "leopoldo",
+      "label": "Leopoldo Zazueta Gómez",
+      "fecha": "16/5/2014",
+      "permanencia": "Sí",
+      "img": "https://www.alcalorpolitico.com/imagenes/fotosnotas/previas/2022/04/21/144312ferras1.jpg"
+    },
+    {
+      "id": "empresa1",
+      "label": "Comercializadora Del Pacífico",
+      "fecha": "17/5/2014",
+      "permanencia": "Sí",
+      "img": "https://comercializadorajorsa.com/sitepad-data/uploads/2021/08/Screenshot-2021-08-03-at-12-33-08-Logo-Maker-Used-By-2-3-Million-Startups.png"
+    }
+  ],
+  "links": [
+    { "source": "heriberto", "target": "leopoldo" },
+    { "source": "heriberto", "target": "empresa1" }
+  ]
+}

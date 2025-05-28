@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Red de conexiones</title>
+  <script src="https://d3js.org/d3.v7.min.js"></script>
+  <style>
+    body { font-family: sans-serif; margin: 0; overflow: hidden; }
+    svg { width: 100vw; height: 100vh; }
+    .node image { clip-path: circle(30px at center); }
+    .node text { pointer-events: none; font-size: 10px; text-anchor: middle; fill: #333; }
+    .tooltip {
+      position: absolute;
+      padding: 8px;
+      background: #333;
+      color: white;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 13px;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+<div class="tooltip" id="tooltip"></div>
+<svg></svg>
+<script>
+  const svg = d3.select("svg");
+  const tooltip = d3.select("#tooltip");
+
+  d3.json("./data/datos.json").then(data => {
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    const simulation = d3.forceSimulation(data.nodes)
+      .force("link", d3.forceLink(data.links).id(d => d.id).distance(120))
+      .force("charge", d3.forceManyBody().strength(-300))
+      .force("center", d3.forceCenter(width / 2, height / 2));
+
+    const link = svg.append("g")
+      .attr("stroke", "#aaa")
+      .selectAll("line")
+      .data(data.links)
+      .join("line")
+      .attr("stroke-width", 1.5);
+
+    const node = svg.selectAll(".node")
+      .data(data.nodes)
+      .join("g")
+      .attr("class", "node")
+      .call(drag(simulation));
+
+    node.append("image")
+      .attr("xlink:href", d => d.img)
+      .attr("x", -30).attr("y", -30)
+      .attr("width", 60).attr("height", 60);
+
+    node.append("text")
+      .attr("y", 45)
+      .text(d => d.label);
+
+    node.on("mouseover", (event, d) => {
+      tooltip.style("display", "block")
+        .html(`<strong>${d.label}</strong><br>${d.alias || ''}<br>${d.relacion || ''}<br>Fecha: ${d.fecha || ''}<br>Permanencia: ${d.permanencia || ''}`);
+    }).on("mousemove", (event) => {
+      tooltip.style("left", (event.pageX + 10) + "px")
+             .style("top", (event.pageY + 10) + "px");
+    }).on("mouseout", () => {
+      tooltip.style("display", "none");
+    });
+
+    simulation.on("tick", () => {
+      link.attr("x1", d => d.source.x)
+          .attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x)
+          .attr("y2", d => d.target.y);
+
+      node.attr("transform", d => `translate(${d.x},${d.y})`);
+    });
+  });
+
+  function drag(simulation) {
+    return d3.drag()
+      .on("start", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0.3).restart();
+        d.fx = d.x; d.fy = d.y;
+      })
+      .on("drag", (event, d) => {
+        d.fx = event.x; d.fy = event.y;
+      })
+      .on("end", (event, d) => {
+        if (!event.active) simulation.alphaTarget(0);
+        d.fx = null; d.fy = null;
+      });
+  }
+</script>
+</body>
+</html>
