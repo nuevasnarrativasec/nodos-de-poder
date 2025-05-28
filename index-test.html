@@ -9,20 +9,34 @@
     .node circle { stroke: #333; stroke-width: 1.5px; }
     .node text { font-size: 12px; pointer-events: none; }
     .link { stroke: #999; stroke-opacity: 0.6; }
+    .tooltip {
+      position: absolute;
+      text-align: left;
+      width: auto;
+      padding: 10px;
+      background: white;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      pointer-events: none;
+      font-size: 13px;
+      box-shadow: 0px 0px 5px rgba(0,0,0,0.1);
+    }
   </style>
 </head>
 <body>
   <h2>Red de Contrataciones entre Congresistas y Proveedores</h2>
   <svg width="960" height="600"></svg>
+  <div class="tooltip" style="opacity:0;"></div>
 
   <script>
-    // Ruta al archivo JSON exportado desde N8N (en Google Drive o local)
-    const dataUrl = "./data/grafo_congresistas-2.json"; // reemplaza esto si usas Google Drive con enlace directo
+    const dataUrl = "./data/grafo_congresistas-2.json";
 
     d3.json(dataUrl).then(data => {
       const svg = d3.select("svg");
       const width = +svg.attr("width");
       const height = +svg.attr("height");
+
+      const tooltip = d3.select(".tooltip");
 
       const color = d3.scaleOrdinal()
         .domain(["congresista", "empresa"])
@@ -39,7 +53,23 @@
         .selectAll("line")
         .data(data.edges)
         .join("line")
-        .attr("stroke-width", 1.5);
+        .attr("stroke-width", 1.5)
+        .on("mouseover", (event, d) => {
+          tooltip.transition().duration(200).style("opacity", .9);
+          tooltip.html(
+            `<strong>Relación:</strong> ${d.relacion}<br>` +
+            `<strong>Entidad:</strong> ${d.entidad}<br>` +
+            `<strong>Fecha:</strong> ${d.fecha}<br>` +
+            `<strong>Departamento:</strong> ${d.departamento}<br>` +
+            `<strong>Provincia:</strong> ${d.provincia}<br>` +
+            `<strong>Distrito:</strong> ${d.distrito}`
+          )
+          .style("left", (event.pageX + 10) + "px")
+          .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", () => {
+          tooltip.transition().duration(500).style("opacity", 0);
+        });
 
       const node = svg.append("g")
         .attr("stroke", "#fff")
@@ -49,6 +79,18 @@
         .join("circle")
         .attr("r", 10)
         .attr("fill", d => color(d.clase))
+        .on("mouseover", (event, d) => {
+          tooltip.transition().duration(200).style("opacity", .9);
+          tooltip.html(
+            `<strong>Tipo:</strong> ${d.clase}<br>` +
+            `<strong>Nombre:</strong> ${d.label}`
+          )
+          .style("left", (event.pageX + 10) + "px")
+          .style("top", (event.pageY - 28) + "px");
+        })
+        .on("mouseout", () => {
+          tooltip.transition().duration(500).style("opacity", 0);
+        })
         .call(drag(simulation));
 
       const label = svg.append("g")
@@ -62,10 +104,10 @@
 
       simulation.on("tick", () => {
         link
-          .attr("x1", d => d.desde.x)
-          .attr("y1", d => d.desde.y)
-          .attr("x2", d => d.hacia.x)
-          .attr("y2", d => d.hacia.y);
+          .attr("x1", d => d.source.x)
+          .attr("y1", d => d.source.y)
+          .attr("x2", d => d.target.x)
+          .attr("y2", d => d.target.y);
 
         node
           .attr("cx", d => d.x)
