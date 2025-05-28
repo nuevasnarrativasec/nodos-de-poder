@@ -2,101 +2,104 @@
 <html lang="es">
 <head>
   <meta charset="UTF-8">
-  <title>Grafo de Congresistas</title>
+  <title>Red de Contrataciones</title>
   <script src="https://d3js.org/d3.v7.min.js"></script>
   <style>
-    body { margin: 0; font-family: sans-serif; }
-    svg { width: 100vw; height: 100vh; background: #f8f8f8; }
-    text { font-size: 12px; pointer-events: none; }
-    circle { stroke: #fff; stroke-width: 1.5px; }
+    body { font-family: sans-serif; background: #f8f9fa; }
+    .node circle { stroke: #333; stroke-width: 1.5px; }
+    .node text { font-size: 12px; pointer-events: none; }
+    .link { stroke: #999; stroke-opacity: 0.6; }
   </style>
 </head>
 <body>
-<svg></svg>
+  <h2>Red de Contrataciones entre Congresistas y Proveedores</h2>
+  <svg width="960" height="600"></svg>
 
-<script>
-const endpoint = "https://docs.google.com/uc?export=download&id=1muvaDYpfo9FyuQoSZFWQq81gobeis2oE";
+  <script>
+    // Ruta al archivo JSON exportado desde N8N (en Google Drive o local)
+    const dataUrl = "./data/grafo_congresistas-2.json"; // reemplaza esto si usas Google Drive con enlace directo
 
-d3.json(endpoint).then(data => {
-  const svg = d3.select("svg");
-  const width = window.innerWidth;
-  const height = window.innerHeight;
+    d3.json(dataUrl).then(data => {
+      const svg = d3.select("svg");
+      const width = +svg.attr("width");
+      const height = +svg.attr("height");
 
-  const color = {
-    congresista: "#e41a1c",
-    familiar: "#377eb8",
-    empresa: "#4daf4a"
-  };
+      const color = d3.scaleOrdinal()
+        .domain(["congresista", "empresa"])
+        .range(["#1f77b4", "#ff7f0e"]);
 
-  const simulation = d3.forceSimulation(data.nodes)
-    .force("link", d3.forceLink(data.edges).id(d => d.id).distance(120))
-    .force("charge", d3.forceManyBody().strength(-300))
-    .force("center", d3.forceCenter(width / 2, height / 2));
+      const simulation = d3.forceSimulation(data.nodes)
+        .force("link", d3.forceLink(data.edges).id(d => d.id).distance(200))
+        .force("charge", d3.forceManyBody().strength(-300))
+        .force("center", d3.forceCenter(width / 2, height / 2));
 
-  const link = svg.append("g")
-    .attr("stroke", "#999")
-    .attr("stroke-opacity", 0.6)
-    .selectAll("line")
-    .data(data.edges)
-    .join("line")
-    .attr("stroke-width", 2);
+      const link = svg.append("g")
+        .attr("stroke", "#999")
+        .attr("stroke-opacity", 0.6)
+        .selectAll("line")
+        .data(data.edges)
+        .join("line")
+        .attr("stroke-width", 1.5);
 
-  const edgeLabels = svg.append("g")
-    .selectAll("text")
-    .data(data.edges)
-    .join("text")
-    .text(d => d.label)
-    .style("fill", "#555")
-    .style("font-size", "10px");
+      const node = svg.append("g")
+        .attr("stroke", "#fff")
+        .attr("stroke-width", 1.5)
+        .selectAll("circle")
+        .data(data.nodes)
+        .join("circle")
+        .attr("r", 10)
+        .attr("fill", d => color(d.clase))
+        .call(drag(simulation));
 
-  const node = svg.append("g")
-    .selectAll("circle")
-    .data(data.nodes)
-    .join("circle")
-    .attr("r", 18)
-    .attr("fill", d => color[d.type] || "#ccc")
-    .call(drag(simulation));
+      const label = svg.append("g")
+        .selectAll("text")
+        .data(data.nodes)
+        .join("text")
+        .text(d => d.label)
+        .attr("font-size", 10)
+        .attr("dx", 12)
+        .attr("dy", ".35em");
 
-  const label = svg.append("g")
-    .selectAll("text")
-    .data(data.nodes)
-    .join("text")
-    .text(d => d.label)
-    .attr("dy", 4)
-    .attr("text-anchor", "middle");
+      simulation.on("tick", () => {
+        link
+          .attr("x1", d => d.desde.x)
+          .attr("y1", d => d.desde.y)
+          .attr("x2", d => d.hacia.x)
+          .attr("y2", d => d.hacia.y);
 
-  simulation.on("tick", () => {
-    link.attr("x1", d => d.source.x)
-        .attr("y1", d => d.source.y)
-        .attr("x2", d => d.target.x)
-        .attr("y2", d => d.target.y);
+        node
+          .attr("cx", d => d.x)
+          .attr("cy", d => d.y);
 
-    edgeLabels
-      .attr("x", d => (d.source.x + d.target.x) / 2)
-      .attr("y", d => (d.source.y + d.target.y) / 2);
-
-    node.attr("cx", d => d.x).attr("cy", d => d.y);
-    label.attr("x", d => d.x).attr("y", d => d.y);
-  });
-
-  function drag(simulation) {
-    return d3.drag()
-      .on("start", event => {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
-        event.subject.fx = event.subject.x;
-        event.subject.fy = event.subject.y;
-      })
-      .on("drag", event => {
-        event.subject.fx = event.x;
-        event.subject.fy = event.y;
-      })
-      .on("end", event => {
-        if (!event.active) simulation.alphaTarget(0);
-        event.subject.fx = null;
-        event.subject.fy = null;
+        label
+          .attr("x", d => d.x)
+          .attr("y", d => d.y);
       });
-  }
-});
-</script>
+
+      function drag(simulation) {
+        function dragstarted(event, d) {
+          if (!event.active) simulation.alphaTarget(0.3).restart();
+          d.fx = d.x;
+          d.fy = d.y;
+        }
+
+        function dragged(event, d) {
+          d.fx = event.x;
+          d.fy = event.y;
+        }
+
+        function dragended(event, d) {
+          if (!event.active) simulation.alphaTarget(0);
+          d.fx = null;
+          d.fy = null;
+        }
+
+        return d3.drag()
+          .on("start", dragstarted)
+          .on("drag", dragged)
+          .on("end", dragended);
+      }
+    });
+  </script>
 </body>
 </html>
