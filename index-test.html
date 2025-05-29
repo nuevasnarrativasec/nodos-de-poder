@@ -29,7 +29,7 @@
   <div class="tooltip" style="opacity:0;"></div>
 
   <script>
-    const dataUrl = "./data/grafo_congresistas-2.json";
+    const dataUrl = "./data/grafo_congresistas-4.json";
 
     d3.json(dataUrl).then(data => {
       const svg = d3.select("svg");
@@ -42,6 +42,14 @@
         .domain(["congresista", "empresa"])
         .range(["#1f77b4", "#ff7f0e"]);
 
+      // Agrupar aristas por par de nodos para aplicar offset
+      const edgeCounts = {};
+      data.edges.forEach(e => {
+        const key = `${e.source}|${e.target}`;
+        edgeCounts[key] = (edgeCounts[key] || 0) + 1;
+        e.index = edgeCounts[key];
+      });
+
       const simulation = d3.forceSimulation(data.nodes)
         .force("link", d3.forceLink(data.edges).id(d => d.id).distance(200))
         .force("charge", d3.forceManyBody().strength(-300))
@@ -50,14 +58,16 @@
       const link = svg.append("g")
         .attr("stroke", "#999")
         .attr("stroke-opacity", 0.6)
-        .selectAll("line")
+        .selectAll("path")
         .data(data.edges)
-        .join("line")
+        .join("path")
         .attr("stroke-width", 1.5)
+        .attr("fill", "none")
         .on("mouseover", (event, d) => {
           tooltip.transition().duration(200).style("opacity", .9);
           tooltip.html(
             `<strong>Relación:</strong> ${d.relacion}<br>` +
+            `<strong>Parentesco:</strong> ${d.parentesco || "No especificado"}<br>` +
             `<strong>Entidad:</strong> ${d.entidad}<br>` +
             `<strong>Fecha:</strong> ${d.fecha}<br>` +
             `<strong>Departamento:</strong> ${d.departamento}<br>` +
@@ -103,11 +113,12 @@
         .attr("dy", ".35em");
 
       simulation.on("tick", () => {
-        link
-          .attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
+        link.attr("d", d => {
+          const dx = d.target.x - d.source.x;
+          const dy = d.target.y - d.source.y;
+          const dr = 30 + (d.index * 4); // Radio basado en cantidad
+          return `M${d.source.x},${d.source.y}A${dr},${dr} 0 0,1 ${d.target.x},${d.target.y}`;
+        });
 
         node
           .attr("cx", d => d.x)
