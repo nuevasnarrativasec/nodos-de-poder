@@ -1,0 +1,319 @@
+{
+  "nodes": [
+    {
+      "id": "cong:Tania Ramirez",
+      "label": "Tania Ramirez",
+      "tipo": "congresista"
+    },
+    {
+      "id": "fam:DORIS LIDIA GARCIA HERNANDEZ",
+      "label": "DORIS LIDIA GARCIA HERNANDEZ",
+      "tipo": "familiar",
+      "parentesco": "MADRE DEL DECLARANTE",
+      "ocupacion": "EMPRESARIA",
+      "dni": 27841036,
+      "ruc": 10278410361
+    },
+    {
+      "id": "fam:JOSE ANTONIO RAMIREZ GARCIA",
+      "label": "JOSE ANTONIO RAMIREZ GARCIA",
+      "tipo": "familiar",
+      "parentesco": "PADRE DEL DECLARANTE",
+      "ocupacion": "EMPRESARIO",
+      "dni": 27840635,
+      "ruc": 10278406356
+    },
+    {
+      "id": "cong:DIANA GONZALES",
+      "label": "DIANA GONZALES",
+      "tipo": "congresista"
+    },
+    {
+      "id": "fam:CARLO ARMANDO DELGADO SANCHEZ",
+      "label": "CARLO ARMANDO DELGADO SANCHEZ",
+      "tipo": "familiar",
+      "parentesco": "PRIMO(A)",
+      "ocupacion": "ADMINISTRADOR DE EMPRESAS",
+      "dni": 29529999,
+      "ruc": 10295299997
+    }
+  ],
+  "links": [
+    {
+      "source": "fam:DORIS LIDIA GARCIA HERNANDEZ",
+      "target": "cong:Tania Ramirez",
+      "contratos": [
+        {
+          "descripcion": "SERVICIO DE ALOJAMIENTO - JORNADA PRESENCIAL CON EQUIPO DE FORMADORES SER",
+          "monto": "S/. 180.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "TALLER DE ACTUALIZACION DOCENTE DIRIGIDO A DIRECTORES Y DOCENTES DE II.EE. DEL NIVEL DE INICIA",
+          "monto": "S/. 6,900.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "SERVICIO DE ALOJAMIENTO I TALLER DE ACTUALIZACION DOCENTE DIRIGIDO A DOCENTES DE II.EE MULTIGRA",
+          "monto": "S/. 4,150.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "SERVICIO DE ALOJAMIEANTO I TALLER DE ACTUALIZACION DOCENTE DIRIGIDO A DOCENTES DE II.EE.MULTIGR",
+          "monto": "S/. 4,300.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "SERVICIO DE ALOJAMIENTO PARA LOS PARTICIPANTES QUE ASISTIRAN AL TALLER MANEJO DE LAS EMERGENCIAS OBSTETRICAS,REALIZARSE EL DIA 18 Y 19 DE SETIEMBRE DEL 2018",
+          "monto": "S/. 1,480.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "SERVICIO DE ALOJAMIENTO PARA REDUCIR LA VULNERABILIDAD DE LA POBLACIÓN ESCOLAR DE LAS II.EE DEL ÁMBITO DE LA UGEL SAN IGNACIO",
+          "monto": "S/. 1,800.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "SERVICIO DE ALOJAMIENTO PARA REDUCIR LA VULNERABILIDAD DE LA POBLACIÓN ESCOLAR DE LAS II.EE DEL ÁMBITO DE LA UGEL SAN IGNACIO",
+          "monto": "S/. 1,800.00",
+          "entidad": "GOBIERNO REGIONAL DE CAJAMARCA - UNIDAD DE GESTION EDUCATIVA SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        }
+      ]
+    },
+    {
+      "source": "fam:JOSE ANTONIO RAMIREZ GARCIA",
+      "target": "cong:Tania Ramirez",
+      "contratos": [
+        {
+          "descripcion": "¨CURSO-TALLER DE ACTUALIZACIÓN EN MONITORIZACIÓN ELECTRÓNICA FETAL COMO PREDICTOR DE LOS RESULTADOS",
+          "monto": "S/. 2,010.00",
+          "entidad": "GOBIERNO REGIONAL CAJAMARCA SALUD SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        },
+        {
+          "descripcion": "CEMENTO TIPO-142.5 KG",
+          "monto": "S/. 810.00",
+          "entidad": "GOBIERNO REGIONAL CAJAMARCA SALUD SAN IGNACIO",
+          "ubicacion": "CAJAMARCA, SAN IGNACIO, SAN IGNACIO"
+        }
+      ]
+    },
+    {
+      "source": "fam:CARLO ARMANDO DELGADO SANCHEZ",
+      "target": "cong:DIANA GONZALES",
+      "contratos": [
+        {
+          "descripcion": "POR EL SERVICIO DE ASESORIA ADMINISTRATIVA DE ALCALDIA Y GERENCIA MUNICIPAL CORRESPONDIENTE DESDE 17 A 31 DE ENERO",
+          "monto": "S/. 1,000.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS PRESTADOS REALIZANDO ACCIONES DE ASESORÍA ADMINISTRATIVA A ALCALDÍA, GERENCIA MUNICIPAL, REVISIÓN DE C/P EN ETAPA DE CONTROL INTERNO, MES DE DICIEMBRE",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS PRESTADOS REALIZANDO ACCIONES DE ASESORÍA ADMINISTRATIVA A ALCALDÍA, GERENCIA MUNICIPAL,, REVISIÓN DE COMPROBANTES DE PAGO EN ETAPA DE CONTROL INTERNO CORRESPONDIENTE AL MES DE NOVIEMBRE 2018",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS PRESTADOS REALIZANDO ACCIONES DE ASESORÍA ADMINISTRATIVA A ALCALDÍA, GERENCIA MUNICIPAL, REVISIÓN EN C.P. EN ETAPA DE CONTROL INTERNO CORRESPONDIENTE A OCTUBRE.",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS PRESTADOS REALIZANDO ACCIONES DE ASESORIA ADMINISTRATIVA DE ALCALDÍA, GERENCIA MUNICIPAL, REVISION DE C.P, EN LA ETAPA DE CONTROL INTERNO CORRESPONDIENTE AL MES DE SETIEMBRE DEL 2018.",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS PRESTADOS REALIZANDO ACCIONES DE ASESORÍA ADMINISTRATIVA  DE ALCALDÍA, GERENCIA MUNICIPAL, REVISIÓN DE C.P, EN LA ETAPA DE CONTROL INTERNO CORRESPONDIENTE AL MES DE AGOSTO DEL 2018.",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO DE ASESOR ADMINISTRATIVO CORRESPONDIENTE AL MES DE JULIO DEL 2018",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS EN ACCIONES EL EL AREA DE EJECUCION COACTIVA, REVISION EN LA ETAPA DE CONTROL INTERNO DE LOS C/P Y ACCIONES DE ENLACE CON ASESORIA JURIDICA EN AQP, MES DE JUNIO",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio de acciones administrativas de alcaldía y gerencia municipal en las áreas diversas control previo en cp. correspondiente al mes de mayo",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS REALIZANDO ACCIONES EN EL ÁREA DE EJECUCIÓN COACTIVA,REVISIÓN EN LA ETAPA CONTROL INTERNO DE C/P Y ACCIONES DE ENLACE CON ASESORÍA  JURÍDICA EXTERNA EN AQP, MES DE ABRIL",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado realizando acciones en el área de ejecución coactiva, revisión en el área de control interno de los c.p. y acciones de enlace con asesoría jurídica externa en arequipa correspondiente al mes de marzo del 2018",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado realizando acciones en el área de ejecución coactiva, revisión en la etapa de control interno",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio de especialista en la elaboracion  del plan de seguridad ciudadana",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado realizando acciones en el área de ejecución coactiva, revisión en la etapa de control interno de los c.p. y acciones de enlace con asesoría jurídica externa en arequipa correspondiente al mes de enero del 2018",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado realizando acciones en el area de ejecucion coactiva, revisión en la etapa de control interno de los C. P. y acciones de enlace con la asesoría jurídica externa en aqp. correspondiente al mes de diciembre del 2017",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado realizando acciones en el area de ejecucion coactiva, revision en la etapa de control interno de los c.p. y acciones de enlace con asesoria juridica externa en arequipa correspondiente al mes de noviembre del 2017",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN EL AREA DE EJECUCION COACTIVA EN FAVOR DE LA ENTIDAD CORRESPONDIENTE AL MES DE OCTUBRE DEL 2017",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN EL AREA DE EJECUCION COACTIVA EN FAVOR DE LA ENTIDAD CORRESPONDIENTE AL MES DE SETIEMBRE DEL 2017",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN EL AREA DE EJECUCION COACTIVA EN FAVOR DE LA ENTIDAD CORRESPONDIENTE AL MES DE AGOSTO DEL 2017- solicitado por el área de gerencia municipal de la municipalidad distrital de atico",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "PAGO SERVICIO ELABORACION DE RECLAMENTO APLICACION DE SANCIONES RAS DE LA MUNICIPALIDAD DISTRITAL VIRACO",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN EL AREA DE EJECUCION COACTIVA EN FAVOR DE LA ENTIDAD CORRESPONDIENTE AL MES DE JULIO DEL 2017- solicitado por el area de gerencia municipal de la municipalidad distrital de atico",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN ASISTENCIA ADMINISTRATIVA EXTERNA REALIZANDO ACCIONES, REVISIÓN EN LA ETAPA DE CONTROL INTERNO EN DOCUMENTACIÓN CP, ACCIONES DE ENLACE EN LA CIUDAD DE AREQUIPA, APOYO ADJUNTO AL ASESOR EXTERNO CORRESPONDIENTE AL MES DE JUNIO DEL 2017- solicitado por el área de gerencia municipal de la municipalidad distrital de atico",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN ASISTENCIA ADMINISTRATIVA EXTERNA REALIZANDO ACCIONES, REVISION EN LA ETAPA DE CONTROL INTERNO EN DOCUMENTACION CP, ACCIONES DE ENLACE EN LA CIUDAD DE AREQUIPA, APOYO ADJUNTO AL ASESOR EXTERNO CORRESPONDIENTE AL MES DE MAYO DEL 2017- SOLICITADO POR EL AREA DE GERENCIA MUNICIPAL DE LA MUNICIPALIDAD DE ATICO",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN ASISTENCIA ADMINISTRATIVA EXTERNA REALIZANDO ACCIONES, REVISION EN LA ETAPA DE CONTROL INTERNO EN DOCUMENTACION CP, ACCIONES DE ENLACE EN LA CIUDAD DE AREQUIPA, APOYO ADJUNTO AL ASESOR EXTERNO CORRESPONDIENTE AL MES DE ABRIL DEL 2017- solicitado por el area de gerencia municipal de la municipalidad de atico.",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio de elaboracion de sistema informatico en excel de planillas bajo el regimen DL 276 y DL1057 debiendo emitirse reportes de planillas generales, planillas de aguinaldo, escolaridad, otros segun ley y boletas de pago individualizado- solicitado por el area de gerencia municipal de la municipalidad distrital de atico",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado en la elaboracion de reglamento de aplicacion de sancion y medidas complementarias, cuadro unico de infracciones y sanciones para la aplicacion jurisdiccional de la municipalidad distrital de atico año 2017- solicitado por el area de administracion tributaria de la municipalidad de atico",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "ASESORAMIENTO EXTERNO, REVISION EN LA ETAPA DE CONTROL INTERNO, REVISION EN LA ETAPA DE CONTROL INTERNO EN LOS C.P. ACCIONES DE ENLACE EN LA CIUDAD DE AREQUIPA ADMINISTRATIVAMENTE, APOYO Y ADJUNTO AL ASESOR LEGAL EXTERNO. CORRESPONDIENTE AL MES DE MARZO 2017",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIOS PRESTADOS EN LA REVISION EN ETAPA DE CONTROL INTERNO,ASESORAMIENTO ADMINISTRATIVO,LABORES DE ENLACE EN LA CIUDAD DE AREQUIPA, APOYO ADJUNTO DEL ASESOR LEGAL MES DE FEBRERO",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN LA REALIZACIÓN  DE REVISIÓN  EN LA ETAPA DE CONTROL INTERNO  DE LOS PC,ASESORAMIENTO ADMINISTRATIVOS ,LABORES DE ENLACE EN LA CIUDAD DE  AREQUIPA  Y OTRAS QUE DISPUSO LA SUPERIORIDAD ,CORRESPONDIENTE AL MES DE ENERO DEL 2017- SOLICITADO POR EL AREA DE  GERENCIA MUNICIPAL",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio realizado  acciones de revicion  e control interno  en los expedientes administrativos , labores de enlace en la documentacion  en arequipa , en coorsinacion  con la ooficina de asesoria legal  en arequipa , casos legales que se llevan a cabo en arequipa  y otras que dispuso la  superioridad  correspondiente al mes de diciembre del 2016-- requerido por el area de gerencia municipal",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicio prestado en asesoramiento  administrativo  , previo pago, actividades y enlaces en la ciudad de arequipa  y otras accione encomendadas por la superioridad, inherentes a la municipalida dde atico",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "servicios prestados en asesoramiento  administrativo, acciones de control interno  en expedientes asministrativos , previo pago adtividades e enlace  en la ciudad de arquipa y otras aciones encomendadas  por la superioridad",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN ASESORAMIENTO ADMINISTRATIVO,ACCIONES Y CONTROL INTERNO  EN LOS COMPROBANTES DE PAGO EN LA ETAPA RESPECTIVA,COORDINACION Y DOCUMENTAL CON ASESORIA LEGAL EXTERNA  EN AREQUIPA",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        },
+        {
+          "descripcion": "SERVICIO PRESTADO EN ASESORAMIENTO ADMINISTRATIVO- ACCIONES DE CONTROL INTERNO EN COMPROVANTES DE PAGO Y OTRAS  ACTIVIDADES DE ENLACE EN AREQUIPA  INHERENTES A LA MUNICIPALIDAD DE ATICO ,CORRESPONDIENTE AL MES DE AGOSTO DEL 2016",
+          "monto": "S/. 2,500.00",
+          "entidad": "MUNICIPALIDAD DISTRITAL DE LA CAPILLA",
+          "ubicacion": "AREQUIPA, AREQUIPA, YANAHUARA"
+        }
+      ]
+    }
+  ]
+}
