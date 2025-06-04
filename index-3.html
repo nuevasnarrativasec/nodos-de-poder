@@ -48,6 +48,17 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     .data(data.links)
     .join("line");
 
+    // Texto de cantidad de contratos
+    const linkLabels = svg.append("g")
+    .selectAll("text")
+    .data(data.links)
+    .join("text")
+    .text(d => `${d.contratos.length} contrataciones`)
+    .attr("font-size", 10)
+    .attr("fill", "#666")
+    .attr("text-anchor", "middle");
+
+
   const node = svg.append("g")
     .attr("stroke", "#fff")
     .attr("stroke-width", 1.5)
@@ -55,7 +66,7 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     .data(data.nodes)
     .join("circle")
     .attr("r", 10)
-    .attr("fill", d => d.tipo === "congresista" ? "#1f77b4" : "#ff7f0e")
+    .attr("fill", d => d.tipo === "congresista" ? "#1f873f" : "#a10f0f")
     .call(d3.drag()
       .on("start", dragstarted)
       .on("drag", dragged)
@@ -115,6 +126,9 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
       .attr("y1", d => d.source.y)
       .attr("x2", d => d.target.x)
       .attr("y2", d => d.target.y);
+    linkLabels
+  .attr("x", d => (d.source.x + d.target.x) / 2)
+  .attr("y", d => (d.source.y + d.target.y) / 2 - 5)
     node
       .attr("cx", d => d.x)
       .attr("cy", d => d.y);
