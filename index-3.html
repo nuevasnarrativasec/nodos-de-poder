@@ -31,14 +31,14 @@
 const tooltip = d3.select("#tooltip");
 const svg = d3.select("svg");
 
-d3.json("./data/grafo_congresistas-5.json?v2").then(data => {
+d3.json("./data/grafo_congresistas-5.json").then(data => {
   const width = window.innerWidth;
   const height = window.innerHeight;
 
   const nodes = data.nodes;
   const links = data.links;
 
-  // ✅ Funciones auxiliares declaradas al inicio
+  // Helpers primero
   function tieneContratoValido(c) {
     return c.descripcion || c.monto || c.entidad || c.ubicacion;
   }
@@ -75,28 +75,15 @@ d3.json("./data/grafo_congresistas-5.json?v2").then(data => {
     .selectAll("text")
     .data(links)
     .join("text")
-    .text(d => tieneContratos(d)
-      ? `${d.contratos.length} contrataciones`
-      : "sin contratos")
+    .text(d => tieneContratos(d) ? `${d.contratos.length} contrataciones` : "sin contratos")
     .attr("font-size", 10)
     .attr("fill", "#666")
     .attr("text-anchor", "middle");
 
   const node = svg.append("g")
-    .selectAll("circle")
+    .selectAll("g")
     .data(nodes)
-    .join("circle")
-    .attr("r", 10)
-    .attr("fill", d => {
-      if (d.tipo === "congresista") return "#2ca02c";
-      const tiene = links.some(l =>
-        (matchNode(l.source, d.id) || matchNode(l.target, d.id)) &&
-        tieneContratos(l)
-      );
-      return tiene ? "#b22222" : "#999";
-    })
-    .attr("stroke", "#fff")
-    .attr("stroke-width", 1.5)
+    .join("g")
     .call(d3.drag()
       .on("start", dragstarted)
       .on("drag", dragged)
@@ -146,6 +133,29 @@ d3.json("./data/grafo_congresistas-5.json?v2").then(data => {
       }
     });
 
+  // ✅ Imagen para congresistas
+  node.append("image")
+    .filter(d => d.tipo === "congresista" && d.img)
+    .attr("xlink:href", d => d.img)
+    .attr("x", -16)
+    .attr("y", -16)
+    .attr("width", 32)
+    .attr("height", 32)
+    .attr("clip-path", "circle(16px at center)");
+
+  // 🔴 Círculo para familiares
+  node.append("circle")
+    .filter(d => d.tipo === "familiar")
+    .attr("r", 10)
+    .attr("fill", d => {
+      const tiene = links.some(l =>
+        (matchNode(l.source, d.id) || matchNode(l.target, d.id)) && tieneContratos(l)
+      );
+      return tiene ? "#b22222" : "#999";
+    })
+    .attr("stroke", "#fff")
+    .attr("stroke-width", 1.5);
+
   const label = svg.append("g")
     .selectAll("text")
     .data(nodes)
@@ -171,18 +181,9 @@ d3.json("./data/grafo_congresistas-5.json?v2").then(data => {
       .attr("x2", d => getNode(d.target).x)
       .attr("y2", d => getNode(d.target).y);
 
-    node
-      .attr("cx", d => d.x)
-      .attr("cy", d => d.y);
-
-    label
-      .attr("x", d => d.x)
-      .attr("y", d => d.y);
-
-    parentescos
-      .attr("x", d => d.x)
-      .attr("y", d => d.y + 18);
-
+    node.attr("transform", d => `translate(${d.x},${d.y})`);
+    label.attr("x", d => d.x).attr("y", d => d.y);
+    parentescos.attr("x", d => d.x).attr("y", d => d.y + 18);
     linkLabels
       .attr("x", d => (getNode(d.source).x + getNode(d.target).x) / 2)
       .attr("y", d => (getNode(d.source).y + getNode(d.target).y) / 2 - 5);
@@ -203,7 +204,7 @@ d3.json("./data/grafo_congresistas-5.json?v2").then(data => {
   }
 
   document.addEventListener("click", (e) => {
-    const clickedNode = e.target.closest("circle");
+    const clickedNode = e.target.closest("circle,image");
     const clickedTooltip = e.target.closest("#tooltip");
     if (!clickedNode && !clickedTooltip) {
       tooltip.transition().duration(200).style("opacity", 0);
@@ -211,8 +212,6 @@ d3.json("./data/grafo_congresistas-5.json?v2").then(data => {
   });
 });
 </script>
-
-
 
 
 

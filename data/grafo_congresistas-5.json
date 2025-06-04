@@ -1,9 +1,10 @@
 {
     "nodes": [
         {
-            "id": "cong:Tania Ramirez",
-            "label": "Tania Ramirez",
-            "tipo": "congresista"
+            "id": "cong:TANIA RAMIREZ",
+            "label": "TANIA RAMIREZ",
+            "tipo": "congresista",
+            "img": "../img/bg-tania-ramirez.png"
         },
         {
             "id": "fam:DORIS LIDIA GARCIA HERNANDEZ",
@@ -35,7 +36,8 @@
         {
             "id": "cong:DIANA GONZALES",
             "label": "DIANA GONZALES",
-            "tipo": "congresista"
+            "tipo": "congresista",
+            "img": "../img/bg-diana-gonzales.png"
         },
         {
             "id": "fam:CARLO ARMANDO DELGADO SANCHEZ",
@@ -50,7 +52,7 @@
     "links": [
         {
             "source": "fam:DORIS LIDIA GARCIA HERNANDEZ",
-            "target": "cong:Tania Ramirez",
+            "target": "cong:TANIA RAMIREZ",
             "contratos": [
                 {
                     "descripcion": "SERVICIO DE ALOJAMIENTO - JORNADA PRESENCIAL CON EQUIPO DE FORMADORES SER",
@@ -98,7 +100,7 @@
         },
         {
             "source": "fam:JOSE ANTONIO RAMIREZ GARCIA",
-            "target": "cong:Tania Ramirez",
+            "target": "cong:TANIA RAMIREZ",
             "contratos": [
                 {
                     "descripcion": "¨CURSO-TALLER DE ACTUALIZACIÓN EN MONITORIZACIÓN ELECTRÓNICA FETAL COMO PREDICTOR DE LOS RESULTADOS",
@@ -114,17 +116,17 @@
                 }
             ]
         },
+        {
+            "source": "fam:PEDRO LOPEZ LOPEZ",
+            "target": "cong:TANIA RAMIREZ",
+            "contratos": [
                 {
-        "source": "fam:PEDRO LOPEZ LOPEZ",
-        "target": "cong:Tania Ramirez",
-        "contratos": [
-            {
-            "descripcion": "",
-            "monto": "",
-            "entidad": "",
-            "ubicacion": ""
-            }
-        ]
+                    "descripcion": "",
+                    "monto": "",
+                    "entidad": "",
+                    "ubicacion": ""
+                }
+            ]
         },
         {
             "source": "fam:CARLO ARMANDO DELGADO SANCHEZ",
