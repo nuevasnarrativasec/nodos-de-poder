@@ -48,8 +48,7 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     .data(data.links)
     .join("line");
 
-    // Texto de cantidad de contratos
-    const linkLabels = svg.append("g")
+  const linkLabels = svg.append("g")
     .selectAll("text")
     .data(data.links)
     .join("text")
@@ -58,7 +57,6 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     .attr("fill", "#666")
     .attr("text-anchor", "middle");
 
-
   const node = svg.append("g")
     .attr("stroke", "#fff")
     .attr("stroke-width", 1.5)
@@ -66,45 +64,43 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     .data(data.nodes)
     .join("circle")
     .attr("r", 10)
-    .attr("fill", d => d.tipo === "congresista" ? "#1f873f" : "#a10f0f")
+    .attr("fill", d => d.tipo === "congresista" ? "#2ca02c" : "#b22222")
     .call(d3.drag()
       .on("start", dragstarted)
       .on("drag", dragged)
       .on("end", dragended))
     .on("click", (event, d) => {
-  if (d.tipo !== "familiar") return; // Desactiva clic si es congresista
+      if (d.tipo !== "familiar") return;
 
-  const relaciones = data.links.filter(l => l.source.id === d.id || l.target.id === d.id);
-  let html = "";
+      const relaciones = data.links.filter(l => l.source.id === d.id || l.target.id === d.id);
+      let html = "";
 
-  relaciones.forEach(rel => {
-    rel.contratos.forEach(c => {
-      html += `
-        <div style="margin-bottom: 8px;">
-          <strong>Monto:</strong> ${c.monto}<br>
-          <strong>Entidad:</strong> ${c.entidad}<br>
-          <strong>Ubicación:</strong> ${c.ubicacion}<br>
-          <strong>Descripción:</strong> ${c.descripcion}
-        </div><hr>`;
-    });
-  });
+      relaciones.forEach(rel => {
+        rel.contratos.forEach(c => {
+          html += `
+            <div style="margin-bottom: 8px;">
+              <strong>Monto:</strong> ${c.monto}<br>
+              <strong>Entidad:</strong> ${c.entidad}<br>
+              <strong>Ubicación:</strong> ${c.ubicacion}<br>
+              <strong>Descripción:</strong> ${c.descripcion}
+            </div><hr>`;
+        });
+      });
 
-  tooltip.transition().duration(200).style("opacity", 1);
-  tooltip.html(html)
-         .style("left", (event.pageX + 15) + "px")
-         .style("top", (event.pageY - 20) + "px");
-})
-
+      tooltip.transition().duration(200).style("opacity", 1);
+      tooltip.html(html)
+             .style("left", (event.pageX + 15) + "px")
+             .style("top", (event.pageY - 20) + "px");
+    })
     .on("mouseover", (event, d) => {
-  if (d.tipo === "congresista") {
-    let html = `<strong>${d.tipo.toUpperCase()}:</strong> ${d.label}`;
-    tooltip.transition().duration(200).style("opacity", 1);
-    tooltip.html(html)
-           .style("left", (event.pageX + 15) + "px")
-           .style("top", (event.pageY - 28) + "px");
-  }
-})
-
+      if (d.tipo === "congresista") {
+        let html = `<strong>CONGRESISTA:</strong> ${d.label}`;
+        tooltip.transition().duration(200).style("opacity", 1);
+        tooltip.html(html)
+               .style("left", (event.pageX + 15) + "px")
+               .style("top", (event.pageY - 28) + "px");
+      }
+    })
     .on("mouseout", () => {
       if (!tooltip.html().includes("Monto:")) {
         tooltip.transition().duration(300).style("opacity", 0);
@@ -116,8 +112,17 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     .data(data.nodes)
     .join("text")
     .text(d => d.label)
-    .attr("font-size", 10)
-    .attr("dy", -12)
+    .attr("font-size", 11)
+    .attr("dy", -14)
+    .attr("text-anchor", "middle");
+
+  const parentescos = svg.append("g")
+    .selectAll("text")
+    .data(data.nodes.filter(d => d.tipo === "familiar"))
+    .join("text")
+    .text(d => d.parentesco)
+    .attr("font-size", 9)
+    .attr("fill", "#555")
     .attr("text-anchor", "middle");
 
   simulation.on("tick", () => {
@@ -126,15 +131,22 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
       .attr("y1", d => d.source.y)
       .attr("x2", d => d.target.x)
       .attr("y2", d => d.target.y);
-    linkLabels
-  .attr("x", d => (d.source.x + d.target.x) / 2)
-  .attr("y", d => (d.source.y + d.target.y) / 2 - 5)
+
     node
       .attr("cx", d => d.x)
       .attr("cy", d => d.y);
+
     label
       .attr("x", d => d.x)
       .attr("y", d => d.y);
+
+    parentescos
+      .attr("x", d => d.x)
+      .attr("y", d => d.y + 18);
+
+    linkLabels
+      .attr("x", d => (d.source.x + d.target.x) / 2)
+      .attr("y", d => (d.source.y + d.target.y) / 2 - 5);
   });
 
   function dragstarted(event, d) {
@@ -151,15 +163,13 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
     d.fx = null; d.fy = null;
   }
 
-  // cerrar tooltip al hacer clic fuera
   document.addEventListener("click", (e) => {
-  const clickedNode = e.target.closest("circle");
-  const clickedTooltip = e.target.closest("#tooltip");
-  if (!clickedNode && !clickedTooltip) {
-    tooltip.transition().duration(200).style("opacity", 0);
-  }
-});
-
+    const clickedNode = e.target.closest("circle");
+    const clickedTooltip = e.target.closest("#tooltip");
+    if (!clickedNode && !clickedTooltip) {
+      tooltip.transition().duration(200).style("opacity", 0);
+    }
+  });
 });
 
 </script>
