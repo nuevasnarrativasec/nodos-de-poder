@@ -4,7 +4,7 @@
             "id": "cong:TANIA RAMIREZ",
             "label": "TANIA RAMIREZ",
             "tipo": "congresista",
-            "img": "../img/bg-tania-ramirez.png"
+            "img": "./img/bg-tania-ramirez.png"
         },
         {
             "id": "fam:DORIS LIDIA GARCIA HERNANDEZ",
@@ -37,7 +37,7 @@
             "id": "cong:DIANA GONZALES",
             "label": "DIANA GONZALES",
             "tipo": "congresista",
-            "img": "../img/bg-diana-gonzales.png"
+            "img": "./img/bg-diana-gonzales.png"
         },
         {
             "id": "fam:CARLO ARMANDO DELGADO SANCHEZ",
