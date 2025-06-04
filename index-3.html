@@ -7,16 +7,19 @@
     body { font-family: Arial, sans-serif; margin: 0; }
     svg { width: 100%; height: 100vh; }
     .tooltip {
-      position: absolute;
-      text-align: left;
-      padding: 10px;
-      background: rgba(0,0,0,0.8);
-      color: white;
-      border-radius: 6px;
-      font-size: 12px;
-      pointer-events: none;
-      max-width: 300px;
+        position: absolute;
+        text-align: left;
+        padding: 10px;
+        background: rgba(0,0,0,0.8);
+        color: white;
+        border-radius: 6px;
+        font-size: 12px;
+        pointer-events: auto;
+        max-width: 300px;
+        max-height: 300px;
+        overflow-y: auto;
     }
+
   </style>
 </head>
 <body>
@@ -136,10 +139,13 @@ d3.json("./data/grafo_congresistas-5.json").then(data => {
 
   // cerrar tooltip al hacer clic fuera
   document.addEventListener("click", (e) => {
-    if (!e.target.closest("circle")) {
-      tooltip.transition().duration(200).style("opacity", 0);
-    }
-  });
+  const clickedNode = e.target.closest("circle");
+  const clickedTooltip = e.target.closest("#tooltip");
+  if (!clickedNode && !clickedTooltip) {
+    tooltip.transition().duration(200).style("opacity", 0);
+  }
+});
+
 });
 
 </script>
