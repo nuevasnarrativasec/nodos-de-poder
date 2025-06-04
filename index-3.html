@@ -102,8 +102,9 @@
           const numContratos = d.contratos ? d.contratos.filter(tieneContratoValido).length : 0;
           return numContratos > 0 ? `${numContratos} contrato${numContratos === 1 ? '' : 's'}` : "sin contratos";
         })
-        .attr("font-size", 10)
+        .attr("font-size", 12)
         .attr("fill", "#666")
+        .attr("font-weight", "bold") 
         .attr("text-anchor", "middle");
 
       // Crear grupos para los nodos
@@ -215,7 +216,7 @@
         .attr("class", "parentesco-label")
         .attr("data-id", d => d.id)
         .text(d => d.parentesco || "familiar")
-        .attr("font-size", 9)
+        .attr("font-size", 8)
         .attr("fill", "#555")
         .attr("text-anchor", "middle");
 
