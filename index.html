@@ -1,99 +1,110 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Red de conexiones</title>
-  <script src="https://d3js.org/d3.v7.min.js?v2"></script>
-  <style>
-    body { font-family: sans-serif; margin: 0; overflow: hidden; }
-    svg { width: 100vw; height: 100vh; }
-    .node image { clip-path: circle(30px at center); }
-    .node text { pointer-events: none; font-size: 10px; text-anchor: middle; fill: #333; }
-    .tooltip {
-      position: absolute;
-      padding: 8px;
-      background: #333;
-      color: white;
-      border-radius: 4px;
-      pointer-events: none;
-      font-size: 13px;
-      display: none;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>En Contienda - Elecciones 2026</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="./css/style.css">
+
 </head>
 <body>
-<div class="tooltip" id="tooltip"></div>
-<svg></svg>
-<script>
-  const svg = d3.select("svg");
-  const tooltip = d3.select("#tooltip");
 
-  d3.json("./data/datos.json").then(data => {
-    const width = window.innerWidth;
-    const height = window.innerHeight;
+    <header>
+        <div class="logo-container">
+            <img src="./img/logo-tu-decides.jpg" alt="" width="100%">
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#explora" class="nav-link">Explora: ¿A quién quieres ver hoy?</a></li>
+                <li><a href="#conecta" class="nav-link">Conecta: Red de vínculos públicos</a></li>
+                <li><a href="#decide" class="nav-link">Decide: Ejercer tu derecho</a></li>
+            </ul>
+        </nav>
+    </header>
 
-    const simulation = d3.forceSimulation(data.nodes)
-      .force("link", d3.forceLink(data.links).id(d => d.id).distance(120))
-      .force("charge", d3.forceManyBody().strength(-300))
-      .force("center", d3.forceCenter(width / 2, height / 2));
+    <section class="hero" id="inicio">
+        <video class="video-bg" autoplay muted loop playsinline>
+            <source src="https://videos.pexels.com/video-files/3196344/3196344-hd_1920_1080_25fps.mp4" type="video/mp4">
+            Tu navegador no soporta video HTML5.
+        </video>
 
-    const link = svg.append("g")
-      .attr("stroke", "#aaa")
-      .selectAll("line")
-      .data(data.links)
-      .join("line")
-      .attr("stroke-width", 1.5);
+        <div class="overlay"></div>
 
-    const node = svg.selectAll(".node")
-      .data(data.nodes)
-      .join("g")
-      .attr("class", "node")
-      .call(drag(simulation));
+        <div class="hero-content">
+            <h1>EN CONTIENDA</h1>
+            <h2>Congresistas que buscan la reelección</h2>
+            
+            <p class="lead">
+                <span>¿Qué información pública existe sobre los 89 congresistas que postulan a la reelección? </span>
+                Revisamos datos oficiales, homogéneos y comparables para entender quiénes son, 
+                qué han hecho y con quiénes se relacionan en el Parlamento actual.
+            </p>
 
-    node.append("image")
-      .attr("xlink:href", d => d.img)
-      .attr("x", -30).attr("y", -30)
-      .attr("width", 60).attr("height", 60);
+            <span class="update-date">Última actualización: 15/02/2026</span>
+        </div>
 
-    node.append("text")
-      .attr("y", 45)
-      .text(d => d.label);
+        <a href="#explora" class="scroll-down">
+            <img src="./img/flecha-bajar.png" alt="" width="100%">
+        </a>
+        
+        <div class="ia-label">VIDEO GENERADO CON IA</div>
+    </section>
 
-    node.on("mouseover", (event, d) => {
-      tooltip.style("display", "block")
-        .html(`<strong>${d.label}</strong><br>${d.alias || ''}<br>${d.relacion || ''}<br>Fecha: ${d.fecha || ''}<br>Permanencia: ${d.permanencia || ''}`);
-    }).on("mousemove", (event) => {
-      tooltip.style("left", (event.pageX + 10) + "px")
-             .style("top", (event.pageY + 10) + "px");
-    }).on("mouseout", () => {
-      tooltip.style("display", "none");
-    });
+    <section id="explora" class="section-content" style="background-color: #f9f9f9;">
+        <h2>Sección Explora</h2>
+        <p>Aquí va el contenido de exploración de candidatos...</p>
+    </section>
 
-    simulation.on("tick", () => {
-      link.attr("x1", d => d.source.x)
-          .attr("y1", d => d.source.y)
-          .attr("x2", d => d.target.x)
-          .attr("y2", d => d.target.y);
+    <section id="conecta" class="section-content" style="background-color: #fff;">
+        <h2>Sección Conecta</h2>
+        <p>Aquí va el grafo de vínculos...</p>
+    </section>
 
-      node.attr("transform", d => `translate(${d.x},${d.y})`);
-    });
-  });
+    <section id="decide" class="section-content" style="background-color: #f9f9f9;">
+        <h2>Sección Decide</h2>
+        <p>Información para el voto informado...</p>
+    </section>
 
-  function drag(simulation) {
-    return d3.drag()
-      .on("start", (event, d) => {
-        if (!event.active) simulation.alphaTarget(0.3).restart();
-        d.fx = d.x; d.fy = d.y;
-      })
-      .on("drag", (event, d) => {
-        d.fx = event.x; d.fy = event.y;
-      })
-      .on("end", (event, d) => {
-        if (!event.active) simulation.alphaTarget(0);
-        d.fx = null; d.fy = null;
-      });
-  }
-</script>
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            
+            // 1. Efecto Smooth Scroll (adicional al CSS) para controlar el offset del Header
+            const links = document.querySelectorAll('a[href^="#"]');
+            const headerHeight = document.querySelector('header').offsetHeight;
+
+            links.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+
+                    if (targetElement) {
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerHeight;
+
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // 2. Efecto visual simple: Opacidad del Header al hacer scroll
+            window.addEventListener('scroll', () => {
+                const header = document.querySelector('header');
+                if (window.scrollY > 50) {
+                    header.style.boxShadow = "0 2px 10px rgba(0,0,0,0.5)";
+                } else {
+                    header.style.boxShadow = "none";
+                }
+            });
+
+        });
+    </script>
 </body>
 </html>
