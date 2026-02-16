@@ -820,12 +820,13 @@
             text-align: center;
         }
 
-        /* --- GRÃFICO SVG DE SÃNTESIS --- */
+        /* --- GRÁFICO SVG DE SÍNTESIS --- */
         .synthesis-chart {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin: 30px 0;
+            margin: 30px auto;
+            max-width: 300px;
         }
 
         .synthesis-chart svg {
