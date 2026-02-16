@@ -360,7 +360,7 @@
         .section-explora__title {
             font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
             font-size: 2.5rem;
-            color: var(--black);
+            color: #BA991B;
             text-transform: uppercase;
             margin-bottom: 15px;
         }
@@ -748,6 +748,7 @@
         }
 
         .hallazgos-section__title {
+            color: #BA991B;
             font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
             font-size: 2rem;
             text-transform: uppercase;
@@ -755,16 +756,18 @@
         }
 
         .hallazgos-section__subtitle {
-            font-size: 0.95rem;
+            font-size: 1rem;
             color: var(--text-secondary);
+            line-height: 1.3;
             max-width: 700px;
             margin: 0 auto 10px;
         }
 
         .hallazgos-section__note {
-            font-size: 0.85rem;
-            color: var(--gray-dark);
-            font-style: italic;
+            font-size: 1rem;
+            color: #747474;
+            max-width: 660px;
+            margin: 0 auto;
         }
 
         /* --- CATEGORÃAS DE HALLAZGOS --- */
@@ -782,6 +785,7 @@
             align-items: center;
             gap: 15px;
             margin-bottom: 10px;
+            justify-content: center;
         }
 
         .hallazgo-category__icon {
@@ -812,7 +816,8 @@
             font-size: 0.9rem;
             color: var(--gray-dark);
             margin-bottom: 30px;
-            padding-left: 65px;
+            padding: 10px 0;
+            text-align: center;
         }
 
         /* --- GRÃFICO SVG DE SÃNTESIS --- */
