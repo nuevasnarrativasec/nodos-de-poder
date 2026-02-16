@@ -408,8 +408,8 @@
         }
 
         .search-tab.active {
-            background: #c2c2c2;
-            color: var(--black);
+            background: #323c4a;
+            color:#fff;
         }
 
         .search-tab.active::after {
