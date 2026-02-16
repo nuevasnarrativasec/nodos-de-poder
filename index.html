@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/style.css?v5">
 
 </head>
 <body>
@@ -28,11 +28,11 @@
 
     <section class="hero" id="inicio">
         <video class="video-bg" autoplay muted loop playsinline>
-            <source src="https://videos.pexels.com/video-files/3196344/3196344-hd_1920_1080_25fps.mp4" type="video/mp4">
+            <source src="./video/video-portada.mp4" type="video/mp4">
             Tu navegador no soporta video HTML5.
         </video>
 
-        <div class="overlay"></div>
+        <!--<div class="overlay"></div>-->
 
         <div class="hero-content">
             <h1>EN CONTIENDA</h1>
@@ -51,15 +51,57 @@
             <img src="./img/flecha-bajar.png" alt="" width="100%">
         </a>
         
-        <div class="ia-label">VIDEO GENERADO CON IA</div>
+        <!--<div class="ia-label">VIDEO GENERADO CON IA</div>-->
     </section>
 
-    <section id="explora" class="section-content" style="background-color: #f9f9f9;">
-        <h2>Sección Explora</h2>
-        <p>Aquí va el contenido de exploración de candidatos...</p>
-    </section>
+    <section class="how-to-read-section">
+    
+        <div class="intro-container">
+            <p class="intro-paragraph">
+                La reelección plantea la posibilidad de dar continuidad al trabajo legislativo. Con esta herramienta de exploración ciudadana puedes conocer, comparar y verificar trayectorias antes de definir responsablemente tu voto.
+            </p>
+        </div>
 
-    <section id="conecta" class="section-content" style="background-color: #fff;">
+        <h3 class="section-title">cómo leer las fichas</h3>
+
+        <div class="steps-container">
+            
+            <div class="step-item">
+                <div class="icon-circle bg-yellow">
+                    <img src="./img/bg-ficha-1.png" alt="" width="100%">
+                </div>
+                <h4>Intereses cruzados.</h4>
+                <p>Vínculos familiares o personales relacionados con el Estado.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="icon-circle bg-green">
+                    <img src="./img/bg-ficha-2.png" alt="" width="100%">
+                </div>
+                <h4>El rastro del dinero.</h4>
+                <p>Ingresos, gastos de campaña y obligaciones económicas declaradas.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="icon-circle bg-pink">
+                    <img src="./img/bg-ficha-3.png" alt="" width="100%">
+                </div>
+                <h4>Bienes a su nombre.</h4>
+                <p>Diferencias entre lo declarado y registros oficiales de propiedad.</p>
+            </div>
+
+            <div class="step-item">
+                <div class="icon-circle bg-blue">
+                    <img src="./img/bg-ficha-4.png" alt="" width="100%">
+                </div>
+                <h4>Respaldo de trayectoria.</h4>
+                <p>Diferencia entre estudios declarados y registros de Sunedu.</p>
+            </div>
+
+        </div>
+    </section>
+   
+    <!--<section id="conecta" class="section-content" style="background-color: #fff;">
         <h2>Sección Conecta</h2>
         <p>Aquí va el grafo de vínculos...</p>
     </section>
@@ -67,7 +109,341 @@
     <section id="decide" class="section-content" style="background-color: #f9f9f9;">
         <h2>Sección Decide</h2>
         <p>Información para el voto informado...</p>
+    </section>-->
+
+
+    <section class="section-explora" id="explora">
+        <div class="section-explora__header">
+            <h2 class="section-explora__title">Explora: ¿A quién quieres ver hoy?</h2>
+            <p class="section-explora__subtitle">
+                Accede a perfiles individuales con información pública analizada. Cada ficha indica si se identificaron cruces relevantes de información en las secciones presentadas.
+            </p>
+        </div>
+
+        <div class="search-container">
+            <div class="search-tabs">
+                <button class="search-tab active" data-tab="partido">Buscar por partido</button>
+                <button class="search-tab" data-tab="nombre">Buscar por nombre o apellido</button>
+            </div>
+            <div class="search-panels">
+                <div class="search-panel active" id="panel-partido">
+                    <div class="search-input-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                        <input type="text" class="search-input" id="search-partido" placeholder="Escribe el nombre del partido..." autocomplete="off">
+                        <div class="search-dropdown" id="dropdown-partido"></div>
+                    </div>
+                </div>
+                <div class="search-panel" id="panel-nombre">
+                    <div class="search-input-wrapper">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
+                        </svg>
+                        <input type="text" class="search-input" id="search-nombre" placeholder="Escribe nombre o apellido del congresista..." autocomplete="off">
+                        <div class="search-dropdown" id="dropdown-nombre"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="cards-preview-new">
+            <div class="card-preview-item" onclick="mostrarFichaEjemplo('con-hallazgos')">
+                <div class="card-preview-item__label">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    Ejemplo
+                </div>
+                <div class="card-preview-item__name">Nilza Chacón</div>
+                <div class="card-preview-item__party">Alianza para el Progreso</div>
+                <div class="card-preview-item__indicators">
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Intereses</span>
+                    </div>
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Dinero</span>
+                    </div>
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Bienes</span>
+                    </div>
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Estudios</span>
+                    </div>
+                </div>
+                <div class="card-preview-item__status">
+                    <strong>Con hallazgos:</strong> Se detectaron diferencias en las 4 categorías
+                </div>
+            </div>
+
+            <div class="card-preview-item" onclick="mostrarFichaEjemplo('sin-hallazgos')">
+                <div class="card-preview-item__label">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 15.75l5.159-5.159a2.25 2.25 0 013.182 0l5.159 5.159m-1.5-1.5l1.409-1.409a2.25 2.25 0 013.182 0l2.909 2.909m-18 3.75h16.5a1.5 1.5 0 001.5-1.5V6a1.5 1.5 0 00-1.5-1.5H3.75A1.5 1.5 0 002.25 6v12a1.5 1.5 0 001.5 1.5zm10.5-11.25h.008v.008h-.008V8.25zm.375 0a.375.375 0 11-.75 0 .375.375 0 01.75 0z" />
+                    </svg>
+                    Ejemplo
+                </div>
+                <div class="card-preview-item__name">Nilza Chacón</div>
+                <div class="card-preview-item__party">Alianza para el Progreso</div>
+                <div class="card-preview-item__indicators">
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Intereses</span>
+                    </div>
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Dinero</span>
+                    </div>
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Bienes</span>
+                    </div>
+                    <div class="card-preview-indicator">
+                        <div class="card-preview-indicator__icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M4.5 12.75l6 6 9-13.5" />
+                            </svg>
+                        </div>
+                        <span class="card-preview-indicator__label">Estudios</span>
+                    </div>
+                </div>
+                <div class="card-preview-item__status">
+                    <strong>Sin hallazgos:</strong> No se detectaron diferencias significativas
+                </div>
+            </div>
+        </div>
+
+        <div class="card-legend">
+            <div class="card-legend__item">
+                <div class="card-legend__color" style="background: var(--yellow);"></div>
+                <span>Intereses cruzados</span>
+            </div>
+            <div class="card-legend__item">
+                <div class="card-legend__color" style="background: var(--green);"></div>
+                <span>Rastro del dinero</span>
+            </div>
+            <div class="card-legend__item">
+                <div class="card-legend__color" style="background: var(--pink);"></div>
+                <span>Bienes a su nombre</span>
+            </div>
+            <div class="card-legend__item">
+                <div class="card-legend__color" style="background: var(--blue);"></div>
+                <span>Respaldo de trayectoria</span>
+            </div>
+        </div>
+
+        <div class="results-container">
+            <div id="results-explora">
+                <div class="empty-state" id="empty-state-explora">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z" />
+                    </svg>
+                    <h3 class="empty-state__title">Selecciona un partido o congresista</h3>
+                    <p class="empty-state__text">Usa los buscadores de arriba para explorar los perfiles de los 89 congresistas que postulan a la reelección.</p>
+                </div>
+                <div class="fichas-resultado-grid" id="fichas-resultado-grid" style="display: none;"></div>
+            </div>
+        </div>
     </section>
+
+    <div class="section-divider"></div>
+
+    <section class="hallazgos-section" id="hallazgos">
+        <div class="hallazgos-section__header">
+            <h2 class="hallazgos-section__title">Ver por tipo de hallazgo</h2>
+            <p class="hallazgos-section__subtitle">
+                Revisa en los que se identificaron diferencias entre lo declarado y los registros públicos oficiales según 
+                el tipo de análisis.
+            </p>
+            <p class="hallazgos-section__note">
+                (i) Conoce más sobre la diferencia de hallazgo relevante vs que no existen diferencias significativas en 
+                la guía metodológica en este documento.
+            </p>
+        </div>
+
+        <div class="hallazgo-category" id="categoria-intereses">
+            <div class="hallazgo-category__header">
+                <div class="hallazgo-category__icon hallazgo-category__icon--yellow">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126zM12 15.75h.007v.008H12v-.008z" />
+                    </svg>
+                </div>
+                <h3 class="hallazgo-category__title">Intereses cruzados</h3>
+            </div>
+            <p class="hallazgo-category__stats">De 89 congresistas que postulan a la reelección en 2026, <strong id="count-intereses">0</strong> tienen intereses cruzados.</p>
+
+            <div class="synthesis-chart">
+                <svg viewBox="0 0 100 100" id="chart-intereses">
+                    </svg>
+            </div>
+            <div class="chart-legend">
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--yellow);"></div>
+                    <span>Con hallazgos</span>
+                </div>
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--gray-medium);"></div>
+                    <span>Sin hallazgos</span>
+                </div>
+            </div>            
+
+            <div class="hallazgo-results" id="results-intereses">
+                <span class="filter-label">Hacer click para ver información ↓</span>
+                <div class="hallazgo-grid" id="grid-intereses"></div>
+                <div class="congress-detail" id="detail-intereses"></div>
+            </div>
+
+            <p class="sources-note">
+                <strong>FUENTES Y CONTEXTO:</strong> Los familiares utilizados en esta categoría corresponden a aquellos cuya información pública está más accesible: 
+                JNE (Ficha 15/02/2026) • Sunarp (Fecha: 15/02/2026) • Reniec (Fecha: 15/02/2026)
+            </p>
+        </div>
+
+        <div class="hallazgo-category" id="categoria-dinero">
+            <div class="hallazgo-category__header">
+                <div class="hallazgo-category__icon hallazgo-category__icon--green">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 6v12m-3-2.818l.879.659c1.171.879 3.07.879 4.242 0 1.172-.879 1.172-2.303 0-3.182C13.536 12.219 12.768 12 12 12c-.725 0-1.45-.22-2.003-.659-1.106-.879-1.106-2.303 0-3.182s2.9-.879 4.006 0l.415.33M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                </div>
+                <h3 class="hallazgo-category__title">El rastro del dinero</h3>
+            </div>
+            <p class="hallazgo-category__stats">De 89 congresistas que postulan en el 2026, <strong id="count-dinero">0</strong> tienen rastros de dinero.</p>
+
+            <div class="synthesis-chart">
+                <svg viewBox="0 0 100 100" id="chart-dinero"></svg>
+            </div>
+            <div class="chart-legend">
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--green);"></div>
+                    <span>Con hallazgos</span>
+                </div>
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--gray-medium);"></div>
+                    <span>Sin hallazgos</span>
+                </div>
+            </div>            
+
+            <div class="hallazgo-results" id="results-dinero">
+                <span class="filter-label">Hacer click para ver información ↓</span>
+                <div class="hallazgo-grid" id="grid-dinero"></div>
+                <div class="congress-detail" id="detail-dinero"></div>
+            </div>
+
+            <p class="sources-note">
+                <strong>FUENTES Y CONTEXTO:</strong> Los familiares utilizados en esta categoría corresponden a aquellos cuya información pública está más accesible: 
+                JNE (Ficha 15/02/2026) • Sunarp (Fecha: 15/02/2026) • Reniec (Fecha: 15/02/2026)
+            </p>
+        </div>
+
+        <div class="hallazgo-category" id="categoria-bienes">
+            <div class="hallazgo-category__header">
+                <div class="hallazgo-category__icon hallazgo-category__icon--pink">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M8.25 21v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21m0 0h4.5V3.545M12.75 21h7.5V10.75M2.25 21h1.5m18 0h-18M2.25 9l4.5-1.636M18.75 3l-1.5.545m0 6.205l3 1m1.5.5l-1.5-.5M6.75 7.364V3h-3v18m3-13.636l10.5-3.819" />
+                    </svg>
+                </div>
+                <h3 class="hallazgo-category__title">Bienes a su nombre</h3>
+            </div>
+            <p class="hallazgo-category__stats">De 89 congresistas que postulan en el 2026, <strong id="count-bienes">0</strong> tienen bienes de dinero.</p>
+
+            <div class="synthesis-chart">
+                <svg viewBox="0 0 100 100" id="chart-bienes"></svg>
+            </div>
+            <div class="chart-legend">
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--pink);"></div>
+                    <span>Con hallazgos</span>
+                </div>
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--gray-medium);"></div>
+                    <span>Sin hallazgos</span>
+                </div>
+            </div>            
+
+            <div class="hallazgo-results" id="results-bienes">
+                <span class="filter-label">Hacer click para ver información ↓</span>
+                <div class="hallazgo-grid" id="grid-bienes"></div>
+                <div class="congress-detail" id="detail-bienes"></div>
+            </div>
+
+            <p class="sources-note">
+                <strong>FUENTES Y CONTEXTO:</strong> Los bienes y registros utilizados en esta categoría corresponden a propiedades e inmuebles públicos y sus accesos: 
+                JNE (Ficha: 14/01/2026) • Sunarp (Fecha: 26/01/2026) • Reniec (Fecha: 09/01/2026)
+            </p>
+        </div>
+
+        <div class="hallazgo-category" id="categoria-estudios">
+            <div class="hallazgo-category__header">
+                <div class="hallazgo-category__icon hallazgo-category__icon--blue">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342M6.75 15a.75.75 0 100-1.5.75.75 0 000 1.5zm0 0v-3.675A55.378 55.378 0 0112 8.443m-7.007 11.55A5.981 5.981 0 006.75 15.75v-1.5" />
+                    </svg>
+                </div>
+                <h3 class="hallazgo-category__title">Respaldo de trayectoria</h3>
+            </div>
+            <p class="hallazgo-category__stats">De los congresistas que postulan en el 2026, <strong id="count-estudios">0</strong> tienen rastros de dinero.</p>
+
+            <div class="synthesis-chart">
+                <svg viewBox="0 0 100 100" id="chart-estudios"></svg>
+            </div>
+            <div class="chart-legend">
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--blue);"></div>
+                    <span>Con hallazgos</span>
+                </div>
+                <div class="chart-legend__item">
+                    <div class="chart-legend__dot" style="background: var(--gray-medium);"></div>
+                    <span>Sin hallazgos</span>
+                </div>
+            </div>           
+
+            <div class="hallazgo-results" id="results-estudios">
+                <span class="filter-label">Hacer click para ver información ↓</span>
+                <div class="hallazgo-grid" id="grid-estudios"></div>
+                <div class="congress-detail" id="detail-estudios"></div>
+            </div>
+
+            <p class="sources-note">
+                <strong>FUENTES Y CONTEXTO:</strong> Los familiares utilizados en esta categoría corresponden a aquellos cuya información pública está más accesible: 
+                JNE (Ficha 15/02/2026) • Sunedu (Fecha: 14/01/2026) • Reniec (Fecha: 09/01/2026)
+            </p>
+        </div>
+    </section>
+
+    <script src="./js/main.js?v7"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
