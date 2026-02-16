@@ -485,6 +485,7 @@
         }
 
         .search-dropdown.show {
+            background: #fff;
             display: block;
         }
 
@@ -1115,8 +1116,8 @@
         }
 
         .ficha-resultado {
-            background: linear-gradient(145deg, #2a2a2a 0%, #1a1a1a 100%);
-            border-radius: 20px;
+            background: #323C4A;
+            border-radius: 10px;
             position: relative;
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
             overflow: hidden;
@@ -1197,6 +1198,7 @@
         }
 
         .ficha-resultado__photo {
+            background-color: #fff;
             width: 110px;
             height: 110px;
             border-radius: 50%;
@@ -1230,11 +1232,12 @@
         }
 
         .ficha-resultado__click-hint {
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            display: block;
             color: #888;
             font-size: 0.7rem;
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
         }
 
         .ficha-resultado__click-hint svg {
@@ -1243,15 +1246,15 @@
         }
 
         .ficha-categoria-btn {
+            color: #fff;
             display: flex;
             align-items: center;
-            gap: 8px;
-            padding: 8px 14px;
-            border-radius: 25px;
+            gap: 4px;
+            padding: 8px 2%;
             border: 2px solid transparent;
             cursor: pointer;
             transition: all 0.2s ease;
-            background: #333;
+            text-align: left;
         }
 
         .ficha-categoria-btn:hover {
@@ -1259,27 +1262,27 @@
         }
 
         .ficha-categoria-btn.active {
-            border-color: #fff;
+            border-bottom: 2px solid #fff;
         }
 
         .ficha-categoria-btn--intereses {
-            background: linear-gradient(135deg, #FFF85F 0%, #E6D84A 100%);
-            color: #1a1a1a;
+            /*background: linear-gradient(135deg, #FFF85F 0%, #E6D84A 100%);*/
+            background-color: transparent;            
         }
 
         .ficha-categoria-btn--dinero {
-            background: linear-gradient(135deg, #85FF85 0%, #5FD35F 100%);
-            color: #1a1a1a;
+            /*background: linear-gradient(135deg, #85FF85 0%, #5FD35F 100%);*/        
+            background-color: transparent;            
         }
 
         .ficha-categoria-btn--bienes {
-            background: linear-gradient(135deg, #F5A9F2 0%, #D88BD5 100%);
-            color: #1a1a1a;
+            /*background: linear-gradient(135deg, #F5A9F2 0%, #D88BD5 100%);*/
+            background-color: transparent;            
         }
 
         .ficha-categoria-btn--estudios {
-            background: linear-gradient(135deg, #85E3FF 0%, #5BC4E0 100%);
-            color: #1a1a1a;
+            /*background: linear-gradient(135deg, #85E3FF 0%, #5BC4E0 100%);*/
+            background-color: transparent;            
         }
 
         .ficha-categoria-btn__icon {
