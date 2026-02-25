@@ -90,7 +90,9 @@ async function cargarDatosGoogleSheets() {
             'link_detalle_dinero_1': ['link_detalle_dinero_1', 'link_detalle_dinero'],
             'link_detalle_dinero_2': ['link_detalle_dinero_2'],
             'link_detalle_bienes': ['link_detalle_bienes', 'link_bienes'],
-            'link_detalle_estudios': ['link_detalle_estudios', 'link_estudios']
+            'link_detalle_estudios': ['link_detalle_estudios', 'link_estudios'],
+            'resumen_ficha': ['resumen_ficha', 'resumen'],
+            'disclaimer_resumen_ficha': ['disclaimer_resumen_ficha', 'disclaimer_resumen']
         };
         
         // Encontrar índices de columnas
@@ -138,7 +140,9 @@ async function cargarDatosGoogleSheets() {
                 link_detalle_dinero_1: getValue('link_detalle_dinero_1'),
                 link_detalle_dinero_2: getValue('link_detalle_dinero_2'),
                 link_detalle_bienes: getValue('link_detalle_bienes'),
-                link_detalle_estudios: getValue('link_detalle_estudios')
+                link_detalle_estudios: getValue('link_detalle_estudios'),
+                resumen_ficha: getValue('resumen_ficha'),
+                disclaimer_resumen_ficha: getValue('disclaimer_resumen_ficha')
             };
         }).filter(c => c.nombre); // Filtrar filas vacías
         
@@ -453,32 +457,36 @@ function mostrarResultadosExplora(resultados) {
         if (c.hallazgo_dinero) countHallazgos++;
         if (c.hallazgo_bienes) countHallazgos++;
         if (c.hallazgo_estudios) countHallazgos++;
-        
+
         const hallazgosTitulo = tieneHallazgos 
             ? '<strong>Hallazgos:</strong> Se identificaron cruces relevantes de información en ' + countHallazgos + ' de las 4 secciones analizadas, a partir de datos públicos.'
             : '<strong>Sin hallazgos:</strong> El contraste entre lo declarado y registros públicos oficiales no reveló diferencias en las secciones analizadas.';
-        
-        // Generar botones de categorías solo si tienen hallazgos
-        let categoriasHTML = '';
-        if (tieneHallazgos) {
-            categoriasHTML = '<div class="ficha-resultado__categorias">';
-            categoriasHTML += '<div class="ficha-resultado__click-hint"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" /></svg>Hacer click</div>';
-            
-            if (c.hallazgo_intereses) {
-                categoriasHTML += '<button class="ficha-categoria-btn ficha-categoria-btn--intereses" data-categoria="intereses" data-id="' + c.id + '" onclick="toggleFichaDetalle(' + c.id + ', \'intereses\')"><div class="ficha-categoria-btn__icon"><img src="./img/bg-ficha-1.png" alt="Intereses cruzados" width="100%"></div><span class="ficha-categoria-btn__text">Intereses<br>cruzados</span></button>';
-            }
-            if (c.hallazgo_dinero) {
-                categoriasHTML += '<button class="ficha-categoria-btn ficha-categoria-btn--dinero" data-categoria="dinero" data-id="' + c.id + '" onclick="toggleFichaDetalle(' + c.id + ', \'dinero\')"><div class="ficha-categoria-btn__icon"><img src="./img/bg-ficha-2.png" alt="Intereses cruzados" width="100%"></div><span class="ficha-categoria-btn__text">El rastro<br>del dinero</span></button>';
-            }
-            if (c.hallazgo_bienes) {
-                categoriasHTML += '<button class="ficha-categoria-btn ficha-categoria-btn--bienes" data-categoria="bienes" data-id="' + c.id + '" onclick="toggleFichaDetalle(' + c.id + ', \'bienes\')"><div class="ficha-categoria-btn__icon"><img src="./img/bg-ficha-3.png" alt="Bienes a su nombre" width="100%"></div><span class="ficha-categoria-btn__text">Bienes a<br>su nombre</span></button>';
-            }
-            if (c.hallazgo_estudios) {
-                categoriasHTML += '<button class="ficha-categoria-btn ficha-categoria-btn--estudios" data-categoria="estudios" data-id="' + c.id + '" onclick="toggleFichaDetalle(' + c.id + ', \'estudios\')"><div class="ficha-categoria-btn__icon"><img src="./img/bg-ficha-4.png" alt="Lo que respalda su trayectoria" width="100%"></div><span class="ficha-categoria-btn__text">Lo que respalda<br>su trayectoria</span></button>';
-            }
-            categoriasHTML += '</div>';
-        }
-        
+
+        // Íconos de categorías: siempre se muestran los 4, coloreados solo si hay hallazgo
+        const iconosData = [
+            { key: 'intereses', img: './img/bg-ficha-1.png', label: 'Intereses<br>cruzados',        color: 'yellow' },
+            { key: 'dinero',    img: './img/bg-ficha-2.png', label: 'El rastro<br>del dinero',       color: 'green'  },
+            { key: 'estudios',  img: './img/bg-ficha-4.png', label: 'Lo que respalda<br>su trayectoria', color: 'blue' },
+            { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes a<br>su nombre',         color: 'pink'   }
+        ];
+
+        const iconosHTML = '<div class="ficha-resultado__categorias">' +
+            iconosData.map(function(ic) {
+                const activo = c['hallazgo_' + ic.key];
+                return '<div class="ficha-categoria-indicador ' + (activo ? 'ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color : 'ficha-categoria-indicador--inactivo') + '">' +
+                    '<div class="ficha-categoria-btn__icon"><img src="' + ic.img + '" alt="" width="100%"></div>' +
+                    '<span class="ficha-categoria-btn__text">' + ic.label + '</span>' +
+                '</div>';
+            }).join('') +
+        '</div>';
+
+        // Resumen y disclaimer
+        const resumenHTML = (c.resumen_ficha || c.disclaimer_resumen_ficha) ?
+            '<div class="ficha-resultado__resumen">' +
+                (c.resumen_ficha ? '<p class="ficha-resultado__resumen-texto">' + c.resumen_ficha + '</p>' : '') +
+                (c.disclaimer_resumen_ficha ? '<p class="ficha-resultado__resumen-disclaimer">' + c.disclaimer_resumen_ficha + '</p>' : '') +
+            '</div>' : '';
+
         return '<div class="ficha-resultado ' + (tieneHallazgos ? '' : 'ficha-resultado--sin-hallazgos') + '" data-id="' + c.id + '">' +
             '<button class="ficha-resultado__close" onclick="cerrarFichaResultado(' + c.id + ')">' +
                 '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">' +
@@ -504,11 +512,21 @@ function mostrarResultadosExplora(resultados) {
             '<div class="ficha-resultado__hallazgos-summary">' +
                 '<p class="ficha-resultado__hallazgos-title">' + hallazgosTitulo + '</p>' +
             '</div>' +
-            categoriasHTML +
-            '<div class="ficha-resultado__detalle" id="detalle-ficha-' + c.id + '">' +
-                '<div class="ficha-resultado__detalle-contenido" id="detalle-contenido-' + c.id + '"></div>' +
+            iconosHTML +
+            resumenHTML +
+            '<div class="ficha-resultado__footer">' +
+                '<span class="ficha-resultado__footer-text">Para más detalles ver las siguientes secciones</span>' +
+                '<div class="ficha-resultado__acciones">' +
+                    '<button class="ficha-accion-btn ficha-accion-btn--compartir" onclick="compartirFicha(' + c.id + ', this)" title="Compartir ficha">' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>' +
+                        '<span>Compartir</span>' +
+                    '</button>' +
+                    '<button class="ficha-accion-btn ficha-accion-btn--descargar" onclick="descargarFichaJPG(' + c.id + ', this)" title="Descargar como imagen">' +
+                        '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>' +
+                        '<span>Descargar</span>' +
+                    '</button>' +
+                '</div>' +
             '</div>' +
-            '<div class="ficha-resultado__footer">Para más detalles ver las siguientes secciones</div>' +
         '</div>';
     }).join('');
 }
@@ -693,6 +711,19 @@ function generarGraficos() {
 // INICIALIZACIÓN
 // ========================================
 
+// ========================================
+// CARGA DINÁMICA DE html2canvas
+// ========================================
+function cargarHtml2Canvas() {
+    return new Promise((resolve) => {
+        if (window.html2canvas) { resolve(); return; }
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        script.onload = resolve;
+        document.head.appendChild(script);
+    });
+}
+
 document.addEventListener('DOMContentLoaded', async () => {
     console.log('🚀 Iniciando aplicación En Contienda...');
     
@@ -701,6 +732,21 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (!cargaExitosa) {
         console.log('⚠️ No se pudieron cargar los datos. Revisa la consola para más detalles.');
+    }
+
+    // ── Detectar parámetro ?congresista=ID en la URL ──
+    const params = new URLSearchParams(window.location.search);
+    const idParam = params.get('congresista');
+    if (idParam && cargaExitosa) {
+        const c = congresistas.find(c => String(c.id) === String(idParam));
+        if (c) {
+            filtrarGlobalmente('nombre', c.nombre);
+            // Scroll suave a la sección de resultados tras un pequeño delay
+            setTimeout(() => {
+                const ficha = document.querySelector('.ficha-resultado[data-id="' + c.id + '"]');
+                if (ficha) ficha.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }, 400);
+        }
     }
 });
 // ========================================
@@ -822,17 +868,34 @@ function mostrarFichaEjemplo(tipo) {
     const hallazgosTitulo = tieneHallazgos 
         ? '<strong>Hallazgos:</strong> Se identificaron cruces relevantes de información en 3 de las 4 secciones analizadas, a partir de datos públicos.'
         : '<strong>Sin hallazgos:</strong> El contraste entre lo declarado y registros públicos oficiales no reveló diferencias en las secciones analizadas.';
-    
-    let categoriasHTML = '';
-    if (tieneHallazgos) {
-        categoriasHTML = '<div class="ficha-resultado__categorias">' +
-            '<div class="ficha-resultado__click-hint"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672L13.684 16.6m0 0l-2.51 2.225.569-9.47 5.227 7.917-3.286-.672zM12 2.25V4.5m5.834.166l-1.591 1.591M20.25 10.5H18M7.757 14.743l-1.59 1.59M6 10.5H3.75m4.007-4.243l-1.59-1.59" /></svg>Hacer click</div>' +
-            '<button class="ficha-categoria-btn ficha-categoria-btn--intereses" data-categoria="intereses" onclick="toggleFichaDetalleDemo(\'ejemplo\', \'intereses\')"><div class="ficha-categoria-btn__icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 002.625.372 9.337 9.337 0 004.121-.952 4.125 4.125 0 00-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 018.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0111.964-3.07M12 6.375a3.375 3.375 0 11-6.75 0 3.375 3.375 0 016.75 0zm8.25 2.25a2.625 2.625 0 11-5.25 0 2.625 2.625 0 015.25 0z" /></svg></div><span class="ficha-categoria-btn__text">Intereses<br>cruzados</span></button>' +
-            '<button class="ficha-categoria-btn ficha-categoria-btn--dinero" data-categoria="dinero" onclick="toggleFichaDetalleDemo(\'ejemplo\', \'dinero\')"><div class="ficha-categoria-btn__icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M2.25 18.75a60.07 60.07 0 0115.797 2.101c.727.198 1.453-.342 1.453-1.096V18.75M3.75 4.5v.75A.75.75 0 013 6h-.75m0 0v-.375c0-.621.504-1.125 1.125-1.125H20.25M2.25 6v9m18-10.5v.75c0 .414.336.75.75.75h.75m-1.5-1.5h.375c.621 0 1.125.504 1.125 1.125v9.75c0 .621-.504 1.125-1.125 1.125h-.375m1.5-1.5H21a.75.75 0 00-.75.75v.75m0 0H3.75m0 0h-.375a1.125 1.125 0 01-1.125-1.125V15m1.5 1.5v-.75A.75.75 0 003 15h-.75M15 10.5a3 3 0 11-6 0 3 3 0 016 0zm3 0h.008v.008H18V10.5zm-12 0h.008v.008H6V10.5z" /></svg></div><span class="ficha-categoria-btn__text">El rastro<br>del dinero</span></button>' +
-            '<button class="ficha-categoria-btn ficha-categoria-btn--estudios" data-categoria="estudios" onclick="toggleFichaDetalleDemo(\'ejemplo\', \'estudios\')"><div class="ficha-categoria-btn__icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M19.5 14.25v-2.625a3.375 3.375 0 00-3.375-3.375h-1.5A1.125 1.125 0 0113.5 7.125v-1.5a3.375 3.375 0 00-3.375-3.375H8.25m0 12.75h7.5m-7.5 3H12M10.5 2.25H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 00-9-9z" /></svg></div><span class="ficha-categoria-btn__text">Lo que respalda<br>su trayectoria</span></button>' +
+
+    // Íconos indicadores (no clicables): si es "con-hallazgos" mostrar 3 activos, 1 inactivo
+    const iconosConfig = [
+        { key: 'intereses', img: './img/bg-ficha-1.png', label: 'Intereses<br>cruzados',             color: 'yellow', activo: tieneHallazgos },
+        { key: 'dinero',    img: './img/bg-ficha-2.png', label: 'El rastro<br>del dinero',            color: 'green',  activo: tieneHallazgos },
+        { key: 'estudios',  img: './img/bg-ficha-4.png', label: 'Lo que respalda<br>su trayectoria',  color: 'blue',   activo: tieneHallazgos },
+        { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes a<br>su nombre',              color: 'pink',   activo: false }
+    ];
+
+    const iconosHTML = '<div class="ficha-resultado__categorias">' +
+        iconosConfig.map(function(ic) {
+            const cls = ic.activo
+                ? 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color
+                : 'ficha-categoria-indicador ficha-categoria-indicador--inactivo';
+            return '<div class="' + cls + '">' +
+                '<div class="ficha-categoria-btn__icon"><img src="' + ic.img + '" alt="" width="100%"></div>' +
+                '<span class="ficha-categoria-btn__text">' + ic.label + '</span>' +
             '</div>';
-    }
-    
+        }).join('') +
+    '</div>';
+
+    const resumenHTML = tieneHallazgos
+        ? '<div class="ficha-resultado__resumen">' +
+            '<p class="ficha-resultado__resumen-texto">Se identificaron 3 contrataciones con el Estado en las que figura un familiar directo del candidato, por un monto total de S/ 420,000, realizadas con dos entidades públicas durante el periodo parlamentario. Asimismo, no se encontró registro en Sunedu del grado de maestría declarado y el contraste con Sunarp reveló 2 propiedades no consignadas en la declaración jurada.</p>' +
+            '<p class="ficha-resultado__resumen-disclaimer">El hallazgo se obtuvo al cruzar declaraciones juradas, registros de contrataciones públicas (SEACE), el registro oficial de visitas del Congreso, el padrón de títulos de Sunedu y los registros de propiedad de Sunarp. La identificación de estos cruces no implica una relación causal, pero permite observar coincidencias relevantes en información pública disponible.</p>' +
+          '</div>'
+        : '';
+
     grid.innerHTML = '<div class="ficha-resultado ' + (tieneHallazgos ? '' : 'ficha-resultado--sin-hallazgos') + '" data-id="ejemplo">' +
         '<button class="ficha-resultado__close" onclick="cerrarFichaResultado(\'ejemplo\')">' +
             '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">' +
@@ -858,11 +921,21 @@ function mostrarFichaEjemplo(tipo) {
         '<div class="ficha-resultado__hallazgos-summary">' +
             '<p class="ficha-resultado__hallazgos-title">' + hallazgosTitulo + '</p>' +
         '</div>' +
-        categoriasHTML +
-        '<div class="ficha-resultado__detalle" id="detalle-ficha-ejemplo">' +
-            '<div class="ficha-resultado__detalle-contenido" id="detalle-contenido-ejemplo"></div>' +
+        iconosHTML +
+        resumenHTML +
+        '<div class="ficha-resultado__footer">' +
+            '<span class="ficha-resultado__footer-text">Para más detalles ver las siguientes secciones</span>' +
+            '<div class="ficha-resultado__acciones">' +
+                '<button class="ficha-accion-btn ficha-accion-btn--compartir" onclick="compartirFicha(\'ejemplo\', this)" title="Compartir ficha">' +
+                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" /></svg>' +
+                    '<span>Compartir</span>' +
+                '</button>' +
+                '<button class="ficha-accion-btn ficha-accion-btn--descargar" onclick="descargarFichaJPG(\'ejemplo\', this)" title="Descargar como imagen">' +
+                    '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>' +
+                    '<span>Descargar</span>' +
+                '</button>' +
+            '</div>' +
         '</div>' +
-        '<div class="ficha-resultado__footer">Para más detalles ver las siguientes secciones</div>' +
     '</div>';
     
     // Scroll suave hacia el resultado
@@ -908,4 +981,123 @@ function toggleFichaDetalleDemo(fichaId, categoria) {
     } else {
         detalle.classList.remove('active');
     }
+}
+// ========================================
+// COMPARTIR FICHA POR URL
+// ========================================
+
+/**
+ * Copia al portapapeles la URL con ?congresista=ID
+ * y muestra un toast de confirmación.
+ */
+function compartirFicha(fichaId, btnEl) {
+    // Para fichas de demo ('ejemplo') no generamos URL real
+    if (fichaId === 'ejemplo') {
+        mostrarToast('Esta es una ficha de ejemplo — no tiene URL única.', 'info');
+        return;
+    }
+
+    const url = new URL(window.location.href);
+    url.search = '';                          // limpiar otros params
+    url.searchParams.set('congresista', fichaId);
+
+    navigator.clipboard.writeText(url.toString()).then(() => {
+        mostrarToast('¡Enlace copiado al portapapeles!', 'ok');
+        // Feedback visual en el botón
+        if (btnEl) {
+            const textoOriginal = btnEl.querySelector('span').textContent;
+            btnEl.querySelector('span').textContent = '¡Copiado!';
+            btnEl.classList.add('ficha-accion-btn--feedback');
+            setTimeout(() => {
+                btnEl.querySelector('span').textContent = textoOriginal;
+                btnEl.classList.remove('ficha-accion-btn--feedback');
+            }, 2000);
+        }
+    }).catch(() => {
+        // Fallback para navegadores sin clipboard API
+        prompt('Copia este enlace:', url.toString());
+    });
+}
+
+// ========================================
+// DESCARGAR FICHA COMO JPG
+// ========================================
+
+/**
+ * Captura la ficha como imagen JPG y la descarga.
+ * Usa html2canvas (se carga dinámicamente al primer uso).
+ */
+async function descargarFichaJPG(fichaId, btnEl) {
+    const ficha = document.querySelector('.ficha-resultado[data-id="' + fichaId + '"]');
+    if (!ficha) return;
+
+    // Indicar estado de carga
+    const spanTexto = btnEl ? btnEl.querySelector('span') : null;
+    if (spanTexto) spanTexto.textContent = 'Generando...';
+    if (btnEl) btnEl.disabled = true;
+
+    try {
+        await cargarHtml2Canvas();
+
+        // Ocultar elementos de UI que no deben aparecer en la imagen
+        ficha.classList.add('ficha-exportando');
+
+        const canvas = await html2canvas(ficha, {
+            scale: 2,                      // resolución 2× para nitidez
+            useCORS: true,                 // intentar cargar fotos externas
+            backgroundColor: '#323C4A',    // fondo de la ficha
+            logging: false,
+            onclone: (doc) => {
+                // En el clon eliminamos los botones de acción
+                doc.querySelectorAll('.ficha-resultado__close, .ficha-resultado__acciones')
+                   .forEach(el => el.style.display = 'none');
+            }
+        });
+
+        // Generar nombre de archivo
+        const c = congresistas.find(c => String(c.id) === String(fichaId));
+        const nombreArchivo = c
+            ? 'en-contienda-' + c.nombre.toLowerCase().replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '') + '.jpg'
+            : 'en-contienda-ficha.jpg';
+
+        // Descargar
+        const link = document.createElement('a');
+        link.download = nombreArchivo;
+        link.href = canvas.toDataURL('image/jpeg', 0.92);
+        link.click();
+
+        mostrarToast('Imagen descargada.', 'ok');
+
+    } catch (err) {
+        console.error('Error generando imagen:', err);
+        mostrarToast('No se pudo generar la imagen.', 'error');
+    } finally {
+        ficha.classList.remove('ficha-exportando');
+        if (spanTexto) spanTexto.textContent = 'Descargar';
+        if (btnEl) btnEl.disabled = false;
+    }
+}
+
+// ========================================
+// TOAST DE NOTIFICACIÓN
+// ========================================
+
+function mostrarToast(mensaje, tipo) {
+    // Eliminar toast anterior si existe
+    const anterior = document.getElementById('ec-toast');
+    if (anterior) anterior.remove();
+
+    const toast = document.createElement('div');
+    toast.id = 'ec-toast';
+    toast.className = 'ec-toast ec-toast--' + (tipo || 'ok');
+    toast.textContent = mensaje;
+    document.body.appendChild(toast);
+
+    // Trigger animation
+    requestAnimationFrame(() => toast.classList.add('ec-toast--visible'));
+
+    setTimeout(() => {
+        toast.classList.remove('ec-toast--visible');
+        setTimeout(() => toast.remove(), 400);
+    }, 2800);
 }
