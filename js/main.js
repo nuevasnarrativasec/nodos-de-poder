@@ -72,11 +72,12 @@ async function cargarDatosGoogleSheets() {
             'id': ['id'],
             'nombre': ['nombre', 'name'],
             'partido': ['partido', 'party'],
+            'cargo': ['cargo', 'position'],
             'foto': ['foto', 'foto_url', 'photo', 'imagen', 'image'],
             'region': ['region', 'región', 'departamento'],
             'edad': ['edad', 'age'],
             'cambio_partidario': ['cambio_partidario', 'cambio_partido'],
-            'experiencia_privado': ['experiencia_privado', 'experiencia'],
+            'experiencia_publico': ['experiencia_publico', 'experiencia'],
             'hallazgo_intereses': ['hallazgo_intereses', 'intereses'],
             'detalle_intereses': ['detalle_intereses'],
             'hallazgo_dinero': ['hallazgo_dinero', 'dinero'],
@@ -84,7 +85,12 @@ async function cargarDatosGoogleSheets() {
             'hallazgo_bienes': ['hallazgo_bienes', 'bienes'],
             'detalle_bienes': ['detalle_bienes'],
             'hallazgo_estudios': ['hallazgo_estudios', 'estudios'],
-            'detalle_estudios': ['detalle_estudios']
+            'detalle_estudios': ['detalle_estudios'],
+            'link_detalle_intereses': ['link_detalle_intereses', 'link_intereses'],
+            'link_detalle_dinero_1': ['link_detalle_dinero_1', 'link_detalle_dinero'],
+            'link_detalle_dinero_2': ['link_detalle_dinero_2'],
+            'link_detalle_bienes': ['link_detalle_bienes', 'link_bienes'],
+            'link_detalle_estudios': ['link_detalle_estudios', 'link_estudios']
         };
         
         // Encontrar índices de columnas
@@ -114,11 +120,12 @@ async function cargarDatosGoogleSheets() {
                 id: parseInt(getValue('id', index + 1)) || (index + 1),
                 nombre: getValue('nombre'),
                 partido: getValue('partido'),
+                cargo: getValue('cargo'),
                 foto: getValue('foto') || `https://via.placeholder.com/150x150/ccc/666?text=${encodeURIComponent(getValue('nombre').substring(0,2))}`,
                 region: getValue('region'),
                 edad: parseInt(getValue('edad', 0)) || 0,
                 cambio_partidario: getValue('cambio_partidario'),
-                experiencia_privado: getValue('experiencia_privado'),
+                experiencia_publico: getValue('experiencia_publico'),
                 hallazgo_intereses: getBoolValue('hallazgo_intereses'),
                 detalle_intereses: getValue('detalle_intereses'),
                 hallazgo_dinero: getBoolValue('hallazgo_dinero'),
@@ -126,7 +133,12 @@ async function cargarDatosGoogleSheets() {
                 hallazgo_bienes: getBoolValue('hallazgo_bienes'),
                 detalle_bienes: getValue('detalle_bienes'),
                 hallazgo_estudios: getBoolValue('hallazgo_estudios'),
-                detalle_estudios: getValue('detalle_estudios')
+                detalle_estudios: getValue('detalle_estudios'),
+                link_detalle_intereses: getValue('link_detalle_intereses'),
+                link_detalle_dinero_1: getValue('link_detalle_dinero_1'),
+                link_detalle_dinero_2: getValue('link_detalle_dinero_2'),
+                link_detalle_bienes: getValue('link_detalle_bienes'),
+                link_detalle_estudios: getValue('link_detalle_estudios')
             };
         }).filter(c => c.nombre); // Filtrar filas vacías
         
@@ -482,7 +494,7 @@ function mostrarResultadosExplora(resultados) {
                         '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cargo al que postula</span> <span class="ficha-resultado__dato-value">' + (c.cargo || 'Congresista') + '</span></p>' +
                         '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Región</span> <span class="ficha-resultado__dato-value">' + (c.region || 'No especificada') + '</span></p>' +
                         '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cambio partidario</span> <span class="ficha-resultado__dato-value">' + (c.cambio_partidario || '---') + '</span></p>' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector privado</span> <span class="ficha-resultado__dato-value">' + (c.experiencia_privado || '---') + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector público</span> <span class="ficha-resultado__dato-value">' + (c.experiencia_publico || '---') + '</span></p>' +
                     '</div>' +
                 '</div>' +
                 '<div class="ficha-resultado__photo-container">' +
@@ -698,51 +710,81 @@ document.addEventListener('DOMContentLoaded', async () => {
 /**
  * Alterna la visibilidad del detalle de una categoría en una ficha específica
  */
-function toggleFichaDetalle(fichaId, categoria) {
-    const detalle = document.getElementById('detalle-ficha-' + fichaId);
-    const contenido = document.getElementById('detalle-contenido-' + fichaId);
-    const ficha = document.querySelector('.ficha-resultado[data-id="' + fichaId + '"]');
-    const botones = ficha.querySelectorAll('.ficha-categoria-btn');
-    
-    // Obtener el congresista
-    const congresista = congresistas.find(c => c.id === fichaId);
-    
-    // Actualizar estado de botones
-    botones.forEach(btn => {
-        if (btn.dataset.categoria === categoria) {
-            btn.classList.toggle('active');
-        } else {
-            btn.classList.remove('active');
+/**
+ * Genera HTML de botones de descarga según la categoría.
+ * "dinero" puede tener hasta 2 links (hoja de vida 2021 y 2025).
+ */
+function generarLinksDescarga(c, categoria) {
+    var iconSVG = '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5M16.5 12L12 16.5m0 0L7.5 12m4.5 4.5V3" /></svg>';
+    var html = '';
+    if (categoria === 'dinero') {
+        var link1 = (c.link_detalle_dinero_1 || '').trim();
+        var link2 = (c.link_detalle_dinero_2 || '').trim();
+        if (link1 || link2) {
+            html += '<div class="ficha-resultado__doc-links">';
+            if (link1) html += '<a href="' + link1 + '" target="_blank" rel="noopener noreferrer" class="ficha-resultado__doc-link">' + iconSVG + 'DJI 2021</a>';
+            if (link2) html += '<a href="' + link2 + '" target="_blank" rel="noopener noreferrer" class="ficha-resultado__doc-link">' + iconSVG + 'DJI 2025</a>';
+            html += '</div>';
         }
-    });
-    
-    // Verificar si el botón está activo
-    const botonActivo = ficha.querySelector('.ficha-categoria-btn[data-categoria="' + categoria + '"]');
-    
-    if (botonActivo && botonActivo.classList.contains('active')) {
-        // Mostrar detalle de la categoría
-        let detalleTexto = '';
-        
-        if (congresista) {
-            detalleTexto = congresista['detalle_' + categoria] || 'Sin información detallada disponible para esta categoría.';
-        }
-        
-        // Formatear el texto si no tiene HTML
-        if (typeof detalleTexto === 'string' && detalleTexto.indexOf('<p>') === -1) {
-            contenido.innerHTML = '<p>' + detalleTexto + '</p>';
-        } else {
-            contenido.innerHTML = detalleTexto;
-        }
-        
-        detalle.classList.add('active');
-        
-        // Scroll suave al detalle
-        setTimeout(function() {
-            detalle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-        }, 100);
     } else {
-        detalle.classList.remove('active');
+        var link = (c['link_detalle_' + categoria] || '').trim();
+        if (link) {
+            html = '<div class="ficha-resultado__doc-links"><a href="' + link + '" target="_blank" rel="noopener noreferrer" class="ficha-resultado__doc-link">' + iconSVG + 'Descargar documento</a></div>';
+        }
     }
+    return html;
+}
+
+function toggleFichaDetalle(fichaId, categoria) {
+    var ficha = document.querySelector('.ficha-resultado[data-id="' + fichaId + '"]');
+    if (!ficha) return;
+
+    var detalle = document.getElementById('detalle-ficha-' + fichaId);
+    var contenido = document.getElementById('detalle-contenido-' + fichaId);
+    var botones = ficha.querySelectorAll('.ficha-categoria-btn');
+    var congresista = congresistas.find(function(c) { return c.id === fichaId; });
+
+    // Guardar si el botón clickeado YA estaba activo (para toggle off)
+    var botonActual = ficha.querySelector('.ficha-categoria-btn[data-categoria="' + categoria + '"]');
+    var estabaActivo = botonActual && botonActual.classList.contains('active');
+
+    // Cerrar TODAS las demás fichas sin excepción
+    document.querySelectorAll('.ficha-resultado').forEach(function(otraFicha) {
+        if (String(otraFicha.dataset.id) === String(fichaId)) return; // saltar la ficha actual
+        var otroDetalle = otraFicha.querySelector('.ficha-resultado__detalle');
+        if (otroDetalle) otroDetalle.classList.remove('active');
+        otraFicha.querySelectorAll('.ficha-categoria-btn').forEach(function(btn) { btn.classList.remove('active'); });
+    });
+
+    // Si el mismo botón estaba abierto → cerrar esta ficha (toggle off)
+    if (estabaActivo) {
+        botones.forEach(function(btn) { btn.classList.remove('active'); });
+        if (detalle) detalle.classList.remove('active');
+        return;
+    }
+
+    // Desactivar todos los botones de esta ficha y activar solo el clickeado
+    botones.forEach(function(btn) { btn.classList.remove('active'); });
+    if (botonActual) botonActual.classList.add('active');
+
+    // Construir contenido
+    var detalleTexto = congresista ? (congresista['detalle_' + categoria] || 'Sin información detallada disponible para esta categoría.') : '';
+    if (typeof detalleTexto === 'string' && detalleTexto.indexOf('<p>') === -1) {
+        contenido.innerHTML = '<p>' + detalleTexto + '</p>';
+    } else {
+        contenido.innerHTML = detalleTexto;
+    }
+
+    // Agregar links de descarga
+    if (congresista) {
+        contenido.innerHTML += generarLinksDescarga(congresista, categoria);
+    }
+
+    if (detalle) detalle.classList.add('active');
+
+    setTimeout(function() {
+        detalle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }, 100);
 }
 
 /**
@@ -806,7 +848,7 @@ function mostrarFichaEjemplo(tipo) {
                     '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cargo al que postula</span> <span class="ficha-resultado__dato-value">Senadora</span></p>' +
                     '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Región</span> <span class="ficha-resultado__dato-value">Lima</span></p>' +
                     '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cambio partidario</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector privado</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector público</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
                 '</div>' +
             '</div>' +
             '<div class="ficha-resultado__photo-container">' +
