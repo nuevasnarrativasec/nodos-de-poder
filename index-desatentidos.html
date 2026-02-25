@@ -1,0 +1,1049 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Desatendidos: la ausencia psicológica en la educación escolar</title>
+  
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Londrina+Solid:wght@100;300;400;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Arimo:ital,wght@0,400..700;1,400..700&display=swap" rel="stylesheet">
+
+  <style>
+    .content_gpt_top_ads,
+    .skin-template-model0.ads_pushed,
+    .skin-template-model0,
+    #clever-45754-889974-sticky-footer,
+    #clever-45754-1475206-sticky-footer-iframe,
+    #gpt_zocalo,
+    #clever-45754-sticky-footer-shadow,
+    #browsi_wrapper_0_ai_1_rc_0,
+    #browsi_wrapper_1_ai_1_rc_0,
+    #browsi_wrapper_2_ai_1_rc_0,
+    #browsi_wrapper_3_ai_1_rc_0,
+    #browsi_wrapper_4_ai_1_rc_0,
+    #browsi_wrapper_5_ai_1_rc_0,
+    #browsi_wrapper_6_ai_1_rc_0,
+    #browsi_wrapper_7_ai_1_rc_0,
+    #browsi_wrapper_8_ai_1_rc_0,
+    #browsi_wrapper_9_ai_1_rc_0,
+    #browsi_wrapper_10_ai_1_rc_0,
+    .fs-sticky-footer,
+    .orp-player-wrapper,
+    #clever-45754-sticky-footer,
+    #clever-45754-1475206-sticky-footer-shadow,
+    #elcomercio_zocalo,
+    #merlin-widget-root {
+      display: none !important;
+      height: 0 !important;
+    }
+
+    .w-full{
+        padding: 0 !important;
+    }
+
+    #header-container,
+    .nav-d__main-scroll.scrolled {
+      z-index: 99999999;
+    }
+
+    #nav-wm-container {
+      position: relative;
+      z-index: 99999999;
+    }
+
+    .skin-template-model0 {
+      top: 100px !important;
+      z-index: -1 !important;
+    }
+
+    #video {
+      position: static;
+      width: 100%;
+      height: auto;
+    }
+
+    .arimo-sans {
+      font-family: "Arimo", sans-serif;
+      font-optical-sizing: auto;
+      font-weight: 400;
+      font-style: normal;
+    }
+
+    .londrina-solid-thin,
+    .londrina-solid-light,
+    .londrina-solid-regular,
+    .londrina-solid-black {
+      font-family: "Londrina Solid", sans-serif;
+      font-style: normal;
+    }
+    
+    .londrina-solid-thin { font-weight: 100; }
+    .londrina-solid-light { font-weight: 300; }
+    .londrina-solid-regular { font-weight: 400; }
+    .londrina-solid-black { font-weight: 900; }
+
+    h1#titular { font-family: 'Londrina Solid', sans-serif; font-size: 47px; }
+    body#desatendidos h2 { font-family: 'Londrina Solid', sans-serif; font-size: 38px; }
+    body#desatendidos body#desatendidos h3 { font-family: 'Londrina Solid', sans-serif; font-size: 26px; }
+    body#desatendidos h4 { font-family: 'Arimo', sans-serif; font-size: 25px; }
+    body#desatendidos p { font-family: 'Arimo', sans-serif; font-size: 18px; line-height: 1.5;}
+
+    /* Pop-ups de informacion */
+    .overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.5);
+      z-index: 3;
+    }
+
+    .modal {
+      z-index: 4;
+      height: auto;
+      position: sticky;
+      margin: 3vw;
+      padding: 2vw;
+    }
+
+    /* Grafico interactivo */
+    .ball {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      position: absolute;
+      opacity: 0;
+      transition: opacity 0.001s ease-in-out;
+    }
+
+    .smiley { font-size: 100px; }
+
+    #ballsContainer {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    /* Tarjetas de niños */
+    .testimonio .front {
+      min-width: 350px;
+      max-width: 600px;
+      height: fit-content;
+    }
+
+    /* Media Queries */
+    @media screen and (max-width: 544px) {
+      #slide_descanso, #slide2, #slide3, #slide4, #slide4_2 { flex-wrap: wrap; }
+      #texto2, #texto3, #texto4 { text-align: center; }
+      #slide4_2 { padding-top: 10vh; padding-bottom: 2vh; }
+      #cuadro_blanco_op_1, #cuadro_blanco_op_2, #cuadro_blanco_op_3 { width: 340px; margin-left: 3vw; }
+      #imagen_sammy { width: 20vw; height: 20vw; }
+      #cuadro_ia_rosa { width: 90vw; height: 90vh; margin: 0px; }
+      #espacio_para_ai { width: 85vw; height: 85vh; }
+      #titulo_sammy { width: 250px; }
+      #dra_y_texto { display: none; width: 200px; margin-left: 0px; }
+      #gd_1 { width: 200px; margin-top: 10px; margin-left: 10px; }
+      #espacio_mensaje { width: 200px; margin-left: 0%; margin-top: 200px; margin-right: 0px; }
+      #texto_superior_ia { width: 20px; }
+      #cerebro_slide16, #cerebro_slide16_5 { display: none; }
+      #slide_16_texto { width: 90vw; justify-content: center; text-align: center; margin-right: 0px; color: #a30240; }
+      #v_testimonio_ninio, #v_testimonio_ninia { height: 60%; }
+      #slide_16_5 { text-align: center; justify-content: center; }
+      #slide_16_5_texto_div { width: 90vw; float: none; margin-right: 0px; }
+      
+      .ver_testimonios {
+        background-color: #006d74;
+        color: white;
+        border-radius: 10px;
+        padding: 5px;
+        margin-left: 230px;
+        margin-top: 190px;
+        width: 70px;
+        position: absolute;
+        z-index: 3;
+      }
+      .container_balls {
+        position: relative;
+        height: 80vh;
+        width: 89vw;
+        overflow: hidden;
+        background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ZKUKI4K2HZEIBK7MMYQFHGRNMI.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      #intro_desktop { display: none; }
+      #intro_movil { height: 75vh; text-align: center; }
+      #titular, #bajada { width: 80vw; }
+      #texto5_5, #slide10, #intentos_vanos { margin-left: 5vw; margin-right: 5vw; padding-left: 5vw; padding-right: 5vw; }
+      #mini_creditos { margin-top: 35px; }
+    }
+
+    @media screen and (min-width: 545px) and (max-width: 631px) {
+      #slide_descanso, #slide2, #slide3, #slide4, #slide4_2 { flex-wrap: wrap; }
+      #texto2, #texto3, #texto4 { text-align: center; width: 90vw; }
+      #slide4_2 { padding-top: 10vh; padding-bottom: 2vh; }
+      #cuadro_ia_rosa { width: 95vw; }
+      #dra_y_texto { width: 80vw; display: none; }
+      #espacio_para_ai { width: 80vw; height: 500px; margin-right: 2vw; }
+      #gd_1 { width: 60vw; }
+      #espacio_mensaje { width: 70vw; }
+      #cuadro_blanco_op_1, #cuadro_blanco_op_2, #cuadro_blanco_op_3 { width: 400px; }
+      #cerebro_slide16_5 { display: none; }
+      #slide_16_5 { text-align: center; justify-content: center; }
+      #slide_16_5_texto_div { width: 90vw; float: none; margin-right: 0px; }
+      .ver_testimonios {
+        background-color: #006d74;
+        color: white;
+        border-radius: 10px;
+        padding: 5px;
+        margin-left: 230px;
+        margin-top: 190px;
+        width: 70px;
+        position: absolute;
+        z-index: 3;
+      }
+      .container_balls {
+        position: relative;
+        height: 80vh;
+        width: 90vw;
+        overflow: hidden;
+        background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ZKUKI4K2HZEIBK7MMYQFHGRNMI.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      #intro_desktop { display: block; }
+      #intro_movil { display: none; }
+      #titular, #bajada { width: 75vw; }
+      #texto5_5, #slide10, #intentos_vanos { margin-left: 10vw; margin-right: 10vw; padding-left: 10vw; padding-right: 10vw; }
+      #mini_creditos { margin-top: 35px; }
+    }
+
+    @media screen and (min-width: 632px) and (max-width: 980px) {
+      #slide_descanso, #slide2, #slide3, #slide4, #slide4_2 { flex-wrap: wrap; }
+      #slide4_2 { padding-top: 10vh; padding-bottom: 2vh; }
+      #cuadro_ia_rosa { width: 95vw; }
+      #dra_y_texto { width: 80vw; display: none; }
+      #espacio_para_ai { width: 80vw; height: 500px; margin-right: 2vw; }
+      #gd_1 { width: 60vw; }
+      #espacio_mensaje { width: 70vw; }
+      #cuadro_blanco_op_1, #cuadro_blanco_op_2, #cuadro_blanco_op_3 { width: 400px; }
+      #slide_16_5 { text-align: right; justify-content: space-between; }
+      #slide_16_5_texto_div { margin-left: 10vw; width: 50vw; float: right; margin-right: 30px; }
+      .ver_testimonios {
+        background-color: #006d74;
+        color: white;
+        border-radius: 10px;
+        padding: 5px;
+        margin-left: 290px;
+        margin-top: 180px;
+        width: 70px;
+        position: absolute;
+        z-index: 3;
+      }
+      .container_balls {
+        position: relative;
+        height: 80vh;
+        width: 92vw;
+        overflow: hidden;
+        background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ZKUKI4K2HZEIBK7MMYQFHGRNMI.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      #intro_desktop { display: block; }
+      #intro_movil { display: none; }
+      #titular, #bajada { width: 65vw; }
+      #texto5_5, #slide10, #intentos_vanos { margin-left: 20vw; margin-right: 20vw; padding-left: 20vw; padding-right: 20vw; }
+    }
+
+    @media screen and (min-width: 981px) {
+      #slide2, #slide3 { padding-left: 12vw; padding-right: 12vw; }
+      #slide4 { padding-left: 20vw; padding-right: 12vw; }
+      #dra_y_texto { width: 450px; }
+      #cuadro_ia_rosa { width: 82vw; }
+      #espacio_para_ai { width: 67vw; height: 530px; margin-right: 30px; }
+      #cuadro_blanco_op_1, #cuadro_blanco_op_2, #cuadro_blanco_op_3 { width: 400px; }
+      #slide_16_5 { text-align: right; justify-content: space-between; }
+      #slide_16_5_texto_div { margin-left: 10vw; width: 50vw; float: right; margin-right: 30px; }
+      .ver_testimonios {
+        background-color: #006d74;
+        color: white;
+        border-radius: 10px;
+        padding: 5px;
+        margin-left: 290px;
+        margin-top: 180px;
+        width: 70px;
+        position: absolute;
+        z-index: 3;
+      }
+      .container_balls {
+        position: relative;
+        height: 80vh;
+        width: 95vw;
+        overflow: hidden;
+        background-image: url('https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ZKUKI4K2HZEIBK7MMYQFHGRNMI.jpg');
+        background-size: cover;
+        background-position: center;
+      }
+      #intro_desktop { display: block; }
+      #intro_movil { display: none; }
+      #titular, #bajada { width: 55vw; }
+      #texto5_5, #intentos_vanos { margin-left: 30vw; margin-right: 30vw; }
+      #slide10 { padding-left: 22vw; padding-right: 22vw; }
+      #tw { display: inline-block; }
+    }
+
+    .video-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 56.25%;
+      height: 0;
+      overflow: hidden;
+    }
+
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    #social, #social-2 {   
+      margin: 0 auto;
+      position: absolute;
+      right: 20px;
+      z-index: 40;
+      top: 120px;    
+    }
+    #social ul, #social-2 ul {
+      display: inline-block;
+      margin: 0 auto;
+      padding: 0;
+      vertical-align: middle;
+    }
+    #social ul li, #social-2 ul li {
+      display: inline-block;
+      margin: 0 3px;
+      vertical-align: middle;
+    }
+    #social ul li a, #social-2 ul li a {
+      cursor: pointer;    
+      height: 36px;
+      width: 36px;
+    }
+    #fb {
+      background: url(https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales-multimedia/abuso-infantil/img/fb-icon-negro.png?v2) no-repeat 0 0;
+      background-size: 100% !important;
+      border: none;
+      display: inline-block;
+      height: 36px;
+      text-indent: -9999px;
+      width: 36px;
+    }
+    #wst {                
+      background: url(https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales-multimedia/abuso-infantil/img/wsp-icon-negro.png?v2) no-repeat 0 0 !important;
+      background-size: 100% !important;
+      border: none;
+      display: none;
+      height: 36px;
+      text-indent: -9999px;
+      width: 36px;
+    }
+    #tw {            
+      background: url(https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales-multimedia/abuso-infantil/img/tw-icon-negro.png?v2) no-repeat 0 0 !important;
+      background-size: 100% !important;
+      border: none;
+      display: inline-block;
+      height: 36px;
+      text-indent: -9999px;
+      width: 36px;
+    }
+  </style>
+
+</head>
+
+<body id="desatendidos">
+
+  <div id="social">
+    <button id="fb" class="sharer button" data-sharer="facebook" data-hashtag="" data-url="https://elcomercio.pe/ecdata/crisis-de-salud-mental-ninos-adolescentes-desatendidos-y-la-falta-de-psicologos-en-escuelas-publicas-del-peru-chatbot-sammy-consultas-laboratorio-periodismo-upc-especdis-noticia/">Facebook</button>
+    <button id="wst" class="sharer button" data-sharer="whatsapp" data-title="El Comercio" data-url="https://elcomercio.pe/ecdata/crisis-de-salud-mental-ninos-adolescentes-desatendidos-y-la-falta-de-psicologos-en-escuelas-publicas-del-peru-chatbot-sammy-consultas-laboratorio-periodismo-upc-especdis-noticia/">Whatsapp</button>
+    <button id="tw" class="sharer button" data-sharer="twitter" data-title="El Comercio" data-hashtags="" data-via="elcomercio_peru" data-url="https://elcomercio.pe/ecdata/crisis-de-salud-mental-ninos-adolescentes-desatendidos-y-la-falta-de-psicologos-en-escuelas-publicas-del-peru-chatbot-sammy-consultas-laboratorio-periodismo-upc-especdis-noticia/">Twitter</button>
+  </div>
+
+  <div id="mini_creditos" style="display: flex; justify-content: center; align-items: center; margin-left:3vw; margin-right:3vw">
+    <h3>Este especial se realizó con el</h3>
+    <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/YK4WLL7WHNEJTET6L3GV2ITT4M.png" width="200px" style="margin: 10px;">
+  </div>
+
+  <div id="intro_movil">
+    <iframe width="90%" height="90%" src="https://www.youtube.com/embed/f2ZLBx6jIfY" title="Desatendidos: la ausencia psicológica en la educación escolar" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <div id="intro_desktop" class="video-container">
+    <iframe src="https://www.youtube.com/embed/cOmluENQgYA?si=Sx65TfLq9ldEoG3_" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+  </div>
+
+  <div id="titular_bajada" style="margin-top: 100px; display: flex;  flex-wrap: wrap; justify-content: center;">
+    <h1 id="titular" style="text-align: center; margin-bottom: 50px;">Desatendidos: la ausencia psicológica en la educación escolar</h1>
+    <p id="bajada" style="text-align: justify;">
+      Bullying, abusos y problemas de salud mental en escolares: aunque cada vez más visibles, los profesionales para contrarrestarlos aún escasean. Conoce aquí sobre la brecha de psicólogos en los colegios públicos del Perú y conversa con Sammy, un chatbot entrenado para detectar posibles situaciones de acoso escolar y problemas de salud mental en los niños y adolescentes.
+    </p>
+  </div>
+
+  <div id="accesos_rapidos" style="display: flex; flex-wrap: wrap;justify-content: center; margin-top: 10vh; margin-bottom: 10vh;">
+    <div style="width: 90vw; display: flex; flex-wrap: wrap;justify-content: center;">
+      <button style="margin-top:20px; color: #ffffff; background-color: #ff8182; border: 3px solid #006d74; border-radius: 30px; text-decoration: none; width: 280px; height: 40px;" onclick="window.location.href='#sammy'" onmouseover="this.style.backgroundColor='#ff5050';" onmouseout="this.style.backgroundColor='#ff8182';">
+        <h3>Consulta a Sammy</h3>
+      </button>
+    </div>
+
+    <div style="width: 90vw; display: flex; flex-wrap: wrap;justify-content: center;">
+      <button style="margin-top:20px; color: #ffffff; background-color: #ff8182; border: 3px solid #006d74; border-radius: 30px; text-decoration: none; width: 280px; height: 40px;" onclick="window.location.href='#slide10'" onmouseover="this.style.backgroundColor='#ff5050';" onmouseout="this.style.backgroundColor='#ff8182';">
+        <h3>Gráficos</h3>
+      </button>
+    </div>
+  </div>
+
+  <div id="slide1" style="display: flex; justify-content: space-between; align-items: center;">
+    <div style="flex: 0; text-align: center">
+      <svg id="cerebro_izquierda" width="15vw" height="auto" viewBox="0 0 267 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.3">
+          <path d="M227.901 268.213C230.329 259.998 230.892 250.891 229.452 241.825C228.107 233.321 225.117 225.613 220.837 219.126C233.265 211.555 242.456 198.224 245.899 182.355C252.086 153.868 242.332 124.476 219.794 103.725C199.04 84.6196 171.275 76.0613 145.006 80.0799C148.326 62.3734 142.606 42.541 129.492 27.8519C116.748 13.5742 97.6258 4.02837 75.6229 0.969832C62.2757 -0.881732 42.7282 -0.991475 25.3755 9.007C9.28477 18.2923 -0.811357 34.7644 -0.838794 51.4285C-0.838794 51.5245 -0.866229 51.6206 -0.866229 51.7303L-0.866232 436.98C-1.04455 437.776 -1.04455 438.599 -0.866233 439.394L-0.866236 482.858C-0.866236 482.858 -0.866236 482.885 -0.866236 482.913C-1.57956 496.82 8.68122 517.544 20.4646 525.842C33.7157 535.168 51.2468 539.996 70.3691 539.996C80.9179 539.996 91.9742 538.529 103.044 535.539C126.501 529.202 149.533 509.891 166.241 482.57C176.159 466.345 180.452 448.501 178.395 432.248C180.933 432.674 183.457 432.866 185.967 432.866C205.322 432.866 223.347 421.578 229.369 417.381C253.498 400.58 267.559 372.216 266.969 341.521C266.393 311.43 251.811 284.178 227.901 268.227L227.901 268.213ZM223.073 408.315C209.986 417.436 190.782 425.171 175.569 420.179C171.083 407.41 162.318 396.602 151.262 390.513C156.886 383.737 160.85 375.549 162.318 366.922C165.13 350.491 158.998 332.593 146.694 321.333C144.444 319.275 140.96 319.426 138.902 321.675C136.844 323.925 136.995 327.408 139.245 329.466C148.847 338.257 153.635 352.219 151.44 365.057C149.245 377.895 140.082 389.484 128.106 394.572C116.131 399.675 101.426 398.234 90.6573 390.924C88.1333 389.21 84.7039 389.868 82.9892 392.392C81.2745 394.915 81.933 398.344 84.457 400.059C92.7561 405.696 102.88 408.603 112.976 408.603C119.656 408.603 126.323 407.328 132.427 404.722C136.131 403.144 139.629 401.074 142.839 398.618C142.894 398.646 142.935 398.673 142.976 398.701C155.692 404.159 165.281 417.628 167.407 433.03C169.328 446.965 165.569 462.518 156.831 476.81C141.577 501.744 120.932 519.272 100.177 524.882C72.166 532.453 44.7447 529.435 26.8295 516.817C17.2684 510.083 9.54541 492.418 10.1627 483.215C10.1627 483.146 10.1627 483.091 10.1627 483.023C10.1627 482.954 10.1764 482.899 10.1764 482.844L10.1764 439.847C20.1216 427.078 38.9833 421.77 54.0452 427.805C69.6832 434.073 79.8753 452.012 77.2553 468.649C76.7752 471.653 78.8328 474.478 81.8507 474.958C82.1387 474.999 82.4268 475.027 82.7149 475.027C85.3761 475.027 87.7218 473.093 88.1607 470.377C91.549 448.871 78.3664 425.679 58.1604 417.573C42.495 411.305 23.6608 414.528 10.1901 424.609L10.1901 248.82C19.2163 257.405 31.6718 262.96 43.6061 262.96C44.6624 262.96 45.7186 262.919 46.7611 262.823C63.6886 261.397 78.8328 249.684 84.992 234.021C91.1786 237.93 98.1883 240.563 105.527 241.482C107.557 241.742 109.588 241.866 111.618 241.866C128.806 241.866 145.706 232.855 154.993 218.276C156.625 215.711 155.871 212.296 153.305 210.664C150.74 209.031 147.325 209.786 145.692 212.351C137.667 224.941 121.728 232.416 106.913 230.551C92.0977 228.672 78.5173 217.466 73.8945 203.271C69.2579 189.076 73.6064 172.014 84.457 161.768C86.6655 159.67 86.7753 156.186 84.6765 153.978C82.5777 151.77 79.0934 151.66 76.8849 153.759C62.8244 167.035 57.406 188.321 63.4143 206.714C65.8834 214.298 70.2456 221.101 75.8149 226.683C72.2072 239.987 59.6008 250.699 45.8421 251.851C31.9736 253.03 15.9104 243.251 10.1901 230.359L10.1901 139.618C14.5935 140.4 18.9968 140.811 23.3315 140.811C32.344 140.811 41.0272 139.138 48.7913 135.805C63.6886 129.428 74.937 116.988 78.8877 102.518C83.2499 86.5535 78.0783 69.135 66.0206 59.1777C63.6749 57.2438 60.1906 57.573 58.2565 59.9183C56.3223 62.2637 56.6515 65.7473 58.9972 67.6812C67.6393 74.8132 71.4391 87.9387 68.2566 99.6105C65.225 110.692 56.1028 120.677 44.4566 125.67C34.4016 129.976 22.3439 130.881 10.2039 128.372L10.2038 53.527C10.2038 53.3213 10.245 53.1155 10.2313 52.9098C9.614 39.8665 17.9268 26.0826 30.9174 18.594C45.554 10.1454 62.4952 10.31 74.1414 11.9147C93.5517 14.6166 110.301 22.8869 121.302 35.217C132.839 48.1369 137.517 65.6925 133.634 80.697C122.482 73.2222 107.05 72.7559 95.6368 80.121C93.0716 81.7669 92.3446 85.182 93.9907 87.7467C95.6368 90.3115 99.0525 91.0384 101.618 89.3926C110.301 83.7967 122.935 85.0174 130.383 92.163C137.832 99.3087 139.56 111.886 134.334 120.787C132.798 123.407 133.662 126.794 136.296 128.33C137.174 128.852 138.134 129.098 139.08 129.098C140.973 129.098 142.811 128.125 143.84 126.383C150.082 115.767 149.753 102.107 143.717 91.5733C167.572 86.8689 193.292 94.3164 212.373 111.872C232.291 130.209 240.604 155.062 235.172 180.051C232.223 193.629 224.225 204.766 213.58 210.554C212.702 209.745 211.825 208.935 210.878 208.195C199.561 199.335 183.937 197.168 171.975 202.791C169.218 204.094 168.038 207.372 169.328 210.129C170.617 212.885 173.909 214.065 176.666 212.776C184.938 208.881 195.953 210.526 204.074 216.89C211.536 222.733 216.831 232.471 218.601 243.594C220.165 253.455 218.889 263.289 214.98 271.272C210.837 279.761 203.457 286.386 195.226 289.019C186.639 291.762 176.913 290.089 170.466 284.74C168.12 282.792 164.65 283.122 162.702 285.467C160.754 287.812 161.083 291.282 163.429 293.23C169.863 298.565 178.175 301.377 186.721 301.377C190.686 301.377 194.705 300.773 198.601 299.525C208.944 296.22 217.874 288.635 223.526 278.596C243.416 292.681 255.488 316.011 255.981 341.755C256.503 368.76 244.212 393.667 223.1 408.356L223.073 408.315Z" fill="#006A70" />
+          <path d="M101.933 318.96C99.0387 318 95.9248 319.577 94.9646 322.471C91.2334 333.772 80.3554 342.44 68.5034 343.551C56.6515 344.662 44.3605 338.161 38.5992 327.738C32.8378 317.328 33.8803 303.448 41.1232 294.012C42.975 291.598 42.5224 288.128 40.1081 286.276C37.6938 284.425 34.2232 284.877 32.3714 287.291C22.5359 300.115 21.1367 318.932 28.942 333.073C36.1711 346.157 51.0273 354.702 65.952 354.702C67.1454 354.702 68.3388 354.647 69.5322 354.537C85.6092 353.029 100.383 341.275 105.445 325.927C106.391 323.033 104.828 319.92 101.933 318.96Z" fill="#006A70" />
+        </g>
+      </svg>
+    </div>
+
+    <div id="texto1" style="z-index: 1; text-align: center;">
+      <h2 style="color: #006d74; font-weight: bold;">La realidad en cifras</h2>
+      <p><i>Durante el 2023, se registraron 192,049 casos de trastornos mentales en niños y adolescentes a nivel nacional.</i></p>
+    </div>
+
+    <div style="flex: 0; text-align: center">
+      <svg id="cerebro_derecha" width="15vw" height="auto" viewBox="0 0 267 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.3">
+          <path d="M39.0855 271.783C36.6575 279.998 36.0951 289.105 37.5354 298.171C38.8798 306.675 41.8702 314.383 46.1501 320.87C33.722 328.441 24.5312 341.772 21.0881 357.641C14.9015 386.128 24.6547 415.52 47.1926 436.271C67.9473 455.376 95.7116 463.935 121.981 459.916C118.661 477.623 124.381 497.455 137.495 512.144C150.239 526.422 169.361 535.968 191.364 539.026C204.711 540.878 224.259 540.988 241.612 530.989C257.702 521.704 267.798 505.232 267.826 488.567C267.826 488.471 267.853 488.375 267.853 488.266L267.853 103.016C268.032 102.22 268.032 101.397 267.853 100.602L267.853 57.138C267.853 57.138 267.853 57.1106 267.853 57.0832C268.567 43.1758 258.306 22.452 246.522 14.1542C233.271 4.82776 215.74 -3.93929e-05 196.618 -3.43778e-05C186.069 -3.16111e-05 175.013 1.46754 163.943 4.45748C140.486 10.794 117.454 30.1051 100.746 57.4261C90.8281 73.6513 86.5345 91.495 88.5921 107.748C86.0544 107.322 83.5304 107.13 81.02 107.13C61.6646 107.13 43.6397 118.418 37.6177 122.615C13.4885 139.416 -0.571979 167.78 0.0178841 198.475C0.594029 228.566 15.1758 255.818 39.0855 271.769L39.0855 271.783ZM43.9141 131.681C57.0006 122.56 76.2052 114.825 91.418 119.817C95.9036 132.586 104.669 143.394 115.725 149.483C110.101 156.259 106.137 164.447 104.669 173.074C101.857 189.505 107.989 207.403 120.293 218.664C122.543 220.721 126.027 220.57 128.085 218.321C130.143 216.071 129.992 212.588 127.742 210.53C118.14 201.739 113.352 187.777 115.547 174.939C117.742 162.101 126.905 150.512 138.881 145.424C150.856 140.322 165.561 141.762 176.33 149.072C178.854 150.786 182.283 150.128 183.998 147.604C185.712 145.081 185.054 141.652 182.53 139.937C174.231 134.3 164.107 131.393 154.011 131.393C147.331 131.393 140.664 132.668 134.56 135.274C130.856 136.852 127.358 138.923 124.148 141.378C124.093 141.35 124.052 141.323 124.011 141.295C111.295 135.837 101.706 122.368 99.5799 106.966C97.6595 93.0311 101.418 77.4779 110.156 63.1865C125.41 38.2521 146.055 20.7238 166.81 15.1143C194.821 7.54339 222.242 10.5608 240.157 23.1789C249.719 29.9131 257.442 47.5784 256.824 56.7814C256.824 56.85 256.824 56.9049 256.824 56.9734C256.824 57.042 256.811 57.0969 256.811 57.1518L256.811 100.149C246.865 112.918 228.004 118.226 212.942 112.191C197.304 105.923 187.112 87.9838 189.732 71.3471C190.212 68.3435 188.154 65.5181 185.136 65.0381C184.848 64.997 184.56 64.9695 184.272 64.9695C181.611 64.9695 179.265 66.9034 178.826 69.619C175.438 91.1246 188.621 114.317 208.827 122.423C224.492 128.691 243.326 125.468 256.797 115.387L256.797 203.282L256.797 291.176C247.771 282.591 235.315 277.036 223.381 277.036C222.325 277.036 221.268 277.077 220.226 277.173C203.298 278.599 188.154 290.312 181.995 305.975C175.808 302.066 168.799 299.433 161.46 298.514C159.43 298.254 157.399 298.13 155.369 298.13C138.181 298.13 121.281 307.141 111.994 321.721C110.362 324.285 111.116 327.7 113.682 329.333C116.247 330.965 119.662 330.21 121.295 327.646C129.32 315.055 145.259 307.58 160.074 309.445C174.889 311.324 188.47 322.53 193.093 336.725C197.729 350.92 193.381 367.982 182.53 378.228C180.322 380.326 180.212 383.81 182.311 386.018C184.409 388.226 187.894 388.336 190.102 386.237C204.163 372.961 209.581 351.675 203.573 333.283C201.104 325.698 196.741 318.895 191.172 313.313C194.78 300.009 207.386 289.297 221.145 288.145C235.013 286.966 251.077 296.745 256.797 309.637L256.797 400.378C252.394 399.596 247.99 399.185 243.655 399.185C234.643 399.185 225.96 400.858 218.196 404.191C203.298 410.568 192.05 423.008 188.099 437.478C183.737 453.443 188.909 470.861 200.966 480.818C203.312 482.752 206.796 482.423 208.731 480.078C210.665 477.732 210.336 474.249 207.99 472.315C199.348 465.183 195.548 452.057 198.73 440.386C201.762 429.304 210.884 419.319 222.53 414.326C232.585 410.02 244.643 409.115 256.783 411.624L256.783 486.469C256.783 486.675 256.742 486.881 256.756 487.086C257.373 500.13 249.06 513.913 236.07 521.402C221.433 529.851 204.492 529.686 192.846 528.081C173.435 525.379 156.686 517.109 145.685 504.779C134.148 491.859 129.471 474.304 133.353 459.299C144.505 466.774 159.937 467.24 171.35 459.875C173.915 458.229 174.642 454.814 172.996 452.249C171.35 449.685 167.935 448.958 165.369 450.603C156.686 456.199 144.052 454.979 136.604 447.833C129.155 440.687 127.427 428.11 132.653 419.209C134.189 416.589 133.325 413.202 130.691 411.666C129.813 411.144 128.853 410.898 127.907 410.898C126.014 410.898 124.176 411.871 123.147 413.613C116.905 424.229 117.234 437.889 123.27 448.423C99.4154 453.127 73.695 445.68 54.6138 428.124C34.6959 409.787 26.3831 384.934 31.8152 359.945C34.7645 346.367 42.7618 335.23 53.4067 329.442C54.2846 330.251 55.1625 331.061 56.109 331.801C67.426 340.661 83.0503 342.828 95.012 337.205C97.7693 335.902 98.949 332.624 97.6595 329.867C96.3701 327.111 93.0778 325.931 90.3206 327.22C82.0489 331.115 71.0337 329.47 62.9129 323.106C55.4506 317.263 50.1556 307.525 48.386 296.402C46.8222 286.541 48.098 276.707 52.0075 268.725C56.1502 260.235 63.5302 253.61 71.7607 250.977C80.3479 248.234 90.0737 249.907 96.5209 255.256C98.8666 257.204 102.337 256.874 104.285 254.529C106.233 252.184 105.904 248.714 103.558 246.766C97.1245 241.431 88.8116 238.619 80.2656 238.619C76.3012 238.619 72.282 239.223 68.3862 240.471C58.0432 243.776 49.1131 251.361 43.4614 261.401C23.571 247.315 11.4995 223.985 11.0057 198.241C10.4844 171.236 22.7753 146.329 43.8866 131.64L43.9141 131.681Z" fill="#006A70" />
+          <path d="M165.054 221.036C167.948 221.996 171.062 220.419 172.022 217.525C175.754 206.224 186.632 197.556 198.484 196.445C210.336 195.334 222.626 201.835 228.388 212.259C234.149 222.668 233.107 236.548 225.864 245.985C224.012 248.398 224.465 251.868 226.879 253.72C229.293 255.572 232.764 255.119 234.616 252.705C244.451 239.881 245.85 221.064 238.045 206.923C230.816 193.839 215.96 185.294 201.035 185.294C199.842 185.294 198.648 185.349 197.455 185.459C181.378 186.967 166.604 198.721 161.542 214.069C160.596 216.963 162.159 220.076 165.054 221.036Z" fill="#006A70" />
+        </g>
+      </svg>
+    </div>
+  </div>
+
+  <div id="slide2" style="background-color: #b7f1f2; display: flex; justify-content: center; align-items: center; padding-top: 6vh; padding-bottom: 6vh;">
+    <div id="texto2" style="max-width: 50vw;">
+      <h2 style="color: #ff8182; font-weight: bold; font-size: 8vh;">El 40%</h2>
+      <p>fueron casos de trastornos emocionales y del comportamiento, como ansiedad, depresión, déficit de atención, entre otros.</p>
+    </div>
+    <div id="ilustracion1_ana" style="margin-right: 1vw">
+      <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/6U6S4WUIQJGJZHJDQPYTNLMFLQ.png" height="200" alt="Ilustración Ana 1">
+    </div>
+  </div>
+
+  <div id="slide3" style="background-color: #028fa3; display: flex; justify-content: center; align-items: center; padding-top: 5vh; padding-bottom: 5vh;">
+    <div id="ilustracion2_ana" style="margin-left: 1vw;">
+      <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/II3BHF2UYFBPDMXNB6BEVKF4C4.png" height="200" alt="Ilustración Ana 2">
+    </div>
+    <div id="texto3" style="max-width: 50vw;">
+      <h2 style="color: #ffc447; font-weight: bold; font-size: 8vh;">El 13%</h2>
+      <p>son casos de trastornos neuróticos relacionados con el estrés y con trastornos somatomorfos como hipocondría, somatización, trastorno del dolor, entre otros.</p>
+    </div>
+  </div>
+
+  <div id="slide4" style="background-color: #ff8182; display: flex; justify-content: center; align-items: center; padding-top: 5vh; padding-bottom: 5vh;">
+    <div id="texto4" style="max-width: 50vw;">
+      <p style="font-size:23px; color: #ffffff; font-weight: bold;">Se reportaron</p>
+      <h2 style="color: #ffffff; font-weight: bold; font-size: 8vh; margin-top:-30px">19,798</h2>
+      <p>casos de violencia psicológica, sexual y física en las instituciones educativas a nivel nacional.</p>
+    </div>
+    <div id="ilustracion3_ana" style="margin-right: 1vw;">
+      <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/II5YOMESZNBX5C3FZI2VJINTBY.png" height="200" alt="Ilustración Ana 3">
+    </div>
+  </div>
+
+  <div id="slide_descanso" style="background-color: #ffffff; display: flex; justify-content: center; align-items: center; padding-top: 20vh; padding-bottom: 20vh;">
+    <div id="texto5_5">
+      <p style="text-align: center;">Estas cifras podrían disminuir si es que los menores recibieran atención y seguimiento de un especialista, pero…</p>
+      <h2 style="color: #383838; font-weight: bold; text-align: center;">¿Cuántos psicólogos hay en Perú para atender tan alta demanda?</h2>
+    </div>
+  </div>
+
+  <div id="slide4_2" style="background-color: #b7f1f2; display: flex; justify-content: center; align-items: center; flex-wrap: wrap; padding-top: 20px; padding-bottom: 20px;">
+    <div id="psicologo_escolar_amarillo_1">
+      <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/2D7WXAYXRFC33JZUMQLFRKPOCQ.png" height="200" alt="Psicólogo">
+    </div>
+    <div id="tres_estadisticas" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap; margin: 2vh;">
+      <div style="margin: 2vw;text-align: center; display: block;">
+        <p style="text-align: center; font-weight: bold;">A nivel nacional hay</p>
+        <h2 style="color: #ff8182; font-weight: bold;  text-align: center;">87,184</h2>
+        <p style="margin-top: -15px; font-weight: bold;">colegios públicos.</p>
+      </div>
+      <div style="margin: 2vw; display: block; text-align: center;">
+        <p style="text-align: center; font-weight: bold; ">Según la ley, debería haber al menos <br>un psicólogo por institución educativa, <br>pero solo existen</p>
+        <h2 style="color: #ff8182; font-weight: bold;  text-align: center;">1,927</h2>
+        <p style="margin-top: -15px; font-weight: bold;">plazas para contratar psicólogos<br> para colegios públicos.</p>
+      </div>
+      <div style="margin: 2vw; display: block; text-align: center;">
+        <p style="text-align: center; font-weight: bold; ">Además, solo existen</p>
+        <h2 style="color: #ff8182; font-weight: bold;  text-align: center;">2,074</h2>
+        <p style="text-align: center; margin-top: -15px; font-weight: bold;">psicólogos para trabajar en<br>colegios del sector público.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide5" style="text-align: center; padding-top: 20vh; padding-bottom: 20vh; display: flex; justify-content: center; align-items: center;  flex-wrap: wrap;">
+    <h2 style="color: #ff8182;">La violencia desde la mirada del niño</h2>
+    <div id="cards_dos_testimonios" style="width: 90vw; display: flex; align-items: center; justify-content: center; flex-wrap: wrap;">
+      <div id="testimonio_ninia" class="testimonio">
+        <div class="front" style="background-color: #ffffff; padding: 10px;">
+          <iframe style="margin: 40px" width="242" height="430" src="https://www.youtube-nocookie.com/embed/1p-zORCnOvA?si=cAfuh8vorEblY_14" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          <div style="background-color: white; padding: 5px; margin: 10px">
+            <h3 style="color: #006d74; text-align: center;">
+              <strong>Nombre (falso):</strong> María<br>
+              <strong>Edad:</strong> 14 años<br>
+              <strong>Caso:</strong> La llamaban "nerd" y "cuatro ojos", difundieron rumores y fotos falsas en redes sociales, e incluso la encerraron en un baño.
+            </h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide9" style="text-align: center; background-color: #b8eaec; padding-top: 20vh; padding-bottom: 20vh; display: flex; justify-content: center; align-items: center;  flex-wrap: wrap;">
+    <div id="slide_9_contenido" style="display: flex; justify-content: center; align-items: center;  flex-wrap: wrap; margin-left: 8vw; margin-right: 8vw;">
+      <h2 style="color: #006d74; width: 80vw;">¿Promesas vacías o verdaderos cambios?</h2>
+      <p id="intentos_vanos" style="margin-top: 20px;">Intentos vanos. El cumplimiento de las normas que se propusieron para contrarrestar los casos de violencia en las escuelas no es garantizado por el propio Minedu.</p>
+
+      <div id="slide9_cajas_rosas" style="display: flex; justify-content: center; align-items: center; color: white; font-weight: bold; flex-wrap: wrap; width: 90vw;">
+        <div style="background: #ff8182; height: 200px; width: 200px; border-radius: 17px; display: flex; justify-content: center; align-items: start; flex-wrap: wrap; margin-top: 2vh; padding-top: 30px; box-shadow: 2px 2px 2px rgb(119, 119, 119);" id="mostrarc1">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/7BIWLQEN25EPVPINIX6FBV55X4.png" height="80" alt="Icono 1">
+          <p style="line-height: 18px;">Cumplimiento legal educativo</p>
+        </div>
+        <div style="background: #ff8182; height: 200px; margin-left: 2vw; margin-right: 2vw; width: 200px; border-radius: 17px; display: flex; justify-content: center;  padding-top: 30px; align-items: start; flex-wrap: wrap; margin-top: 2vh; box-shadow: 2px 2px 2px rgb(119, 119, 119);" id="mostrarc2">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/64SHKCGQAJGYBBDWFULD7V2KK4.png" height="80" alt="Icono 2">
+          <p style="line-height: 18px; width: 170px;">Programa <br>presupuestal</p>
+        </div>
+        <div style="background: #ff8182; height: 200px; width: 200px; border-radius: 17px; display: flex; justify-content: center; align-items: start; flex-wrap: wrap; margin-top: 2vh;  padding-top: 30px; box-shadow: 2px 2px 2px rgb(119, 119, 119);" id="mostrarc3">
+          <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/LP6Y2F7EPNCSTNZBDVSAPMZBLI.png" height="80" alt="Icono 3">
+          <p style="line-height: 18px;">Contratación y Rotación de psicólogos</p>
+        </div>
+      </div>
+      <p style="margin-top:3vh;">Haz clic en los cuadros para saber más</p>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay1" style="justify-content: center; align-items: center;">
+    <div class="modal" style="background-color: white; border-radius: 25px; flex-wrap: wrap; display: flex; justify-content: center; align-items: center;">
+      <button id="closeButton1" style="position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+      <div style="background: #ff8182; height: 150px; width: 150px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+        <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/7BIWLQEN25EPVPINIX6FBV55X4.png" height="100" alt="Icono Mod">
+      </div>
+      <div style="overflow-y: auto; max-height: 300px;">
+        <h3 style="color: #006d74; font-size: 4vh; text-align: center; margin: 20px">Cumplimiento legal educativo</h3>
+        <p style="font-size: 2.2vh; text-align: justify;">En el Perú, la ley N° 29179, exige que cada institución educativa, pública o privada, tenga <strong>al menos un psicólogo encargado</strong> de prevenir y tratar el acoso y la violencia entre alumnos, garantizando así una adecuada atención emocional y psicológica. No obstante, según un informe de la contraloría de 2023, 13,525 instituciones no cumplen con este requisito, lo que limita su capacidad para integrar servicios de salud mental y dificulta el acceso a los profesionales y recursos necesarios para el apoyo psicológico.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay2">
+    <div class="modal" id="slide9_caja_blanca_2" style="background-color: white; border-radius: 25px; flex-wrap: wrap; display: flex; justify-content: center; align-items: center;">
+      <button id="closeButton2" style="position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+      <div style="background: #ff8182; height: 150px; width: 150px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+        <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/64SHKCGQAJGYBBDWFULD7V2KK4.png" height="100" alt="Icono">
+      </div>
+      <div style="overflow-y: auto; max-height: 300px;">
+        <h3 style="color: #006d74; font-size: 4vh; text-align: center; margin: 20px">Programa presupuestal</h3>
+        <p style="font-size: 2.2vh; text-align: justify;">El presupuesto asignado para controlar y prevenir problemas de salud mental del Ministerio de Salud (programa 0131) ha crecido sostenidamente en 2023, incrementándose un 83.7% desde 2018. No obstante, el presupuesto anual del programa es general y no integra de forma específica el <strong>ámbito escolar, sino que se enfoca en los centros de salud mental comunitarios.</strong> La gestión ineficiente de los fondos destinados a la salud mental de los escolares radica en la falta de un programa presupuestal específico. Actualmente, no existe un área dentro del Ministerio de Educación ni del Ministerio de Salud que contemple la detección y tratamiento de la salud mental en los colegios públicos.
+          <br><br>
+          No obstante, el Ministerio de Educación mencionó a este diario que se viene trabajando en un proyecto normativo con rango de ley que lo habilite a realizar una transferencia de partidas para financiar, entre otras, la intervención pedagógica de Convivencia Escolar hasta por S/ 2.152.591 a los pliegos presupuestarios para implementar la intervención con la ampliación de los contratos de los perfiles de psicólogos hasta diciembre.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay3">
+    <div class="modal" id="slide9_caja_blanca_3" style="background-color: white; border-radius: 25px; flex-wrap: wrap; display: flex; justify-content: center; align-items: center;">
+      <button id="closeButton3" style="position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+      <div style="background: #ff8182; height: 150px; width: 150px; border-radius: 50%; display: flex; justify-content: center; align-items: center;">
+        <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/LP6Y2F7EPNCSTNZBDVSAPMZBLI.png" height="100" alt="Icono">
+      </div>
+      <div style="overflow-y: auto; max-height: 300px;">
+        <h3 style="color: #006d74; font-size: 4vh; text-align: center; margin: 20px">Contratación y Rotación de psicólogos</h3>
+        <p style="font-size: 2.2vh; text-align: justify;">En 2024, se promulgó la la Resolución 009-2024 del Ministerio de Educación, que estableció que los contratos de los psicólogos en el ámbito educativo nacional tienen una duración de 6 a 8 meses, tiempo que <strong>no cubre el año escolar completo.</strong> Esta temporalidad impide la continuidad del psicólogo en un centro educativo y dificulta el acompañamiento adecuado de los menores afectados. Además, la rotación afecta la planificación a largo plazo de los programas de salud mental y la creación de vínculos de confianza entre los estudiantes y los profesionales.</p>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide10" style="text-align: center; padding-top: 20vh;">
+    <h2 style="color: #006d74; margin-bottom: 5vh;">¿Cómo es la situación en diferentes regiones?</h2>
+    <p style="margin-top: 20px; text-align: justify;">Aquí podrás comparar el número de psicólogos existentes para trabajar en instituciones educativas, los casos reportados de acoso escolar y la cantidad de trastornos psicológicos de menores por región del país.</p>
+    <p style="margin-top: 20px; text-align: justify;">A nivel nacional, existe una gran escasez de plazas para psicólogos dedicados a la salud mental en el sistema educativo. Por ejemplo, en la región Amazonas, menos del 1% de los colegios públicos cuentan con psicólogos. En otros departamentos, como Apurímac y Ayacucho, las escuelas que cumplen con el requisito representan menos del 2% del total. Esta falta de cobertura guarda correlación con el aumento de casos de acoso escolar y trastornos infantiles, que se evidencian con mayor frecuencia en regiones con menor presencia de estos profesionales en los colegios.</p>
+
+    <div style="margin-top: 5vh; display: flex; justify-content: center; flex-wrap: wrap; padding: 30px;">
+      <h3 style="color: #ff8182; font-size: 4vh; width: 90vw">Plazas de psicólogos por número de colegios</h3>
+      <iframe title="Plazas de psicólogos por región" aria-label="Mapa" id="datawrapper-chart-aIVXe" src="https://datawrapper.dwcdn.net/aIVXe/3/" scrolling="no" frameborder="0" style="height: 600px; width: 400px;" height="500" data-external="1"></iframe>
+    </div>
+
+    <div style="margin-top: 3vh; margin-bottom: 4vh;display: flex; justify-content: center; flex-wrap: wrap; padding: 30px;">
+      <h3 style="color: #ff8182; font-size: 4vh; width: 90vw; margin-bottom: 5vh;">Tasa de diagnósticos de trastornos mentales por región</h3>
+      <p style="text-align: justify; font-size: 20px; max-width: 80vw;">
+        En seis regiones del país, hay solo 1 psicólogo por cada 800 menores de entre seis y 17 años con trastornos mentales. Por ejemplo, en Lima hay 161,695 de estos casos reportados, pero solo 37 psicólogos públicos disponibles, lo que significa que cada psicólogo tendría que atender a aproximadamente 4.372 casos, una carga imposible de manejar adecuadamente.
+      </p>
+      <iframe title="Casos de trastornos mentales por región" aria-label="Mapa" id="datawrapper-chart-2pmn4" src="https://datawrapper.dwcdn.net/2pmn4/1/" scrolling="no" frameborder="0" style="height: 600px; width: 400px; display: none;" height="500" data-external="1"></iframe>
+      <iframe title="Tasa de alumnos por casos" aria-label="Stacked Bars" id="datawrapper-chart-uQMXR" src="https://datawrapper.dwcdn.net/uQMXR/1/" scrolling="no" frameborder="0" style="width: 0; min-width: 100% !important; border: none;" height="629" data-external="1"></iframe>
+    </div>
+  </div>
+
+  <div id="slide11_5" style="background-color: #ffc347; padding: 20px;">
+    <div id="menus_desplegables" style="display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+      <div style="display: block;">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+          <h3 style="color: #006d74; font-size: 30px; margin: 20px;">Año</h3>
+          <select id="yearSelect" onchange="drawBalls()" style="margin: 20px; border-radius: 10px; font-size: 20px; max-height: 20vh; font-family: 'Londrina Solid'; color: #ffffff ; background-color: #ffc347;">
+            <option value="nada">Selecciona un año</option>
+            <option value="2020">2020</option>
+            <option value="2021">2021</option>
+            <option value="2022">2022</option>
+            <option value="2023">2023</option>
+          </select>
+        </div>
+      </div>
+
+      <div style="display: block;">
+        <div style="display: flex; justify-content: center; flex-wrap: wrap;">
+          <h3 style="color: #006d74; font-size: 30px; margin: 20px;">Región</h3>
+          <select id="citySelect" onchange="drawBalls()" style="margin: 20px; border-radius: 10px; font-size: 18px; max-height: 20vh; font-family: 'Londrina Solid'; color: #ffffff ; background-color: #ffc347;">
+            <option value="nada">Selecciona una región</option>
+            <option value="Amazonas">Amazonas</option>
+            <option value="Ancash">Ancash</option>
+            <option value="Apurimac">Apurimac</option>
+            <option value="Arequipa">Arequipa</option>
+            <option value="Ayacucho">Ayacucho</option>
+            <option value="Cajamarca">Cajamarca</option>
+            <option value="Callao">Callao</option>
+            <option value="Cusco">Cusco</option>
+            <option value="Huancavelica">Huancavelica</option>
+            <option value="Huanuco">Huanuco</option>
+            <option value="Ica">Ica</option>
+            <option value="Junin">Junin</option>
+            <option value="La Libertad">La Libertad</option>
+            <option value="Lambayeque">Lambayeque</option>
+            <option value="Lima">Lima</option>
+            <option value="Loreto">Loreto</option>
+            <option value="Madre de Dios">Madre de Dios</option>
+            <option value="Moquegua">Moquegua</option>
+            <option value="Pasco">Pasco</option>
+            <option value="Piura">Piura</option>
+            <option value="Puno">Puno</option>
+            <option value="San Martin">San Martin</option>
+            <option value="Tacna">Tacna</option>
+            <option value="Tumbes">Tumbes</option>
+            <option value="Ucayali">Ucayali</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: center;">
+      <img src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/ZKUKI4K2HZEIBK7MMYQFHGRNMI.jpg" width="auto" style="width: 95vw;" alt="Grafico Base">
+    </div>
+
+    <div style="display: none;" class="container_balls">
+    </div>
+
+    <div class="overlay" id="overlay4" style="justify-content: center; align-self: center;">
+      <div id="ballCountDisplay" style="font-size: 4.5vh; color:white; width: 60vw; height: fit-content; text-align: center; font-family: 'Londrina Solid'; background-color: #ff8182; padding: 5px; border-radius: 20px;">1 psicólogo por cada <span id="ballCountValue">X</span> alumnos.</div>
+    </div>
+  </div>
+
+  <div id="slide_16" style="display: flex; justify-content: center; align-items: center;  background-color: #006d74; padding-top: 20vh; padding-bottom: 20vh;">
+    <div id="slide_16_texto_div" style="width: 50vw;">
+      <p style="font-weight: bold; color: #ffffff; text-align: center;">
+        En el Perú existen 6,871,582 alumnos en colegios públicos a nivel nacional y solo 2,074 psicólogos en centros educativos. Es decir, hay 1 psicólogo por cada 3,313 estudiantes. Para atender a cada uno de ellos, aunque sea una sola vez y por un lapso de 30 minutos, un psicólogo tendría que trabajar, en promedio, 207 días con una jornada de 8 horas. En tanto un año escolar dura 224 días, solo le quedarían 17 días para realizar una segunda cita.
+      </p>
+    </div>
+  </div>
+
+  <div id="overlay5" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9); z-index: 7;">
+    <div id="slide9_transcripcion_1" style="background-color: white; border-radius: 25px; z-index: 8; position: fixed; margin: 3vw; padding: 2vw; height: fit-content; width: 80vw; display: flex; align-items: center;">
+      <button id="closeButton5" style="position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+      <div style="max-height: 70vh; overflow-y: auto; padding: 20px;">
+        <p class="contenido_transcripcion" style="text-align: justify;">
+          <strong>¿El Colegio de Psicólogos ha tenido algún tipo de reunión con algún funcionario del Ministerio de Educación para tocar el tema de salud mental en los estudiantes?</strong>
+          <br>“Se estableció una mesa de diálogo para analizar las funciones del psicólogo en colegios y asegurar los contratos, ya que de los 2,800 psicólogos en 2023, en 2024 se estaban reduciendo a 2,500, lo que generó preocupación”.
+          <br><br><strong>¿Cómo considera que ha sido la colaboración del Colegio de Psicólogos con los Ministerios de Educación y Salud? ¿Cómo ha sido esa relación? ¿Se les ha escuchado?</strong>
+          <br>“Hubo un acercamiento, meses de trabajo, pero nada más. Les decimos que debemos mejorar los perfiles de los psicólogos para que trabajen. Ellos nos dicen que no hay plata. Si la ley está dando un mandato, eso se está incumpliendo”.
+          <br><br><strong>¿Cómo afecta la resolución ministerial 009, que fue aprobada en enero del 2024, en la duración de los contratos de los psicólogos? ¿Se cumple o no?</strong>
+          <br>“El cumplimiento de la ley no garantiza estabilidad para que el profesional pueda involucrarse, comprometerse con su trabajo y lograr los objetivos que demanda la institución. Es lamentable, pero ese es el juego político que tienen las autoridades”.
+          <br><br><strong>¿Estaríamos hablando entonces de la responsabilidad de más de un ministerio?</strong>
+          <br>“El Ministerio de Educación no solicita ni incrementa las partidas para la contratación. Por otro lado, el Ministerio de Economía dice que no hay dinero para poder contratar. Entonces son estos dos ministerios los responsables”.
+          <br><br><strong>¿Existe algún pedido del Colegio de Psicólogos para revertir esta situación?</strong>
+          <br>“Al Ministerio de Economía, que vea esto como una inversión para el futuro del país y el desarrollo humano de nuestros niños. También se pide a la presidenta (Dina Boluarte) incrementar el presupuesto para brindar apoyo emocional a todos los niños peruanos”.
+          <br><br><strong>¿Qué propuestas de soluciones plantea?</strong>
+          <br>“Una de las soluciones que el Colegio de Psicólogos del Perú plantea es la inclusión de los 120 mil estudiantes de psicología a las planillas educativas escolares. Es decir, que puedan hacer sus prácticas preprofesionales en las instituciones educativas públicas para, de esa manera, aumentar el número de psicólogos por institución”.
+          <br><br><strong>¿Y considera necesaria la implementación de alguna solución, no tanto de manera general, sino en las mismas aulas? </strong>
+          <br>“Es importante educar en salud mental a los estudiantes, con la finalidad de que los alumnos comiencen a gestionar sus emociones, tanto de la ansiedad, tensión, ira, desesperanza; y aprendan a manejar la frustración natural dentro de un entorno académico”.
+        </p>
+        <p class="contenido_transcripcion" style="text-align: right;">
+          <strong>Miguel Vallejos</strong>
+          <br>Decano del Colegio de Psicólogos de Perú
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay6" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9); z-index: 7;">
+    <div id="slide9_transcripcion_2" style="background-color: white; border-radius: 25px; z-index: 8; position: fixed; margin: 3vw; padding: 2vw; height: fit-content; width: 70vw; display: flex; align-items: center;">
+      <button id="closeButton6" style="position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+      <div style="max-height: 80vh; overflow-y: auto; padding: 20px;">
+        <p class="contenido_transcripcion" style="text-align: justify;">
+          <strong>¿Logra darse abasto con tantos alumnos usted sola?</strong>
+          <br>“En la mayoría de los colegios, por no decir todos, debería de haber un cambio. Una psicóloga no se abastece para tantos alumnos, ¿no? Porque realmente la intervención y el diálogo deberían ser personalizados”.
+          <br><br><strong>¿Más o menos a cuántos alumnos puede atender?</strong>
+          <br>“Por día, yo atiendo entre siete y diez alumnos. Son muy recortados los espacios, 15 minutos, máximo 20. Si fuesen casos delicados, 30 minutos”.
+          <br><br><strong>¿Cuál es el problema más recurrente en los alumnos?</strong>
+          <br>“Los problemas más comunes en los alumnos son la depresión, ansiedad, trastornos alimenticios y problemas de conducta. Estos son los casos más frecuentes”.
+          <br><br><strong>¿En tu caso, cómo trabajas como psicóloga educativa?</strong>
+          <br>“No se puede ofrecer terapia individualizada por la gran cantidad de alumnos. Como psicólogos educativos, diagnosticamos y dirigimos a los alumnos para intervenciones permanentes junto a los padres. Pero estos, a veces, no asumen la responsabilidad y demoran el proceso”.
+          <br><br><strong>Entonces los padres de familia, cuando se les informa que su hijo tiene un problema ¿colaboran o dificultan las cosas?</strong>
+          <br>“Pocos padres colaboran. A veces, he terminado dando terapia de pareja a los padres para ayudarles, porque muchos chicos se sienten culpables de las cosas que sus padres no manejan bien. Por eso, intento llegar a los padres también”.
+          <br><br><strong>¿Qué propuesta de solución plantea para esta problemática?</strong>
+          <br>“Considero que se debería comenzar a usar un diario emocional para facilitar el acceso a la información sobre el comportamiento de los alumnos. A partir de un cuadro de percepción, por ejemplo, los docentes podrían reportar al personal de psicología de los colegios lo que ellos ven, a nivel conducta, de sus alumnos”.
+        </p>
+        <p class="contenido_transcripcion" style="text-align: right;">
+          <strong>Katia Castañeda</strong>
+          <br>Psicóloga que trabaja en un colegio particular de San Juan de Lurigancho desde hace dos años
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="overlay7" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9); z-index: 7;">
+    <div id="slide9_transcripcion_3" style="background-color: white; border-radius: 25px; z-index: 8; position: fixed; margin: 3vw; padding: 2vw; height: fit-content; width: 70vw; display: flex; align-items: center;">
+      <button id="closeButton7" style="position: absolute; top: 10px; right: 20px; background: none; border: none; font-size: 30px; cursor: pointer;">&times;</button>
+      <div style="max-height: 80vh; overflow-y: auto; padding: 20px;">
+        <p class="contenido_transcripcion" style="text-align: justify;">
+          <strong>¿Cuál es el rol del colegio en el área psicológica?</strong>
+          <br>“Es la identificación de algunos casos particulares para la derivación. Y su principal enfoque es más preventivo que promocional. Entonces, si es que identificamos algún caso específico se deriva, pero aún así se da un acompañamiento”.
+          <br><br><strong>¿Usted considera que tener un psicólogo para todo el colegio o un psicólogo por cada nivel escolar es suficiente?</strong>
+          <br>“No, definitivamente no. De hecho, considero que por lo menos, por cada 200 o 300 alumnos debería haber un psicólogo para dar una adecuada intervención”.
+          <br><br><strong>¿Los padres de familia suelen colaborar con el área de psicología de los colegios?</strong>
+          <br>“A veces hay bastante dificultad. Hay mucho estigma sobre la psicología. Muchos padres se ponen a la defensiva al recibir citaciones. ‘Mi hijo no es loco’, ‘mi hija no es loca’, dicen”
+          <br><br><strong>¿Qué pasa por el lado del alumno? ¿Qué pasa si este pone resistencia?</strong>
+          <br>“Ahí está el trabajo del psicólogo educativo, brindar psicoeducación y explicarle que, aunque es un proceso largo y a veces tedioso, es para que mejore. Tratamos también de concientizarlo, de explicarle de manera muy sencilla para que verdaderamente lo entienda”.
+          <br><br><strong>¿Qué propuesta de solución plantea para esta problemática?</strong>
+          <br>“Hay que sensibilizar a los padres de familia. Es importante que se les pueda explicar por qué es importante que sus hijos vayan al psicólogo, se evalúen y se compruebe si tienen un trastorno o no”.
+        </p>
+        <p class="contenido_transcripcion" style="text-align: right;">
+          <strong>Angie Bolaños</strong>
+          <br>Psicóloga con experiencia en instituciones públicas y privadas
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide14" style="padding-top: 8vh; padding-bottom: 8vh; background-color: #ff8182; display: flex; justify-content: center; align-items: center; flex-wrap: wrap;">
+    <h2 style="color:white; width: 80vw; margin-left: 7vw; margin-right: 7vw; text-align: center;">¿Qué dicen los expertos?</h2>
+    
+    <div id="slide14_cuadro1" style="width: 410px; z-index: 1; display: flex; height: 330px; margin: 2vw;">
+      <div style="display: block; ">
+        <div id="cuadro_blanco_op_1" style="background-color: white; border-radius: 20px; box-shadow: 2px 2px 2px rgb(119, 119, 119); height: 290px; margin-top: 30px; padding: 20px; padding-top: 60px; z-index: 2;">
+          <button id="mostrarc5" class="ver_testimonios">Ver más</button>
+          <p>“Los Gobiernos no se han comprometido y tampoco han tenido la voluntad política de invertir en contratar un psicólogo por colegio. La contraloría emite un informe señalando que tan solo el 2% de los colegios tienen el número requerido de psicólogos”.</p>
+        </div>
+        <div style="background-color: #ffc447; border-radius: 20px; width: 300px; height: 80px; z-index: 2; padding-left: 70px; padding-top: 5px; margin-top: -320px; margin-left: 50px; box-shadow: 2px 2px 2px rgb(73, 73, 73);  ">
+          <p style="font-weight: bold; line-height: 20px; width: 200px;">Decano del Colegio de Psicólogos de Perú</p>
+          <p style="line-height: 0px;">Miguel Vallejos</p>
+        </div>
+        <img src="https://i.ibb.co/B3YZvMH/decano-fverde.jpg" height="90" style="z-index: 3; margin-top: -85px; margin-left: 10px; border-radius: 50%; border: 8px solid #ffc447; box-shadow: 2px 2px 2px rgb(73, 73, 73); " alt="Decano">
+      </div>
+    </div>
+    
+    <div id="slide14_cuadro2" style="width: 410px; z-index: 1; display: flex; height: 330px; margin: 2vw;">
+      <div style="display: block; ">
+        <div id="cuadro_blanco_op_2" style="background-color: white; border-radius: 20px; box-shadow: 2px 2px 2px rgb(119, 119, 119); height: 290px; margin-top: 30px; padding: 20px; padding-top: 60px; z-index: 2;">
+          <button id="mostrarc6" class="ver_testimonios">Ver más</button>
+          <p>“En la mayoría de los colegios, por no decir todos, debería haber un cambio. Una psicóloga no se abastece para tantos alumnos, porque realmente la intervención y el diálogo deberían ser personalizados”.</p>
+        </div>
+        <div style="background-color: #ffc447; border-radius: 20px; width: 300px; height: 80px; z-index: 2; padding-left: 70px; padding-top: 5px; margin-top: -320px; margin-left: 50px; box-shadow: 2px 2px 2px rgb(73, 73, 73); ">
+          <p style="font-weight: bold; line-height: 20px; width: 170px;">Licenciada en psicología infantil</p>
+          <p style="line-height: 0px;">Katia Castañeda</p>
+        </div>
+        <img src="https://i.ibb.co/GTpGs6t/katia-fverde.jpg" height="90" style="z-index: 3; margin-top: -85px; margin-left: 10px; border-radius: 50%; border: 8px solid #ffc447; box-shadow: 2px 2px 2px rgb(73, 73, 73); " alt="Katia">
+      </div>
+    </div>
+    
+    <div id="slide14_cuadro3" style="width: 410px; z-index: 1; display: flex; height: 330px; margin: 2vw;">
+      <div style="display: block;">
+        <div id="cuadro_blanco_op_3" style="background-color: white; border-radius: 20px; box-shadow: 2px 2px 2px rgb(119, 119, 119); height: 290px; margin-top: 30px; padding: 20px; padding-top: 60px; z-index: 2;">
+          <button id="mostrarc7" class="ver_testimonios">Ver más</button>
+          <p>“Como psicólogos educativos, también tenemos un límite. Atender a toda la comunidad educativa, implica no solo a los 700 estudiantes, también tenemos que atender a sus familias y también a la plana docente”.</p>
+        </div>
+        <div style="background-color: #ffc447; border-radius: 20px; width: 300px; height: 80px; z-index: 2; padding-left: 70px; padding-top: 5px; margin-top: -320px; margin-left: 50px; box-shadow: 2px 2px 2px rgb(73, 73, 73); ">
+          <p style="font-weight: bold; line-height: 20px; width: 170px;">Licenciada en psicología infantil</p>
+          <p style="line-height: 0px;">Angie Bolaños</p>
+        </div>
+        <img src="https://i.ibb.co/KG6k3qJ/angie-fverde.jpg" height="90" style="z-index: 3; margin-top: -85px; margin-left: 10px; border-radius: 50%; border: 8px solid #ffc447; box-shadow: 2px 2px 2px rgb(73, 73, 73); " alt="Angie">
+      </div>
+    </div>
+  </div>
+
+  <div id="slide15" style="padding-top: 1vh; padding-bottom: 120px; background-color: #ff8182; display: flex; justify-content: center; align-items: baseline; flex-wrap: wrap;">
+    <h2 style="color:white; width: 80vw; text-align: center;">¿Qué dicen las autoridades?</h2>
+    <p style="width: 80vw; margin-left: 7vw; margin-right: 7vw; text-align: justify; color:white">Pese a las medidas tomadas por ambos ministerios, la realidad es que las acciones implementadas hasta ahora no son suficientes para satisfacer las necesidades de salud mental de todos los escolares a nivel nacional.<br><br></p>
+
+    <div id="slide15_cuadro1" style="width: 360px; z-index: 1; display: flex; height: fit-content; margin: 5vh; ">
+      <div style="display: block; ">
+        <div class="descargo" id="cuadro_blanco_descargo_1" style="background-color: white; border-radius: 20px; box-shadow: 2px 2px 2px rgb(119, 119, 119); height: fit-content; padding: 20px; padding-top: 60px; z-index: 2; width: 360px;">
+          <div style="background-color: #006d74; border-radius: 20px; width: 300px; height: 50px; z-index: 2; color:white; display: flex; justify-content: center; align-items: center;position: absolute; margin-top: -70px;">
+            <p style="font-weight: bold; font-size: 22px; margin-top: 15px;">MINEDU</p>
+          </div>
+          <p>El Ministerio de Educación ha reconocido la insuficiencia de psicólogos en las instituciones educativas del país y ha detallado su plan de acción para abordar este problema. La Ley 31902 que promueve un psicólogo por escuela, indica que su implementación será progresiva y supeditada a disposición presupuestal. Actualmente, el Minedu detalla que el número de plazas de psicólogos ha aumentado a casi 3,000, y se proyecta llegar a 4,000 en 2025, con el objetivo de beneficiar a más de 2.6 millones de estudiantes. Además, se realizarán convocatorias adicionales para cubrir más plazas.</p>
+        </div>
+      </div>
+    </div>
+
+    <div id="slide15_cuadro2" style="width: 360px; z-index: 1; display: flex; height: fit-content; margin: 5vh;">
+      <div style="display: block; ">
+        <div id="cuadro_blanco_descargo_2" style="background-color: white; border-radius: 20px; box-shadow: 2px 2px 2px rgb(119, 119, 119); height: fit-content; padding: 20px; padding-top: 60px; z-index: 2; width: 360px;">
+          <div style="background-color: #006d74; border-radius: 20px; width: 300px; height: 50px; z-index: 2; color:white; display: flex; justify-content: center; align-items: center; position: absolute; margin-top: -70px;">
+            <p style="font-weight: bold; font-size: 22px; margin-top: 15px;">MINSA</p>
+          </div>
+          <p>El Ministerio de Salud detalla que, hasta agosto del 2024, 350 psicólogos han sido adjudicados en plazas SERUMS para trabajar en instituciones educativas. Sus funciones incluyen la detección de problemas de salud mental en niños y adolescentes, la consejería psicológica, la intervención familiar, y la realización de talleres para estudiantes, padres y docentes. Este esfuerzo busca promover la convivencia escolar saludable y fortalecer la salud mental en las escuelas públicas.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="slide_16_5" style="display: flex; align-items: center; background-color: #8edde1;">
+    <div id="cerebro_slide16_5" style="float: left">
+      <svg id="cerebro_izquierda" width="20vh" height="auto" viewBox="0 0 267 540" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <g opacity="0.3">
+          <path d="M227.901 268.213C230.329 259.998 230.892 250.891 229.452 241.825C228.107 233.321 225.117 225.613 220.837 219.126C233.265 211.555 242.456 198.224 245.899 182.355C252.086 153.868 242.332 124.476 219.794 103.725C199.04 84.6196 171.275 76.0613 145.006 80.0799C148.326 62.3734 142.606 42.541 129.492 27.8519C116.748 13.5742 97.6258 4.02837 75.6229 0.969832C62.2757 -0.881732 42.7282 -0.991475 25.3755 9.007C9.28477 18.2923 -0.811357 34.7644 -0.838794 51.4285C-0.838794 51.5245 -0.866229 51.6206 -0.866229 51.7303L-0.866232 436.98C-1.04455 437.776 -1.04455 438.599 -0.866233 439.394L-0.866236 482.858C-0.866236 482.858 -0.866236 482.885 -0.866236 482.913C-1.57956 496.82 8.68122 517.544 20.4646 525.842C33.7157 535.168 51.2468 539.996 70.3691 539.996C80.9179 539.996 91.9742 538.529 103.044 535.539C126.501 529.202 149.533 509.891 166.241 482.57C176.159 466.345 180.452 448.501 178.395 432.248C180.933 432.674 183.457 432.866 185.967 432.866C205.322 432.866 223.347 421.578 229.369 417.381C253.498 400.58 267.559 372.216 266.969 341.521C266.393 311.43 251.811 284.178 227.901 268.227L227.901 268.213ZM223.073 408.315C209.986 417.436 190.782 425.171 175.569 420.179C171.083 407.41 162.318 396.602 151.262 390.513C156.886 383.737 160.85 375.549 162.318 366.922C165.13 350.491 158.998 332.593 146.694 321.333C144.444 319.275 140.96 319.426 138.902 321.675C136.844 323.925 136.995 327.408 139.245 329.466C148.847 338.257 153.635 352.219 151.44 365.057C149.245 377.895 140.082 389.484 128.106 394.572C116.131 399.675 101.426 398.234 90.6573 390.924C88.1333 389.21 84.7039 389.868 82.9892 392.392C81.2745 394.915 81.933 398.344 84.457 400.059C92.7561 405.696 102.88 408.603 112.976 408.603C119.656 408.603 126.323 407.328 132.427 404.722C136.131 403.144 139.629 401.074 142.839 398.618C142.894 398.646 142.935 398.673 142.976 398.701C155.692 404.159 165.281 417.628 167.407 433.03C169.328 446.965 165.569 462.518 156.831 476.81C141.577 501.744 120.932 519.272 100.177 524.882C72.166 532.453 44.7447 529.435 26.8295 516.817C17.2684 510.083 9.54541 492.418 10.1627 483.215C10.1627 483.146 10.1627 483.091 10.1627 483.023C10.1627 482.954 10.1764 482.899 10.1764 482.844L10.1764 439.847C20.1216 427.078 38.9833 421.77 54.0452 427.805C69.6832 434.073 79.8753 452.012 77.2553 468.649C76.7752 471.653 78.8328 474.478 81.8507 474.958C82.1387 474.999 82.4268 475.027 82.7149 475.027C85.3761 475.027 87.7218 473.093 88.1607 470.377C91.549 448.871 78.3664 425.679 58.1604 417.573C42.495 411.305 23.6608 414.528 10.1901 424.609L10.1901 248.82C19.2163 257.405 31.6718 262.96 43.6061 262.96C44.6624 262.96 45.7186 262.919 46.7611 262.823C63.6886 261.397 78.8328 249.684 84.992 234.021C91.1786 237.93 98.1883 240.563 105.527 241.482C107.557 241.742 109.588 241.866 111.618 241.866C128.806 241.866 145.706 232.855 154.993 218.276C156.625 215.711 155.871 212.296 153.305 210.664C150.74 209.031 147.325 209.786 145.692 212.351C137.667 224.941 121.728 232.416 106.913 230.551C92.0977 228.672 78.5173 217.466 73.8945 203.271C69.2579 189.076 73.6064 172.014 84.457 161.768C86.6655 159.67 86.7753 156.186 84.6765 153.978C82.5777 151.77 79.0934 151.66 76.8849 153.759C62.8244 167.035 57.406 188.321 63.4143 206.714C65.8834 214.298 70.2456 221.101 75.8149 226.683C72.2072 239.987 59.6008 250.699 45.8421 251.851C31.9736 253.03 15.9104 243.251 10.1901 230.359L10.1901 139.618C14.5935 140.4 18.9968 140.811 23.3315 140.811C32.344 140.811 41.0272 139.138 48.7913 135.805C63.6886 129.428 74.937 116.988 78.8877 102.518C83.2499 86.5535 78.0783 69.135 66.0206 59.1777C63.6749 57.2438 60.1906 57.573 58.2565 59.9183C56.3223 62.2637 56.6515 65.7473 58.9972 67.6812C67.6393 74.8132 71.4391 87.9387 68.2566 99.6105C65.225 110.692 56.1028 120.677 44.4566 125.67C34.4016 129.976 22.3439 130.881 10.2039 128.372L10.2038 53.527C10.2038 53.3213 10.245 53.1155 10.2313 52.9098C9.614 39.8665 17.9268 26.0826 30.9174 18.594C45.554 10.1454 62.4952 10.31 74.1414 11.9147C93.5517 14.6166 110.301 22.8869 121.302 35.217C132.839 48.1369 137.517 65.6925 133.634 80.697C122.482 73.2222 107.05 72.7559 95.6368 80.121C93.0716 81.7669 92.3446 85.182 93.9907 87.7467C95.6368 90.3115 99.0525 91.0384 101.618 89.3926C110.301 83.7967 122.935 85.0174 130.383 92.163C137.832 99.3087 139.56 111.886 134.334 120.787C132.798 123.407 133.662 126.794 136.296 128.33C137.174 128.852 138.134 129.098 139.08 129.098C140.973 129.098 142.811 128.125 143.84 126.383C150.082 115.767 149.753 102.107 143.717 91.5733C167.572 86.8689 193.292 94.3164 212.373 111.872C232.291 130.209 240.604 155.062 235.172 180.051C232.223 193.629 224.225 204.766 213.58 210.554C212.702 209.745 211.825 208.935 210.878 208.195C199.561 199.335 183.937 197.168 171.975 202.791C169.218 204.094 168.038 207.372 169.328 210.129C170.617 212.885 173.909 214.065 176.666 212.776C184.938 208.881 195.953 210.526 204.074 216.89C211.536 222.733 216.831 232.471 218.601 243.594C220.165 253.455 218.889 263.289 214.98 271.272C210.837 279.761 203.457 286.386 195.226 289.019C186.639 291.762 176.913 290.089 170.466 284.74C168.12 282.792 164.65 283.122 162.702 285.467C160.754 287.812 161.083 291.282 163.429 293.23C169.863 298.565 178.175 301.377 186.721 301.377C190.686 301.377 194.705 300.773 198.601 299.525C208.944 296.22 217.874 288.635 223.526 278.596C243.416 292.681 255.488 316.011 255.981 341.755C256.503 368.76 244.212 393.667 223.1 408.356L223.073 408.315Z" fill="#006A70" />
+          <path d="M101.933 318.96C99.0387 318 95.9248 319.577 94.9646 322.471C91.2334 333.772 80.3554 342.44 68.5034 343.551C56.6515 344.662 44.3605 338.161 38.5992 327.738C32.8378 317.328 33.8803 303.448 41.1232 294.012C42.975 291.598 42.5224 288.128 40.1081 286.276C37.6938 284.425 34.2232 284.877 32.3714 287.291C22.5359 300.115 21.1367 318.932 28.942 333.073C36.1711 346.157 51.0273 354.702 65.952 354.702C67.1454 354.702 68.3388 354.647 69.5322 354.537C85.6092 353.029 100.383 341.275 105.445 325.927C106.391 323.033 104.828 319.92 101.933 318.96Z" fill="#006A70" />
+        </g>
+      </svg>
+    </div>
+
+    <div id="slide_16_5_texto_div">
+      <h2 id="slide_16_5_texto" style="color: #006d74;">
+        ¿Qué señales podrían ayudarnos a identificar si un menor está sufriendo acoso escolar o muestra comportamientos relacionados con un problema de salud mental?</h2>
+    </div>
+  </div>
+
+  <div id="overlay8" style="display: none;position: fixed;top: 0;left: 0;width: 100%;height: 100%; background-color: rgba(0, 0, 0, 0.9); z-index: 7;">
+    <div id="slide15_disclaimer_sammy" style="background-color: #006d74; border-radius: 25px; z-index: 8; position: fixed; margin: 3vw; padding: 2vw; height: fit-content; width: 80vw; display: flex; align-items: center; color:white">
+      <button id="closeButton8" style="position: absolute; top: 0px; right: 10px; background: none; border: none; font-size: 30px; cursor: pointer; color:white;">&times;</button>
+      <div style="max-height: 70vh; padding: 20px; overflow-y: auto;">
+        <h3 style="text-align: center; margin-bottom: 20px;">Sobre Sammy</h3>
+        <p class="contenido_transcripcion" style="text-align: justify;">
+          1. ‘Sammy’ conoce la legislación peruana, específicamente la Ley N° 29719 y su modificación sobre convivencia escolar, salud mental y buenas prácticas docentes.<br><br>
+          2. Basándose en esta información, Sammy tiene la habilidad de identificar si una situación probablemente califica como acoso escolar y te brindará orientación sobre cómo proceder.<br><br>
+          3. Sammy también puede identificar señales que podrían estar relacionadas con problemas de salud mental en los menores y te orientará para que consultes con un especialista.<br><br>
+          4. Es importante tener en cuenta que las respuestas de Sammy no son definitivas. <strong>Sammy es un bot de IA, no un psicólogo, médico especialista ni abogado especializado.</strong><br><br>
+          5. Saluda a Sammy con un "Hola" y cuéntale qué te ha sucedido en tu entorno escolar.<br><br>
+          6. Intenta ser preciso con la información que le brindes a Sammy para que pueda ofrecerte la mejor orientación posible.<br><br>
+        </p>
+        <h3>Estos números te proporcionarán orientación y apoyo para manejar situaciones de violencia en el entorno escolar</h3>
+        <p>
+          <br><strong>1. Línea 100:</strong> Servicio gratuito que atiende las 24 horas del día, los 7 días de la semana. Puedes llamar para reportar cualquier tipo de violencia, incluida la violencia escolar.<br><br>
+          <strong>2. Chat 100:</strong> Es un servicio complementario de la Línea 100, disponible para quienes prefieran comunicarse vía chat. Puedes acceder desde el sitio web del Ministerio de la Mujer y Poblaciones Vulnerables (MIMP).<br><br>
+          <strong>3. Defensoría del Pueblo:</strong> Puedes comunicarte al número (01) 311-0300 para reportar casos de violencia escolar y otros problemas relacionados con derechos humanos.<br><br>
+          <strong>4. Ministerio de Educación (MINEDU): </strong>Puedes contactar al (01) 615-5800 o al 0800-13687 para reportar situaciones de violencia en el entorno escolar.<br><br>
+        </p>
+
+        <h3>Estos recursos están disponibles para ofrecer apoyo inmediato en situaciones críticas y pueden guiarte hacia la mejor respuesta según la necesidad del menor en crisis</h3>
+        <p>
+          <br><strong>1. Línea 113, opción 5:</strong> Esta línea del Ministerio de Salud (MINSA) está dedicada a la salud mental. Puedes llamar para recibir orientación y apoyo en situaciones de crisis.<br><br>
+          <strong>2. Línea 100: </strong>Aunque es más conocida para reportar casos de violencia, también atiende emergencias relacionadas con la salud mental, especialmente en situaciones de riesgo para menores.<br><br>
+          <strong>3. SAMU - Servicio de Atención Médica de Urgencia: </strong>Llama al 106 para emergencias médicas, incluyendo crisis de salud mental donde se requiere atención urgente.<br><br>
+          <strong>4. CEM (Centro de Emergencia Mujer):</strong> A través del 1810, puedes recibir asistencia en casos de violencia que puedan estar afectando la salud mental de menores.<br><br>
+          <strong>5. Defensoría del Pueblo:</strong> Puedes comunicarte al (01) 311-0300 para recibir orientación y asistencia en situaciones de crisis de salud mental.
+        </p>
+      </div>
+    </div>
+  </div>
+  <div id="sammy" style="background-color: #b7f1f2; padding: 5vw; display: flex; flex-wrap: wrap; justify-content: center;">
+    <p style="width: 80vw; text-align: justify;">
+      <br>Debido al aumento de casos de violencia escolar y la falta de psicólogos y personal especializado en las aulas, te presentamos a 'Sammy', una asistente virtual entrenada con Inteligencia Artificial. Sammy está diseñada para identificar posibles casos de violencia escolar y señales que podrían sugerir problemas de salud mental en los menores. <strong>Sammy no es terapeuta ni da diagnósticos,</strong> pero facilita detección de posibles problemas y recomienda evaluaciones por parte de profesionales, contribuyendo a la prevención y el abordaje temprano.
+    </p>
+    <img id="mostrarc8" src="https://cloudfront-us-east-1.images.arcpublishing.com/elcomercio/2WEV5DBATRAATDBE7X753WPL2A.png" height="30" style="margin-left: 10px; cursor:pointer;" alt="Info">
+
+    <div id="cuadro_ia_rosa" style="background-color: #ff8182; border-radius: 20px; margin-top: 5vh; display: flex; justify-content: center; align-items: center; flex-wrap: nowrap; padding: 40px;">
+      <div id="dra_y_texto" style="margin: 1vw; text-align: center;">
+        <div style="width: 10vw;">
+          <div style="width: 10vw;">
+            <img id="imagen_sammy" src="https://i.ibb.co/bRW7sp8/Sammy-dise-o-2.png" height="130" width="auto" style="width: 10vw; height: 10vw;" alt="Sammy">
+          </div>
+          <h2 id="titulo_sammy" style="color: #ffffff; font-size: 2.5vw;">Sammy</h2>
+        </div>
+      </div>
+      <div id="solo_centrar" style="justify-content: center; display: flex; align-items: center;">
+        <div id="espacio_para_ai" style="background-color: white; border-radius: 20px; justify-content: center; display: flex; align-items: baseline; flex-wrap: wrap;">
+          <iframe id="chatbotIframe" src="https://chatbot-template-bvq3ychcftk.streamlit.app/?embed=true&embed_options=show_footer&embed_options=light_theme" style="height: 80%; width: 90%; margin-top: 20px;"></iframe>
+          <div id="regresar" style="display: flex; flex-wrap: wrap;justify-content: center; margin-top: 5vh; margin-bottom: 2vh;">
+            <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+              <button id="resetButton" style="color: #ffffff; background-color: #ff8182; border: 3px solid #006d74; border-radius: 30px; text-decoration: none; width: 280px; height: 30px;" onmouseover="this.style.backgroundColor='#ff5050';" onmouseout="this.style.backgroundColor='#ff8182';">
+                <h3 style="font-size: 16px;">Reiniciar chat</h3>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="creditos" style="background-color: #006d74; padding-top: 5vh; padding-bottom: 10vh; color:white; text-align: center;">
+    <h1 style="font-weight: bold; color: #ffffff; margin-top: 40px">ELABORACIÓN</h1>
+    <div style="display: flex; align-items: center; justify-content: center;">
+      <p style="width: 80vw; text-align: center;">
+        <br>Este informe fue elaborado por los alumnos del Laboratorio de Periodismo Innovador de ECData y la Universidad Peruana de Ciencias Aplicadas, bajo la supervisión y guía de periodistas de El Comercio.
+      </p>
+    </div>
+
+    <div style="display: flex; justify-content: center; flex-wrap: wrap; align-items: baseline;">
+      <div style="display: flex; justify-content: center; flex-wrap: wrap;  align-items: baseline; margin-top:30px">
+        <h2 style="text-align: center; margin-bottom: 25px; width: 95vw;">EQUIPO</h2>
+        <div style="display: block; margin-left: 40px; margin-right: 40px; ">
+          <h3>PARTICIPANTES DEL LABORATORIO</h3>
+          <div>
+            <div style="display: block; margin-left: 40px; margin-right: 40px;">
+              <p style="line-height: 35px; ">
+                <br>Gustavo Huamani (Diseño)
+                <br>Rosario Arribasplata (Diseño)
+                <br>Alessandra Carrión (Animación y realización audiovisual)
+                <br>Sebastian Fernandez - Moris (Investigación y análisis de datos)
+                <br>Diego Aquino (Investigación y análisis de datos)
+                <br>Francisco Calderón (Investigación y análisis de datos)
+                <br>María Belén Pérez Bless (Investigación y análisis de datos)
+                <br>Verenizze Lara Dávila (Investigación y análisis de datos)
+                <br>Fabrizio Monge (Investigación y análisis de datos)
+                <br>Sofía Enciso Goicochea (Investigación y análisis de datos)
+                <br>Fabiana Arámbulo (Investigación y análisis de datos)
+                <br>Franca Alatrista (Investigación y análisis de datos)
+                <br>Daniel Zapata (Coordinador de Desarrollo y programador del chatbot Sammy)
+                <br>Kevin Sánchez (Desarrollo)
+                <br>Daniella Vargas (Desarrollo)
+                <br>Samuel Cano (Desarrollo)
+              </p>
+            </div>
+          </div>
+          <h3 style="line-height: 35px; margin-top: 30px;">SUPERVISIÓN, COORDINACIÓN Y EDICIÓN</h3>
+          <p style="line-height: 35px;">
+            Mayté Ciriaco<br>Ariana Lira
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Configuración para reiniciar el iframe
+    document.getElementById('resetButton').addEventListener('click', function () {
+      var iframe = document.getElementById('chatbotIframe');
+      iframe.src = iframe.src;
+    });
+
+    function setupOverlay(btnId, overlayId, closeBtnId) {
+      const btn = document.getElementById(btnId);
+      const overlay = document.getElementById(overlayId);
+      const closeBtn = document.getElementById(closeBtnId);
+
+      if(btn && overlay) {
+        btn.addEventListener('click', () => {
+          overlay.style.display = 'flex';
+          overlay.style.justifyContent = 'center';
+          overlay.style.alignItems = 'center';
+          overlay.style.zIndex = '7';
+        });
+      }
+      
+      if(closeBtn && overlay) {
+        closeBtn.addEventListener('click', () => {
+          overlay.style.display = 'none';
+        });
+      }
+
+      if(overlay) {
+        overlay.addEventListener('click', (e) => {
+          if (e.target === overlay) {
+            overlay.style.display = 'none';
+          }
+        });
+      }
+    }
+
+    setupOverlay('mostrarc1', 'overlay1', 'closeButton1');
+    setupOverlay('mostrarc2', 'overlay2', 'closeButton2');
+    setupOverlay('mostrarc3', 'overlay3', 'closeButton3');
+    setupOverlay('mostrarc5', 'overlay5', 'closeButton5');
+    setupOverlay('mostrarc6', 'overlay6', 'closeButton6');
+    setupOverlay('mostrarc7', 'overlay7', 'closeButton7');
+    setupOverlay('mostrarc8', 'overlay8', 'closeButton8');
+  </script>
+
+  <script>
+    const overlay4 = document.getElementById('overlay4');
+
+    function drawBalls() {
+      var citySelect = document.getElementById("citySelect");
+      var yearSelect = document.getElementById("yearSelect");
+      var cityName = citySelect.value;
+      var yearNumber = yearSelect.value;
+      var ballCountElement = document.getElementById('ballCountValue');
+
+      // Objeto de mapeo para mejorar el rendimiento y evitar múltiples 'else if'
+      const dataMapping = {
+        "2020": {
+          "Amazonas": "2 mil 578", "Ancash": "2 mil 670", "Apurimac": "2 mil 011", "Arequipa": "3 mil 808", "Ayacucho": "2 mil 769", "Cajamarca": "2 mil 326", "Callao": "16 mil 608", "Cusco": "2 mil 234", "Huancavelica": "1 mil 020", "Huanuco": "2 mil 557", "Ica": "6 mil 969", "Junin": "3 mil 818", "La Libertad": "6 mil 737", "Lambayeque": "11 mil 806", "Lima": "15 mil 476", "Loreto": "13 mil 621", "Madre de Dios": "5 mil 239", "Moquegua": "3 mil 966", "Pasco": "2 mil 882", "Piura": "3 mil 645", "Puno": "1 mil 876", "San Martin": "3 mil 678", "Tacna": "6 mil 042", "Tumbes": "9 mil 316", "Ucayali": "1 mil 6527"
+        },
+        "2021": {
+          "Amazonas": "2 mil 759", "Ancash": "3 mil 090", "Apurimac": "2 mil 478", "Arequipa": "4 mil 115", "Ayacucho": "3 mil 385", "Cajamarca": "2 mil 771", "Callao": "16 mil 608", "Cusco": "2 mil 708", "Huancavelica": "1 mil 368", "Huanuco": "3 mil 050", "Ica": "6 mil 969", "Junin": "4 mil 351", "La Libertad": "8 mil 103", "Lambayeque": "13 mil 993", "Lima": "15 mil 924", "Loreto": "13 mil 621", "Madre de Dios": "5 mil 675", "Moquegua": "3 mil 683", "Pasco": "3 mil 087", "Piura": "4 mil 236", "Puno": "2 mil 174", "San Martin": "4 mil 489", "Tacna": "6 mil 042", "Tumbes": "10 mil 480", "Ucayali": "16 mil 527"
+        },
+        "2022": {
+          "Amazonas": "2 mil 537", "Ancash": "2 mil 587", "Apurimac": "2 mil 011", "Arequipa": "3 mil 772", "Ayacucho": "2 mil 699", "Cajamarca": "2 mil 278", "Callao": "14 mil 763", "Cusco": "2 mil 234", "Huancavelica": "1 mil 002", "Huanuco": "2 mil 532", "Ica": "6 mil 645", "Junin": "3 mil 854", "La Libertad": "6 mil 502", "Lambayeque": "11 mil 806", "Lima": "14 mil 499", "Loreto": "13 mil 621", "Madre de Dios": "5 mil 239", "Moquegua": "3 mil 437", "Pasco": "2 mil 702", "Piura": "3 mil 603", "Puno": "1 mil 865", "San Martin": "3 mil 678", "Tacna": "6 mil 042", "Tumbes": "9 mil 316", "Ucayali": "16 mil 527"
+        },
+        "2023": {
+          "Amazonas": "2 mil 538", "Ancash": "2 mil 587", "Apurimac": "2 mil 011", "Arequipa": "3 mil 772", "Ayacucho": "2 mil 699", "Cajamarca": "2 mil 278", "Callao": "14 mil 763", "Cusco": "2 mil 234", "Huancavelica": "1 mil 002", "Huanuco": "2 mil 532", "Ica": "6 mil 645", "Junin": "3 mil 854", "La Libertad": "6 mil 502", "Lambayeque": "11 mil 806", "Lima": "14 mil 499", "Loreto": "13 mil 621", "Madre de Dios": "5 mil 239", "Moquegua": "3 mil 437", "Pasco": "2 mil 702", "Piura": "3 mil 603", "Puno": "1 mil 865", "San Martin": "3 mil 678", "Tacna": "6 mil 042", "Tumbes": "9 mil 316", "Ucayali": "16 mil 527"
+        }
+      };
+
+      var cuadroDeCifras = document.getElementById("ballCountDisplay");
+
+      if (cityName === "nada" || yearNumber === "nada") { 
+        ballCountElement.textContent = "X";
+        cuadroDeCifras.style.display = "none";
+      } else {
+        ballCountElement.textContent = dataMapping[yearNumber]?.[cityName] || "X";
+        cuadroDeCifras.style.display = "block";
+        overlay4.style.display = 'flex';
+        overlay4.style.justifyContent = 'center';
+        overlay4.style.alignItems = 'center';
+      }
+    }
+
+    if(overlay4) {
+      overlay4.addEventListener('click', (e) => {
+        if (e.target === overlay4) {
+          overlay4.style.display = 'none';
+        }
+      });
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales/alan-garcia-una-vida-de-portada-ecpm/js/sharer.min.js"></script> 
+
+</body>
+</html>
