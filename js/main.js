@@ -255,7 +255,7 @@ function inicializarUI() {
     configurarBuscadores();
     actualizarEstadisticas();
     generarGraficos();
-    poblarHallazgos();   // ← Carga las 4 secciones de hallazgos al inicio
+    inicializarHallazgos(); // Poblar secciones de hallazgos al cargar
     console.log('✅ UI inicializada correctamente');
 }
 
@@ -313,9 +313,10 @@ function configurarBuscadores() {
  * basándose en un criterio único (partido o nombre)
  */
 function filtrarGlobalmente(criterio, valor) {
-    console.log(`🔍 Filtrando globalmente por ${criterio}: ${valor}`);
+    console.log(`🔍 Filtrando Explora por ${criterio}: ${valor}`);
 
-    // 1. Filtrar para la sección "EXPLORA" (Fichas resumen)
+    // Solo actualiza la sección "EXPLORA" (fichas resumen).
+    // Las secciones de hallazgos son independientes y se cargan al inicio.
     let resultadosExplora = [];
     if (criterio === 'partido') {
         resultadosExplora = congresistas.filter(c => c.partido === valor);
@@ -323,17 +324,15 @@ function filtrarGlobalmente(criterio, valor) {
         const encontrado = congresistas.find(c => c.nombre === valor);
         if (encontrado) resultadosExplora = [encontrado];
     }
-    
-    // Mostrar resultados en la grilla superior
+
     mostrarResultadosExplora(resultadosExplora);
 
-    // Las secciones de hallazgos son independientes (ver poblarHallazgos).
-    // Solo hacemos scroll hacia Explora y salimos.
+    // Scroll suave hacia la sección de resultados
     const sectionExplora = document.getElementById('explora');
-    if (sectionExplora) { sectionExplora.scrollIntoView({ behavior: 'smooth' }); }
+    if (sectionExplora) {
+        sectionExplora.scrollIntoView({ behavior: 'smooth' });
+    }
 }
-
-
 
 /**
  * Configura un buscador individual
@@ -507,90 +506,151 @@ function mostrarResultadosExplora(resultados) {
 }
 
 /**
- * Muestra resultados en una categoría de hallazgo
+ * Pobla todas las secciones de hallazgos con la data completa al cargar la página
  */
-function mostrarResultadosHallazgo(categoria, resultados) {
+function inicializarHallazgos() {
+    const colores = {
+        intereses: '#FFF85F',
+        dinero:    '#85FF85',
+        bienes:    '#F5A9F2',
+        estudios:  '#85E3FF'
+    };
+    ['intereses', 'dinero', 'bienes', 'estudios'].forEach(cat => {
+        const todos = congresistas.filter(c => c[`hallazgo_${cat}`]);
+        mostrarResultadosHallazgo(cat, todos, colores[cat]);
+    });
+}
+
+/**
+ * Muestra resultados en una categoría de hallazgo (diseño hcard con fotos)
+ */
+function mostrarResultadosHallazgo(categoria, resultados, colorOverride) {
     const container = document.getElementById(`results-${categoria}`);
     const grid = document.getElementById(`grid-${categoria}`);
     const detailContainer = document.getElementById(`detail-${categoria}`);
-    
+
     container.classList.add('show');
-    
+    if (detailContainer) detailContainer.style.display = 'none';
+
+    const colores = {
+        intereses: '#FFF85F',
+        dinero:    '#85FF85',
+        bienes:    '#F5A9F2',
+        estudios:  '#85E3FF'
+    };
+    const color = colorOverride || colores[categoria] || '#FFF85F';
+
+    grid.className = 'hcard-grid';
+
+    if (resultados.length === 0) {
+        grid.innerHTML = '<p style="color:#666;padding:20px 0;grid-column:1/-1;">No se encontraron congresistas con hallazgos en esta categoría.</p>';
+        return;
+    }
+
     grid.innerHTML = resultados.map(c => `
-        <div class="hallazgo-congress-item" data-id="${c.id}" data-categoria="${categoria}">
-            <img src="${c.foto}" alt="${c.nombre}" class="hallazgo-congress-item__photo" onerror="this.src='https://via.placeholder.com/70x70/ccc/666?text=${encodeURIComponent(c.nombre.substring(0,2))}'">
-            <div class="hallazgo-congress-item__name">${c.nombre.split(' ').slice(0, 2).join(' ')}</div>
-            <div class="hallazgo-congress-item__party">${c.partido}</div>
+        <div class="hcard" data-id="${c.id}" data-categoria="${categoria}" style="--hcard-color:${color};">
+            <div class="hcard__photo-wrap">
+                <div class="hcard__bg"></div>
+                <img src="${c.foto}" alt="${c.nombre}" class="hcard__photo"
+                     onerror="this.src='https://via.placeholder.com/150x150/ccc/666?text=${encodeURIComponent(c.nombre.substring(0,2))}'">
+                <div class="hcard__chevron">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path stroke-linecap="round" stroke-linejoin="round" d="M6 9l6 6 6-6"/></svg>
+                </div>
+            </div>
+            <div class="hcard__info">
+                <div class="hcard__name">${c.nombre}</div>
+                <div class="hcard__party">${c.partido}</div>
+            </div>
         </div>
     `).join('');
-    
-    // Agregar eventos de click
-    grid.querySelectorAll('.hallazgo-congress-item').forEach(item => {
-        item.addEventListener('click', () => {
-            // Remover clase active de otros
-            grid.querySelectorAll('.hallazgo-congress-item').forEach(i => i.classList.remove('active'));
-            item.classList.add('active');
-            
-            const id = parseInt(item.dataset.id);
-            const categoria = item.dataset.categoria;
-            mostrarDetalleHallazgo(id, categoria);
+
+    grid.querySelectorAll('.hcard').forEach(card => {
+        card.addEventListener('click', () => {
+            toggleHallazgoCard(parseInt(card.dataset.id), card.dataset.categoria, card, color);
         });
     });
 }
 
 /**
- * Muestra el detalle expandido de un congresista
+ * Abre/cierra el panel de detalle inline de un congresista en el grid
  */
-function mostrarDetalleHallazgo(id, categoria) {
+function toggleHallazgoCard(id, categoria, clickedCard, color) {
+    const grid = clickedCard.closest('.hcard-grid');
+    const isOpen = clickedCard.classList.contains('hcard--active');
+
+    // Limpiar estado previo
+    grid.querySelectorAll('.hcard-detail-row').forEach(d => d.remove());
+    grid.querySelectorAll('.hcard').forEach(c => {
+        c.classList.remove('hcard--active');
+        const svg = c.querySelector('.hcard__chevron svg');
+        if (svg) svg.style.transform = '';
+    });
+    grid.classList.remove('hcard-grid--has-active');
+
+    if (isOpen) return; // toggle off
+
+    clickedCard.classList.add('hcard--active');
+    const chevronSvg = clickedCard.querySelector('.hcard__chevron svg');
+    if (chevronSvg) chevronSvg.style.transform = 'rotate(180deg)';
+    grid.classList.add('hcard-grid--has-active');
+
     const c = congresistas.find(c => c.id === id);
     if (!c) return;
-    
-    const detailContainer = document.getElementById(`detail-${categoria}`);
-    const campoDetalle = `detalle_${categoria}`;
-    
-    const titulos = {
-        intereses: 'Intereses cruzados detectados',
-        dinero: 'Hallazgos en rastro del dinero',
-        bienes: 'Diferencias en bienes declarados',
-        estudios: 'Inconsistencias en respaldo académico'
-    };
-    
-    detailContainer.innerHTML = `
-        <div class="congress-detail__header">
-            <img src="${c.foto}" alt="${c.nombre}" class="congress-detail__photo" onerror="this.src='https://via.placeholder.com/80x80/ccc/666?text=${encodeURIComponent(c.nombre.substring(0,2))}'">
-            <div class="congress-detail__info">
-                <h4>${c.nombre}</h4>
-                <p><strong>Partido:</strong> ${c.partido}</p>
-                <p><strong>Región:</strong> ${c.region || 'No especificada'}</p>
-            </div>
-        </div>
-        <div class="congress-detail__content">
-            <h5>${titulos[categoria]}</h5>
-            <p>${c[campoDetalle] || 'Sin información detallada disponible.'}</p>
-            <p class="congress-detail__source">
-                Fuente: Registros públicos verificados al 15/02/2026
-            </p>
-        </div>
-        <button class="congress-detail__close" onclick="cerrarDetalle('${categoria}')">
-            Cerrar detalle
-        </button>
+
+    const detalleTexto = c[`detalle_${categoria}`] || 'Sin información detallada disponible para esta categoría.';
+
+    // Botones de documentos
+    let btnsHTML = '';
+    if (categoria === 'dinero') {
+        const l1 = (c.link_detalle_dinero_1 || '').trim();
+        const l2 = (c.link_detalle_dinero_2 || '').trim();
+        if (l1 || l2) {
+            btnsHTML = '<div class="hcard-detail__btns">';
+            if (l1) btnsHTML += `<a href="${l1}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>DJI 2021</a>`;
+            if (l2) btnsHTML += `<a href="${l2}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>DJI 2025</a>`;
+            btnsHTML += '</div>';
+        }
+    } else {
+        const lnk = (c[`link_detalle_${categoria}`] || '').trim();
+        if (lnk) {
+            btnsHTML = `<div class="hcard-detail__btns"><a href="${lnk}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>VER DOCUMENTACIÓN</a></div>`;
+        }
+    }
+
+    const contenidoHTML = detalleTexto.includes('<')
+        ? detalleTexto
+        : '<p>' + detalleTexto.replace(/\n/g, '</p><p>') + '</p>';
+
+    const detailEl = document.createElement('div');
+    detailEl.className = 'hcard-detail-row';
+    detailEl.style.background = color;
+    detailEl.innerHTML = `
+        <div class="hcard-detail__content">${contenidoHTML}</div>
+        ${btnsHTML}
     `;
-    
-    detailContainer.classList.add('show');
-    
-    // Scroll suave al detalle
-    detailContainer.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+    // Insertar después del último card de la misma fila visual
+    const allCards = [...grid.querySelectorAll('.hcard')];
+    const clickedRect = clickedCard.getBoundingClientRect();
+    const rowCards = allCards.filter(c => Math.abs(c.getBoundingClientRect().top - clickedRect.top) < 15);
+    const lastInRow = rowCards[rowCards.length - 1];
+    lastInRow.insertAdjacentElement('afterend', detailEl);
+
+    setTimeout(() => detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
 }
 
 /**
- * Cierra el panel de detalle
+ * Cierra el panel de detalle (compatibilidad legado)
  */
 function cerrarDetalle(categoria) {
     const detailContainer = document.getElementById(`detail-${categoria}`);
     const grid = document.getElementById(`grid-${categoria}`);
-    
-    detailContainer.classList.remove('show');
-    grid.querySelectorAll('.hallazgo-congress-item').forEach(i => i.classList.remove('active'));
+    if (detailContainer) detailContainer.classList.remove('show');
+    if (grid) {
+        grid.querySelectorAll('.hcard-detail-row').forEach(d => d.remove());
+        grid.querySelectorAll('.hcard').forEach(c => c.classList.remove('hcard--active'));
+        grid.classList.remove('hcard-grid--has-active');
+    }
 }
 
 /**
@@ -603,19 +663,6 @@ function actualizarEstadisticas() {
         const count = congresistas.filter(c => c[`hallazgo_${cat}`]).length;
         const countEl = document.getElementById(`count-${cat}`);
         if (countEl) countEl.textContent = count;
-    });
-}
-
-/**
- * Carga las 4 secciones de hallazgos con todos los congresistas
- * que tienen TRUE en su columna correspondiente.
- * Se ejecuta una sola vez al iniciar y no se ve afectada por los buscadores.
- */
-function poblarHallazgos() {
-    const categorias = ['intereses', 'dinero', 'bienes', 'estudios'];
-    categorias.forEach(cat => {
-        const conHallazgo = congresistas.filter(c => c[`hallazgo_${cat}`]);
-        mostrarResultadosHallazgo(cat, conHallazgo);
     });
 }
 
