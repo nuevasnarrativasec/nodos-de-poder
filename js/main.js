@@ -255,6 +255,7 @@ function inicializarUI() {
     configurarBuscadores();
     actualizarEstadisticas();
     generarGraficos();
+    poblarHallazgos();   // ← Carga las 4 secciones de hallazgos al inicio
     console.log('✅ UI inicializada correctamente');
 }
 
@@ -326,39 +327,13 @@ function filtrarGlobalmente(criterio, valor) {
     // Mostrar resultados en la grilla superior
     mostrarResultadosExplora(resultadosExplora);
 
-    // 2. Filtrar para las secciones de "HALLAZGOS" (Abajo)
-    const categorias = ['intereses', 'dinero', 'bienes', 'estudios'];
-
-    categorias.forEach(cat => {
-        const campoHallazgo = `hallazgo_${cat}`;
-        let resultadosCat = [];
-
-        // Lógica: El congresista debe coincidir con el filtro (partido/nombre) 
-        // Y ADEMÁS tener hallazgos en esa categoría específica (TRUE).
-        if (criterio === 'partido') {
-            resultadosCat = congresistas.filter(c => 
-                c.partido === valor && c[campoHallazgo]
-            );
-        } else { // nombre
-            resultadosCat = congresistas.filter(c => 
-                c.nombre === valor && c[campoHallazgo]
-            );
-        }
-
-        // Actualizar la grilla de esa categoría específica
-        mostrarResultadosHallazgo(cat, resultadosCat);
-        
-        // Opcional: Actualizar el contador de esa sección específica
-        const countEl = document.getElementById(`count-${cat}`);
-        if (countEl) countEl.textContent = resultadosCat.length;
-    });
-
-    // Scroll suave hacia la sección de resultados si hay coincidencias
+    // Las secciones de hallazgos son independientes (ver poblarHallazgos).
+    // Solo hacemos scroll hacia Explora y salimos.
     const sectionExplora = document.getElementById('explora');
-    if(sectionExplora) {
-        sectionExplora.scrollIntoView({ behavior: 'smooth' });
-    }
+    if (sectionExplora) { sectionExplora.scrollIntoView({ behavior: 'smooth' }); }
 }
+
+
 
 /**
  * Configura un buscador individual
@@ -628,6 +603,19 @@ function actualizarEstadisticas() {
         const count = congresistas.filter(c => c[`hallazgo_${cat}`]).length;
         const countEl = document.getElementById(`count-${cat}`);
         if (countEl) countEl.textContent = count;
+    });
+}
+
+/**
+ * Carga las 4 secciones de hallazgos con todos los congresistas
+ * que tienen TRUE en su columna correspondiente.
+ * Se ejecuta una sola vez al iniciar y no se ve afectada por los buscadores.
+ */
+function poblarHallazgos() {
+    const categorias = ['intereses', 'dinero', 'bienes', 'estudios'];
+    categorias.forEach(cat => {
+        const conHallazgo = congresistas.filter(c => c[`hallazgo_${cat}`]);
+        mostrarResultadosHallazgo(cat, conHallazgo);
     });
 }
 
