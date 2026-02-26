@@ -375,7 +375,7 @@
 
         /* --- CONTENEDOR DE BÃšSQUEDA --- */
         .search-container {
-            max-width: 900px;
+            max-width: 600px;
             margin: 0 auto 50px;
             background: var(--white);
             border: 1px solid var(--gray-medium);
@@ -401,6 +401,7 @@
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
+            border-bottom: 2px solid #323c4a;
         }
 
         .search-tab:first-child {
