@@ -1775,7 +1775,7 @@
     border-radius: 12px;
     padding: 22px 28px 20px;
     animation: slideDown 0.25s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    background-color: #000 !important;
 }
 
 .hcard-detail__content {
@@ -1786,6 +1786,7 @@
 }
 
 .hcard-detail__content p {
+    color: #fff !important;
     margin-bottom: 8px;
 }
 
@@ -1809,8 +1810,8 @@
     align-items: center;
     gap: 7px;
     padding: 10px 20px;
-    background: #111;
-    color: #fff;
+    background: #fff;
+    color: #000;
     text-decoration: none;
     font-family: 'Roboto', sans-serif;
     font-size: 0.82rem;
@@ -1821,6 +1822,6 @@
 }
 
 .hcard-detail__btn:hover {
-    background: #333;
+    background: #FFD700;
     transform: translateY(-1px);
 }
