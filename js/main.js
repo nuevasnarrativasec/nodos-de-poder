@@ -616,6 +616,14 @@ function toggleHallazgoCard(id, categoria, clickedCard, color) {
 
     const detalleTexto = c[`detalle_${categoria}`] || 'Sin información detallada disponible para esta categoría.';
 
+    // Resaltar en bold el nombre del congresista donde aparezca en el texto
+    function boldNombre(texto, nombre) {
+        if (!nombre) return texto;
+        // Escapar caracteres especiales del nombre para usarlo en regex
+        const escaped = nombre.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+        return texto.replace(new RegExp(escaped, 'gi'), match => `<strong>${match}</strong>`);
+    }
+
     // Botones de documentos
     let btnsHTML = '';
     if (categoria === 'dinero') {
@@ -635,8 +643,8 @@ function toggleHallazgoCard(id, categoria, clickedCard, color) {
     }
 
     const contenidoHTML = detalleTexto.includes('<')
-        ? detalleTexto
-        : '<p>' + detalleTexto.replace(/\n/g, '</p><p>') + '</p>';
+        ? boldNombre(detalleTexto, c.nombre)
+        : '<p>' + boldNombre(detalleTexto, c.nombre).replace(/\n/g, '</p><p>') + '</p>';
 
     const detailEl = document.createElement('div');
     detailEl.className = 'hcard-detail-row';
