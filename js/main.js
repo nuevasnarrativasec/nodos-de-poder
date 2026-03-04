@@ -344,40 +344,16 @@ function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = nu
     if (!input || !dropdown) return;
     
     const data = dataSubset || congresistas;
-    
-    input.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
-        
-        if (query.length < 2) {
-            dropdown.classList.remove('show');
-            return;
-        }
-        
-        let resultados = [];
-        
-        if (tipo === 'partido') {
-            const partidosUnicos = [...new Set(data.map(c => c.partido))];
-            resultados = partidosUnicos.filter(p => 
-                p && p.toLowerCase().includes(query)
-            ).map(p => ({ tipo: 'partido', valor: p, label: p }));
-        } else {
-            resultados = data.filter(c => 
-                c.nombre && c.nombre.toLowerCase().includes(query)
-            ).map(c => ({
-                tipo: 'congresista',
-                valor: c.nombre,
-                label: c.nombre,
-                sublabel: c.partido,
-                foto: c.foto
-            }));
-        }
-        
+
+    /**
+     * Renderiza items en el dropdown
+     */
+    function renderDropdown(resultados) {
         if (resultados.length === 0) {
             dropdown.classList.remove('show');
             return;
         }
-        
-        dropdown.innerHTML = resultados.slice(0, 10).map(r => `
+        dropdown.innerHTML = resultados.slice(0, 80).map(r => `
             <div class="dropdown-item" data-value="${r.valor}">
                 ${r.foto ? `<img src="${r.foto}" alt="" class="dropdown-item__photo" onerror="this.src='https://via.placeholder.com/40x40/ccc/666?text=?'">` : ''}
                 <div class="dropdown-item__info">
@@ -386,10 +362,7 @@ function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = nu
                 </div>
             </div>
         `).join('');
-        
         dropdown.classList.add('show');
-        
-        // Agregar eventos de click a los items
         dropdown.querySelectorAll('.dropdown-item').forEach(item => {
             item.addEventListener('click', () => {
                 const valor = item.dataset.value;
@@ -398,6 +371,50 @@ function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = nu
                 onSelect(valor);
             });
         });
+    }
+
+    /**
+     * Construye lista completa ordenada alfabéticamente
+     */
+    function getListaCompleta() {
+        if (tipo === 'partido') {
+            const partidosUnicos = [...new Set(data.map(c => c.partido))].filter(p => p).sort((a, b) => a.localeCompare(b, 'es'));
+            return partidosUnicos.map(p => ({ tipo: 'partido', valor: p, label: p }));
+        } else {
+            return [...data]
+                .filter(c => c.nombre)
+                .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+                .map(c => ({ tipo: 'congresista', valor: c.nombre, label: c.nombre, sublabel: c.partido, foto: c.foto }));
+        }
+    }
+
+    // Mostrar TODOS al hacer foco/clic (si el campo está vacío o tiene texto)
+    input.addEventListener('focus', () => {
+        const query = input.value.trim().toLowerCase();
+        if (query.length < 2) {
+            renderDropdown(getListaCompleta());
+        }
+    });
+
+    // Filtrar al escribir
+    input.addEventListener('input', (e) => {
+        const query = e.target.value.toLowerCase().trim();
+        if (query.length < 2) {
+            renderDropdown(getListaCompleta());
+            return;
+        }
+        let resultados = [];
+        if (tipo === 'partido') {
+            const partidosUnicos = [...new Set(data.map(c => c.partido))];
+            resultados = partidosUnicos.filter(p => p && p.toLowerCase().includes(query))
+                .sort((a, b) => a.localeCompare(b, 'es'))
+                .map(p => ({ tipo: 'partido', valor: p, label: p }));
+        } else {
+            resultados = data.filter(c => c.nombre && c.nombre.toLowerCase().includes(query))
+                .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
+                .map(c => ({ tipo: 'congresista', valor: c.nombre, label: c.nombre, sublabel: c.partido, foto: c.foto }));
+        }
+        renderDropdown(resultados);
     });
     
     // Cerrar dropdown al hacer click fuera
@@ -631,10 +648,19 @@ function toggleHallazgoCard(id, categoria, clickedCard, color) {
 
     // Insertar después del último card de la misma fila visual
     const allCards = [...grid.querySelectorAll('.hcard')];
-    const clickedRect = clickedCard.getBoundingClientRect();
-    const rowCards = allCards.filter(c => Math.abs(c.getBoundingClientRect().top - clickedRect.top) < 15);
+    const clickedTop = clickedCard.offsetTop;
+    const rowCards = allCards.filter(c => Math.abs(c.offsetTop - clickedTop) < 10);
     const lastInRow = rowCards[rowCards.length - 1];
     lastInRow.insertAdjacentElement('afterend', detailEl);
+
+    // Calcular posición del triángulo apuntando al card activo
+    requestAnimationFrame(() => {
+        const gridRect = grid.getBoundingClientRect();
+        const cardRect = clickedCard.getBoundingClientRect();
+        const cardCenterX = cardRect.left + cardRect.width / 2;
+        const pos = Math.max(20, Math.min(cardCenterX - gridRect.left, gridRect.width - 20));
+        detailEl.style.setProperty('--triangle-left', pos + 'px');
+    });
 
     setTimeout(() => detailEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' }), 80);
 }

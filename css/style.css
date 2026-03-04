@@ -1689,7 +1689,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: rgba(255, 255, 255, 0.55);
+    background: rgba(255, 255, 255, 0.9);
     pointer-events: none;
     border-radius: 14px;
     z-index: 3;
@@ -1776,6 +1776,24 @@
     padding: 22px 28px 20px;
     animation: slideDown 0.25s ease;
     background-color: #000 !important;
+    position: relative;
+    overflow: visible;
+}
+
+/* Triángulo indicador apuntando al congresista activo */
+.hcard-detail-row::before {
+    content: '';
+    position: absolute;
+    top: -13px;
+    left: var(--triangle-left, 40px);
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 13px solid transparent;
+    border-right: 13px solid transparent;
+    border-bottom: 13px solid #000;
+    pointer-events: none;
+    z-index: 5;
 }
 
 .hcard-detail__content {
