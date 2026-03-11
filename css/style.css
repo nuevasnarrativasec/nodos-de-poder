@@ -1844,3 +1844,12 @@
     background: #FFD700;
     transform: translateY(-1px);
 }
+
+.box-embed{
+    margin: 20px auto;
+}
+    .box-embed iframe{
+        display: block;
+        margin: 0 auto;
+        max-width: 1200px;
+    }
