@@ -1529,6 +1529,7 @@
     color: #666;
     font-size: 0.75rem;
     flex: 1;
+    opacity: 0;
 }
 
 .ficha-resultado__acciones {
@@ -1578,6 +1579,7 @@
 .ficha-accion-btn--descargar {
     background: #FFD700;
     color: #1a1a1a;
+    display: none;
 }
 
 .ficha-accion-btn--descargar:hover {
