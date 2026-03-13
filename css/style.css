@@ -2031,6 +2031,8 @@ span.separador-logo {
     padding: 0;
     text-align: left;
     vertical-align: top;
+
+    display: none;
 }
 
 .footer-content ul li {
