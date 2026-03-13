@@ -661,12 +661,22 @@ function toggleHallazgoCard(id, categoria, clickedCard, color) {
     const lastInRow = rowCards[rowCards.length - 1];
     lastInRow.insertAdjacentElement('afterend', detailEl);
 
-    // Calcular posición del triángulo apuntando al card activo
+    // Calcular columnas del grid y posición del card clicado
+    const numCols = getComputedStyle(grid).gridTemplateColumns.split(' ').length;
+    const panelCols = Math.min(4, numCols);
+    const cardIndex = allCards.indexOf(clickedCard);
+    const cardCol = (cardIndex % numCols) + 1; // 1-based
+
+    // Centrar el panel de 4 cols alrededor del card activo, sin salirse del grid
+    const startCol = Math.max(1, Math.min(cardCol - 1, numCols - panelCols + 1));
+    detailEl.style.gridColumn = `${startCol} / span ${panelCols}`;
+
+    // Calcular posición del triángulo relativa al borde izquierdo del panel (no del grid)
     requestAnimationFrame(() => {
-        const gridRect = grid.getBoundingClientRect();
+        const panelRect = detailEl.getBoundingClientRect();
         const cardRect = clickedCard.getBoundingClientRect();
         const cardCenterX = cardRect.left + cardRect.width / 2;
-        const pos = Math.max(20, Math.min(cardCenterX - gridRect.left, gridRect.width - 20));
+        const pos = Math.max(20, Math.min(cardCenterX - panelRect.left, panelRect.width - 20));
         detailEl.style.setProperty('--triangle-left', pos + 'px');
     });
 

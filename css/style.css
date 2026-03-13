@@ -1772,9 +1772,9 @@
     line-height: 1.2;
 }
 
-/* Detail panel — spans full grid width */
+/* Detail panel — width and position set dynamically via JS */
 .hcard-detail-row {
-    grid-column: 1 / -1;
+    grid-column: 1 / span 4; /* fallback; JS overrides this */
     border-radius: 12px;
     padding: 22px 28px 20px;
     animation: slideDown 0.25s ease;
