@@ -1151,6 +1151,8 @@
             .results-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
             }
+
+            
         }
 
         /* --- LOADER --- */
@@ -1402,6 +1404,13 @@
             .ficha-categoria-indicador {
                 min-width: 55px;
             }
+            body .box-metodologia{
+                margin: 30px 15px;
+                max-width: 90%;
+            }
+            body .footer-content ul{
+                display: block;
+            }
         }
 
         /* --- LINKS DE DESCARGA DE DOCUMENTOS --- */
@@ -1496,6 +1505,8 @@
                 top: 12px;
                 right: 12px;
             }
+
+            
         }
 
         /* ========================================
@@ -1958,3 +1969,81 @@
         text-align: center;
         max-width: 900px;
     }
+
+
+/* ============================================
+   METODOLOGIA
+   ============================================ */
+.box-metodologia {
+    border: 1px solid #707070;
+    box-sizing: border-box;
+    margin: 90px auto 30px;
+    max-width: 600px;
+    padding: 30px 40px;
+}
+
+.box-metodologia h6 {
+    font: 1rem/1.5 "Roboto", sans-serif;
+    font-weight: 800;
+    margin: 0 auto;
+    text-transform: uppercase;
+}
+
+.box-metodologia p {
+    font: 1rem/1.5 "Roboto", sans-serif;
+}
+
+/* ============================================
+   FOOTER
+   ============================================ */
+.footer-section {
+    background: #1a1a1a;
+    color: white;
+    padding: 30px 40px;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.logo-comercio {
+    display: block;
+    margin: 0 auto 50px;
+    max-width: 130px;
+}
+
+span.separador-logo {
+    background-color: white;
+    display: block;
+    height: 1px;
+    margin: 0 auto var(--spacing-md);
+    max-width: 600px;
+}
+
+.footer-content ul {
+    display: inline-block;
+    list-style-type: none;
+    margin: 0 30px 0;
+    padding: 0;
+    text-align: left;
+    vertical-align: top;
+}
+
+.footer-content ul li {
+    margin-bottom: 15px;
+}
+
+.footer-content ul li h4 {
+    font: 0.9rem/1.3 'Roboto', sans-serif;
+    font-weight: 800;
+    margin-bottom: 0;
+}
+
+.footer-content ul li p {
+    font: 0.9rem/1.6 'Roboto', sans-serif;
+    font-weight: 300;
+    margin: 0;
+}
