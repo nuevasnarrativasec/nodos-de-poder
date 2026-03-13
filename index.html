@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/style.css?v35">
+    <link rel="stylesheet" href="./css/style.css?v36">
 
 </head>
 <body>
@@ -17,7 +17,12 @@
         <div class="logo-container">
             <img src="./img/logo-tu-decides.jpg" alt="" width="100%">
         </div>
-        <nav>
+        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+        <nav id="main-nav">
             <ul>
                 <li><a href="#explora" class="nav-link">Explora: ¿A quién quieres ver hoy?</a></li>
                 <li><a href="#conecta" class="nav-link">Conecta: Red de vínculos públicos</a></li>
@@ -1032,7 +1037,26 @@
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
-            
+
+            // 0. Menú hamburguesa
+            const hamburger = document.getElementById('hamburger');
+            const mainNav = document.getElementById('main-nav');
+
+            hamburger.addEventListener('click', () => {
+                const isOpen = mainNav.classList.toggle('nav-open');
+                hamburger.classList.toggle('is-active', isOpen);
+                hamburger.setAttribute('aria-expanded', isOpen);
+            });
+
+            // Cerrar menú al hacer click en un link
+            mainNav.querySelectorAll('.nav-link').forEach(link => {
+                link.addEventListener('click', () => {
+                    mainNav.classList.remove('nav-open');
+                    hamburger.classList.remove('is-active');
+                    hamburger.setAttribute('aria-expanded', false);
+                });
+            });
+
             // 1. Efecto Smooth Scroll (adicional al CSS) para controlar el offset del Header
             const links = document.querySelectorAll('a[href^="#"]');
             const headerHeight = document.querySelector('header').offsetHeight;

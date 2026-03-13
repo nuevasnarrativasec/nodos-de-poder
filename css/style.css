@@ -213,12 +213,101 @@
         }
         
         /* Ajuste responsive básico */
+        /* --- HAMBURGER BUTTON --- */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 5px;
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 4px;
+            z-index: 1100;
+            flex-shrink: 0;
+        }
+
+        .hamburger span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 2px;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            transform-origin: center;
+        }
+
+        /* Animación a X cuando está abierto */
+        .hamburger.is-active span:nth-child(1) {
+            transform: translateY(7px) rotate(45deg);
+        }
+        .hamburger.is-active span:nth-child(2) {
+            opacity: 0;
+            transform: scaleX(0);
+        }
+        .hamburger.is-active span:nth-child(3) {
+            transform: translateY(-7px) rotate(-45deg);
+        }
+
         @media (max-width: 768px) {
             h1 { font-size: 3.5rem; }
             h2 { font-size: 1.5rem; }
-            header { flex-direction: column; padding: 10px; }
-            nav ul { gap: 10px; flex-wrap: wrap; justify-content: center; margin-top: 10px; }
-            nav ul li { font-size: 0.8rem; }
+
+            header {
+                flex-direction: row;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0 12px 0 0;
+                position: relative;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            #main-nav {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background-color: #000;
+                border-top: 2px solid #FFD700;
+                z-index: 1050;
+                padding: 8px 0;
+            }
+
+            #main-nav.nav-open {
+                display: block;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav ul li::before {
+                display: none;
+            }
+
+            nav ul li a {
+                display: block;
+                padding: 14px 20px;
+                font-size: 0.9rem;
+                border-bottom: 1px solid rgba(255,255,255,0.08);
+            }
+
+            nav ul li:last-child a {
+                border-bottom: none;
+            }
+
+            nav ul li a:hover {
+                background-color: rgba(255, 215, 0, 0.08);
+                color: #FFD700;
+            }
         }
 
     /* --- ESTILOS SECCIÓN: CÓMO LEER LAS FICHAS --- */
