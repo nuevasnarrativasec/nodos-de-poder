@@ -438,7 +438,7 @@
 
     /* --- SECCIÓN EXPLORA PRINCIPAL --- */
         .section-explora {
-            padding: 60px 20px 80px;
+            padding: 60px 20px 0;
             background-color: var(--white);
         }
 
