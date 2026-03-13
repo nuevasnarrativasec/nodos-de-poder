@@ -667,9 +667,14 @@ function toggleHallazgoCard(id, categoria, clickedCard, color) {
     const cardIndex = allCards.indexOf(clickedCard);
     const cardCol = (cardIndex % numCols) + 1; // 1-based
 
-    // Centrar el panel de 4 cols alrededor del card activo, sin salirse del grid
-    const startCol = Math.max(1, Math.min(cardCol - 1, numCols - panelCols + 1));
-    detailEl.style.gridColumn = `${startCol} / span ${panelCols}`;
+    // En grids pequeños (móvil), siempre span completo para evitar columnas implícitas
+    if (panelCols >= numCols) {
+        detailEl.style.gridColumn = '1 / -1';
+    } else {
+        // Centrar el panel de 4 cols alrededor del card activo, sin salirse del grid
+        const startCol = Math.max(1, Math.min(cardCol - 1, numCols - panelCols + 1));
+        detailEl.style.gridColumn = `${startCol} / span ${panelCols}`;
+    }
 
     // Calcular posición del triángulo relativa al borde izquierdo del panel (no del grid)
     requestAnimationFrame(() => {
