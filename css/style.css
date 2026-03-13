@@ -799,6 +799,7 @@
             text-align: center;
             padding: 60px 20px;
             color: var(--gray-dark);
+            display: none;
         }
 
         .empty-state svg {
