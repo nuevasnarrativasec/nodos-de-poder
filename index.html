@@ -17,16 +17,11 @@
         <div class="logo-container">
             <img src="./img/logo-tu-decides.jpg" alt="" width="100%">
         </div>
-        <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-expanded="false">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
         <nav id="main-nav">
             <ul>
-                <li><a href="#explora" class="nav-link">Explora: ¿A quién quieres ver hoy?</a></li>
-                <li><a href="#conecta" class="nav-link">Conecta: Red de vínculos públicos</a></li>
-                <li><a href="#decide" class="nav-link">Decide: Ejercer tu derecho</a></li>
+                <li><a href="#explora" class="nav-link" data-short="Explora">Explora: ¿A quién quieres ver hoy?</a></li>
+                <li><a href="#conecta" class="nav-link" data-short="Conecta">Conecta: Red de vínculos públicos</a></li>
+                <li><a href="#decide" class="nav-link" data-short="Decide">Decide: Ejercer tu derecho</a></li>
             </ul>
         </nav>
     </header>
@@ -1119,22 +1114,12 @@
     <script>
         document.addEventListener("DOMContentLoaded", () => {
 
-            // 0. Menú hamburguesa
-            const hamburger = document.getElementById('hamburger');
-            const mainNav = document.getElementById('main-nav');
-
-            hamburger.addEventListener('click', () => {
-                const isOpen = mainNav.classList.toggle('nav-open');
-                hamburger.classList.toggle('is-active', isOpen);
-                hamburger.setAttribute('aria-expanded', isOpen);
-            });
-
-            // Cerrar menú al hacer click en un link
-            mainNav.querySelectorAll('.nav-link').forEach(link => {
+            // 0. Marcar enlace activo en nav según scroll
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
                 link.addEventListener('click', () => {
-                    mainNav.classList.remove('nav-open');
-                    hamburger.classList.remove('is-active');
-                    hamburger.setAttribute('aria-expanded', false);
+                    navLinks.forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
                 });
             });
 
