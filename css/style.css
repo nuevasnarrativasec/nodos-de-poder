@@ -1974,16 +1974,25 @@
     padding: 30px 40px;
 }
 
-.box-metodologia h6 {
-    font: 1rem/1.5 "Roboto", sans-serif;
-    font-weight: 800;
-    margin: 0 auto;
-    text-transform: uppercase;
-}
+    .box-metodologia h6 {
+        font: 1rem/1.5 "Roboto", sans-serif;
+        font-weight: 800;
+        margin: 0 auto;
+        text-transform: uppercase;
+    }
 
-.box-metodologia p {
-    font: 1rem/1.5 "Roboto", sans-serif;
-}
+    .box-metodologia p {
+        font: 1rem/1.5 "Roboto", sans-serif;
+        margin-bottom: 5px;
+    }
+
+    .box-metodologia ul{
+        padding-left: 30px;
+    }
+        .box-metodologia ul li{
+            font: 1rem / 1.5 "Roboto", sans-serif;
+            margin-bottom: 3px;
+        }
 
 /* ============================================
    FOOTER
@@ -2022,8 +2031,6 @@ span.separador-logo {
     padding: 0;
     text-align: left;
     vertical-align: top;
-
-    display: none;
 }
 
 .footer-content ul li {

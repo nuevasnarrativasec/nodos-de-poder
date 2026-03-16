@@ -1026,35 +1026,152 @@
     <div class="box-metodologia">
             <h6>Sobre nuestra metodología</h6>
             <p>
-                Este especial procesa los planes de gobierno del JNE utilizando automatización y agentes de Inteligencia Artificial para identificar qué temas prioriza cada partido y cuáles ignora. El análisis, apoyado por el fondo AI Catalyst de WAN-IFRA y OpenAI, combina la potencia del procesamiento de datos con una validación editorial humana paso a paso, garantizando una síntesis precisa, objetiva y comparable.
+                Este especial analiza y cruza múltiples registros públicos del Estado para identificar patrones que, vistos de manera aislada, pasarían desapercibidos. El procesamiento combinó flujos automatizados, análisis con inteligencia artificial y revisión editorial, en un proyecto desarrollado con el apoyo del fondo AI Catalyst de WAN-IFRA y OpenAI.
             </p>
-            <p class="mas-metodologia" style="cursor: pointer; text-decoration: underline;">Conoce el detalle del método de análisis aquí</p>
+            <p class="mas-metodologia" style="cursor: pointer; text-decoration: underline;">Conoce aquí cómo realizamos este trabajo.</p>
 
             <div id="detalle-oculto" style="display: none; margin-top: 20px;">
-                <h6>1. Cómo procesamos la data:</h6>
+                <h6 style="padding-bottom: 10px;">Cómo realizamos En Contienda: Congresistas que buscan la reelección</h6>
                 <p>
-                    <b>Estandarización:</b> Descargamos los planes del JNE y utilizamos flujos de automatización para limpiar, leer y uniformizar los diversos formatos de archivo.
+                    <b>1. Recolección de información pública</b> 
+                    <br>
+                    El análisis se centró en los 89 congresistas que buscaron la reelección, pero el procesamiento de datos incluyó un universo mucho mayor de registros provenientes de diversas bases públicas del Estado. A partir de las hojas de vida y declaraciones juradas presentadas ante el Jurado Nacional de Elecciones (JNE) se identificaron más de 2.000 familiares declarados, que constituyeron la base para el análisis de vínculos y cruces de información.
                 </p>
                 <p>
-                    <b>Segmentación:</b> Dividimos cada plan en "unidades de análisis" para que la medición sea proporcional entre documentos de distinta extensión.
-                </p>
+                    Para el especial se integraron múltiples registros provenientes de las siguientes fuentes oficiales:
+                </p>                
+                <ul>
+                    <li>Jurado Nacional de Elecciones (JNE): hojas de vida y declaraciones juradas de intereses de los candidatos.</li>
+                    <li>
+                        Sunedu: registro oficial de grados y títulos académicos.
+                    </li>
+                    <li>
+                        Sunarp: partidas registrales de bienes y propiedades.
+                    </li>
+                    <li>
+                        Sunat: RUC y actividad económica de personas y familiares.
+                    </li>
+                    <li>
+                        CEASE y registros de deudores tributarios: obligaciones tributarias registradas.
+                    </li>
+                    <li>
+                        ONPE: reportes de financiamiento y gastos de campaña electoral.
+                    </li>
+                    <li>
+                        Contraloría General de la República: informes de control y fiscalización.
+                    </li>
+                    <li>
+                        Registro de Proveedores del Estado: contratos y órdenes de servicio con entidades públicas.
+                    </li>
+                    <li>
+                        Congreso de la República: registros de visitas y actividad parlamentaria.
+                    </li>
+                </ul>
                 <p>
-                    <b>Clasificación con IA:</b> Modelos de lenguaje clasificaron cada fragmento por tema y tono, calculando indicadores de enfoque, precisión técnica, densidad y variedad temática.
-                </p>
+                    Estas bases permitieron reconstruir información sobre formación académica, patrimonio, actividad empresarial, vínculos familiares, contrataciones públicas, financiamiento electoral y relaciones institucionales.
+                </p>  
+
                 <p>
-                    <b>Validación humana:</b> Ningún resultado se publicó automáticamente. El equipo editorial revisó y validó los resúmenes y clasificaciones finales para asegurar su rigor.
+                    <b>2. Automatización y procesamiento de datos</b> 
+                    <br>
+                    La recolección y organización de la información se realizó mediante flujos automatizados desarrollados en el programa n8n, que permitieron:
+                </p>
+                <ul>
+                    <li>
+                        análisis de registros obtenidos desde distintas plataformas públicas
+                    </li>
+                    <li>
+                        limpiar y normalizar información en diversos formatos
+                    </li>
+                    <li>
+                        unificar bases de datos provenientes de múltiples instituciones
+                    </li>
+                    <li>
+                        preparar los datos para su análisis y visualización
+                    </li>
+                </ul>
+                <p>
+                    Debido a que cada entidad pública información con estructuras diferentes, se aplicaron procesos de estandarización de nombres, DNI, RUC, entidades y fechas.
                 </p>
 
-                <h6>2. Cómo medimos el discurso</h6>
                 <p>
-                    Las métricas de Enfoque y Formulación de propuestas no juzgan la calidad ni la viabilidad política de una idea. Son clasificaciones descriptivas derivadas del Análisis Crítico del Discurso (ACD) y marcos teóricos de coherencia programática (siguiendo estándares como los de T.A. van Dijk y H. Klingemann).
+                    <b>3. Cruce de bases de datos</b> 
+                    <br>
+                    Una vez normalizados los registros, se realizaron cruces automatizados entre múltiples bases públicas, utilizando identificadores comunes como:
+                </p>
+                <ul>
+                    <li>DNI</li>
+                    <li>RUC</li>
+                    <li>nombres normalizados</li>
+                    <li>relaciones familiares declaradas</li>
+                </ul>
+                <p>
+                    Estos cruces permitieron identificar coincidencias entre:
+                </p>
+                <ul>
+                    <li>
+                        congresistas y familiares
+                    </li>
+                    <li>
+                        familiares y proveedores del Estado
+                    </li>
+                    <li>
+                        empresas vinculadas y contrataciones públicas
+                    </li>
+                    <li>
+                        patrimonio declarado y registros de propiedad
+                    </li>
+                    <li>
+                        actividad política y financiamiento electoral
+                    </li>
+                    <li>
+                        visitas registradas en el Congreso
+                    </li>
+                </ul>
+
+                <p>
+                    <b>4. Análisis asistido por inteligencia artificial</b>
+                    <br>
+                    El procesamiento de datos combinó código, automatización y agentes de inteligencia artificial, desarrollados principalmente gracias al financiamiento obtenido a través del fondo AI Catalyst de WAN-IFRA, impulsado por OpenAI, que permitió aplicar herramientas de IA al análisis de grandes volúmenes de datos públicos.
                 </p>
                 <p>
-                    <b>Formulación de propuestas:</b> Evalúa el grado de precisión del planteamiento técnico. Indica si la propuesta articula una solución específica y si el texto incluye metas cuantificables y plazos (Detallada con indicadores), lineamientos de acción (Con lineamientos generales) o solo una intención (Declarativa).
+                    Se utilizaron distintas tecnologías según la etapa del proceso:
                 </p>
+                <ul>
+                    <li>
+                        OpenAI: procesamiento estructurado de datos, análisis de documentos y generación de modelos de clasificación para los cruces de información.
+                    </li>
+                    <li>
+                        Claude: apoyo en el desarrollo de automatizaciones y flujos low-code.
+                    </li>
+                    <li>
+                        Gemini: respaldo en la generación y verificación de copys informativos.
+                    </li>
+                </ul>
                 <p>
-                    <b>Enfoque Discursivo:</b> Identifica la orientación narrativa del texto. Determinamos si el plan prioriza la gestión y los datos (Tecnocrático), la ejecución de obras y acciones físicas (Operativo) o los principios, leyes y derechos (Normativo).
+                    La inteligencia artificial se utilizó como herramienta de apoyo analítico y procesamiento de información, mientras que la interpretación final de los hallazgos y su publicación estuvieron siempre bajo revisión y criterio editorial.
                 </p>
+
+                <p>
+                    <b>5. Validación editorial</b>
+                    <br>
+                    Ningún resultado fue publicado automáticamente. Todos los hallazgos fueron:
+                </p>
+                <ul>
+                    <li>
+                        verificados con las fuentes originales
+                    </li>
+                    <li>
+                        contrastados entre distintas bases públicas
+                    </li>
+                    <li>
+                        revisados por el equipo editorial antes de su publicación
+                    </li>
+                </ul>
+                <p>
+                    El objetivo del especial es presentar información verificable basada en registros públicos, para contribuir a la transparencia y al análisis ciudadano en etapa electoral.
+                </p>
+
             </div>
     </div>
 
@@ -1065,7 +1182,7 @@
                 <li>
                     <h4>Investigación y verificación:</h4>
                     <p>Gisella Salmón</p>
-                    <p>Mayte Ciriaco</p>
+                    <p>Mayté Ciriaco</p>
                     <p>Lorena Obregón</p>
                 </li>
                 <li>
@@ -1091,10 +1208,6 @@
                 <li>
                     <h4>Diseño:</h4>
                     <p>Marcelo Hidalgo</p>
-                </li>
-                <li>
-                    <h4>Ilustraciones:</h4>
-                    <p>Kiomy Kanashiro</p>
                 </li>
                 <li>
                     <h4>Producción general:</h4>
