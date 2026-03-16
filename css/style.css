@@ -42,7 +42,7 @@
         .logo-container {
             display: flex;
             align-items: center;
-            max-width: 140px;
+            max-width: 180px;
             gap: 10px;
         }
 
@@ -96,7 +96,7 @@
         /* --- 2. HERO SECTION CON VIDEO --- */
         .hero {
             position: relative;
-            height: 100vh; /* Ocupa toda la pantalla */
+            height: 86vh; /* Ocupa toda la pantalla */
             margin: 0 auto;
             max-width: 1200px;
             display: flex;
@@ -417,6 +417,9 @@
             padding: 0 10px;
         }
 
+        .logo-container {
+            max-width: 140px;
+        }
         .video-bg{
             object-fit: cover;
         }
