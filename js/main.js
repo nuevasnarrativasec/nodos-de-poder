@@ -92,7 +92,11 @@ async function cargarDatosGoogleSheets() {
             'link_detalle_bienes': ['link_detalle_bienes', 'link_bienes'],
             'link_detalle_estudios': ['link_detalle_estudios', 'link_estudios'],
             'resumen_ficha': ['resumen_ficha', 'resumen'],
-            'disclaimer_resumen_ficha': ['disclaimer_resumen_ficha', 'disclaimer_resumen']
+            'disclaimer_resumen_ficha': ['disclaimer_resumen_ficha', 'disclaimer_resumen'],
+            'resumen_intereses': ['resumen_intereses'],
+            'resumen_dinero': ['resumen_dinero'],
+            'resumen_bienes': ['resumen_bienes'],
+            'resumen_estudios': ['resumen_estudios']
         };
         
         // Encontrar índices de columnas
@@ -142,7 +146,11 @@ async function cargarDatosGoogleSheets() {
                 link_detalle_bienes: getValue('link_detalle_bienes'),
                 link_detalle_estudios: getValue('link_detalle_estudios'),
                 resumen_ficha: getValue('resumen_ficha'),
-                disclaimer_resumen_ficha: getValue('disclaimer_resumen_ficha')
+                disclaimer_resumen_ficha: getValue('disclaimer_resumen_ficha'),
+                resumen_intereses: getValue('resumen_intereses'),
+                resumen_dinero: getValue('resumen_dinero'),
+                resumen_bienes: getValue('resumen_bienes'),
+                resumen_estudios: getValue('resumen_estudios')
             };
         }).filter(c => c.nombre); // Filtrar filas vacías
         
@@ -461,21 +469,36 @@ function mostrarResultadosExplora(resultados) {
             { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes a<br>su nombre',         color: 'pink'   }
         ];
 
+        // Primera categoría activa (para pre-seleccionar)
+        const primeraActiva = iconosData.find(ic => c['hallazgo_' + ic.key]);
+
+        // Texto inicial del resumen: resumen de la primera categoría activa (si existe), si no el general
+        const resumenInicial = primeraActiva && c['resumen_' + primeraActiva.key]
+            ? c['resumen_' + primeraActiva.key]
+            : (c.resumen_ficha || '');
+
         const iconosHTML = '<div class="ficha-resultado__categorias">' +
             iconosData.map(function(ic) {
                 const activo = c['hallazgo_' + ic.key];
-                return '<div class="ficha-categoria-indicador ' + (activo ? 'ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color : 'ficha-categoria-indicador--inactivo') + '">' +
+                const esDefecto = primeraActiva && ic.key === primeraActiva.key;
+                const clases = activo
+                    ? 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color + (esDefecto ? ' ficha-indicador--abierto' : '')
+                    : 'ficha-categoria-indicador ficha-categoria-indicador--inactivo';
+                const extraAttrs = activo
+                    ? ' onclick="toggleFichaDetalle(' + c.id + ', \'' + ic.key + '\')" data-categoria="' + ic.key + '" role="button" tabindex="0" title="Ver detalle: ' + ic.label.replace(/<br>/g, ' ') + '"'
+                    : '';
+                return '<div class="' + clases + '"' + extraAttrs + '>' +
                     '<div class="ficha-categoria-btn__icon"><img src="' + ic.img + '" alt="" width="100%"></div>' +
                     '<span class="ficha-categoria-btn__text">' + ic.label + '</span>' +
                 '</div>';
             }).join('') +
         '</div>';
 
-        // Resumen y disclaimer
-        const resumenHTML = (c.resumen_ficha || c.disclaimer_resumen_ficha) ?
-            '<div class="ficha-resultado__resumen">' +
-                (c.resumen_ficha ? '<p class="ficha-resultado__resumen-texto">' + c.resumen_ficha + '</p>' : '') +
-                (c.disclaimer_resumen_ficha ? '<p class="ficha-resultado__resumen-disclaimer">' + c.disclaimer_resumen_ficha + '</p>' : '') +
+        // Resumen con IDs únicos para poder actualizar el texto al clic
+        const resumenHTML = (resumenInicial || c.disclaimer_resumen_ficha) ?
+            '<div class="ficha-resultado__resumen" id="resumen-bloque-' + c.id + '"' + (primeraActiva ? ' data-categoria-activa="' + primeraActiva.key + '"' : '') + '>' +
+                '<p class="ficha-resultado__resumen-texto' + (primeraActiva && c['resumen_' + primeraActiva.key] ? ' ficha-resumen-texto--categoria' : '') + '" id="resumen-texto-' + c.id + '">' + resumenInicial + '</p>' +
+                (c.disclaimer_resumen_ficha ? '<p class="ficha-resultado__resumen-disclaimer" id="resumen-disclaimer-' + c.id + '">' + c.disclaimer_resumen_ficha + '</p>' : '') +
             '</div>' : '';
 
         return '<div class="ficha-resultado ' + (tieneHallazgos ? '' : 'ficha-resultado--sin-hallazgos') + '" data-id="' + c.id + '">' +
@@ -832,6 +855,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             }, 400);
         }
     }
+
+    // ── Cerrar panel hcard al hacer clic fuera del grid ──
+    document.addEventListener('click', function(e) {
+        if (e.target.closest('.hcard-grid')) return; // clic dentro del grid: lo maneja toggleHallazgoCard
+        document.querySelectorAll('.hcard-grid').forEach(function(grid) {
+            if (!grid.querySelector('.hcard--active')) return;
+            grid.querySelectorAll('.hcard-detail-row').forEach(d => d.remove());
+            grid.querySelectorAll('.hcard').forEach(function(card) {
+                card.classList.remove('hcard--active');
+                const svg = card.querySelector('.hcard__chevron svg');
+                if (svg) svg.style.transform = '';
+            });
+            grid.classList.remove('hcard-grid--has-active');
+        });
+    });
 });
 // ========================================
 // FUNCIONES PARA FICHAS INLINE
@@ -869,52 +907,54 @@ function toggleFichaDetalle(fichaId, categoria) {
     var ficha = document.querySelector('.ficha-resultado[data-id="' + fichaId + '"]');
     if (!ficha) return;
 
-    var detalle = document.getElementById('detalle-ficha-' + fichaId);
-    var contenido = document.getElementById('detalle-contenido-' + fichaId);
-    var botones = ficha.querySelectorAll('.ficha-categoria-btn');
+    var indicadores = ficha.querySelectorAll('.ficha-categoria-indicador[data-categoria]');
     var congresista = congresistas.find(function(c) { return c.id === fichaId; });
+    if (!congresista) return;
 
-    // Guardar si el botón clickeado YA estaba activo (para toggle off)
-    var botonActual = ficha.querySelector('.ficha-categoria-btn[data-categoria="' + categoria + '"]');
-    var estabaActivo = botonActual && botonActual.classList.contains('active');
+    var indicadorActual = ficha.querySelector('.ficha-categoria-indicador[data-categoria="' + categoria + '"]');
+    var estabaActivo = indicadorActual && indicadorActual.classList.contains('ficha-indicador--abierto');
 
-    // Cerrar TODAS las demás fichas sin excepción
-    document.querySelectorAll('.ficha-resultado').forEach(function(otraFicha) {
-        if (String(otraFicha.dataset.id) === String(fichaId)) return; // saltar la ficha actual
-        var otroDetalle = otraFicha.querySelector('.ficha-resultado__detalle');
-        if (otroDetalle) otroDetalle.classList.remove('active');
-        otraFicha.querySelectorAll('.ficha-categoria-btn').forEach(function(btn) { btn.classList.remove('active'); });
-    });
+    var resumenTextoEl = document.getElementById('resumen-texto-' + fichaId);
+    var resumenBloqueEl = document.getElementById('resumen-bloque-' + fichaId);
 
-    // Si el mismo botón estaba abierto → cerrar esta ficha (toggle off)
+    // Quitar estado abierto de todos los indicadores
+    indicadores.forEach(function(ind) { ind.classList.remove('ficha-indicador--abierto'); });
+
     if (estabaActivo) {
-        botones.forEach(function(btn) { btn.classList.remove('active'); });
-        if (detalle) detalle.classList.remove('active');
+        // Toggle off: volver al resumen general
+        if (resumenTextoEl) {
+            resumenTextoEl.textContent = congresista.resumen_ficha || '';
+            resumenTextoEl.classList.remove('ficha-resumen-texto--categoria');
+        }
+        if (resumenBloqueEl) resumenBloqueEl.removeAttribute('data-categoria-activa');
         return;
     }
 
-    // Desactivar todos los botones de esta ficha y activar solo el clickeado
-    botones.forEach(function(btn) { btn.classList.remove('active'); });
-    if (botonActual) botonActual.classList.add('active');
+    // Activar el indicador clickeado
+    if (indicadorActual) indicadorActual.classList.add('ficha-indicador--abierto');
 
-    // Construir contenido
-    var detalleTexto = congresista ? (congresista['detalle_' + categoria] || 'Sin información detallada disponible para esta categoría.') : '';
-    if (typeof detalleTexto === 'string' && detalleTexto.indexOf('<p>') === -1) {
-        contenido.innerHTML = '<p>' + detalleTexto + '</p>';
-    } else {
-        contenido.innerHTML = detalleTexto;
+    // Obtener resumen propio de la categoría (si existe)
+    var resumenCategoria = congresista['resumen_' + categoria] || '';
+
+    if (resumenTextoEl) {
+        if (resumenCategoria) {
+            resumenTextoEl.textContent = resumenCategoria;
+            resumenTextoEl.classList.add('ficha-resumen-texto--categoria');
+        } else {
+            // Sin resumen propio: mostrar el general sin cambio visual
+            resumenTextoEl.textContent = congresista.resumen_ficha || '';
+            resumenTextoEl.classList.remove('ficha-resumen-texto--categoria');
+        }
     }
 
-    // Agregar links de descarga
-    if (congresista) {
-        contenido.innerHTML += generarLinksDescarga(congresista, categoria);
+    if (resumenBloqueEl) resumenBloqueEl.setAttribute('data-categoria-activa', categoria);
+
+    // Scroll suave al bloque de resumen
+    if (resumenBloqueEl) {
+        setTimeout(function() {
+            resumenBloqueEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }, 80);
     }
-
-    if (detalle) detalle.classList.add('active');
-
-    setTimeout(function() {
-        detalle.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }, 100);
 }
 
 /**

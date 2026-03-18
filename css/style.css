@@ -1336,6 +1336,22 @@
 
         .ficha-categoria-indicador--activo {
             opacity: 1;
+            cursor: pointer;
+            transition: opacity 0.15s ease, transform 0.15s ease;
+        }
+
+        .ficha-categoria-indicador--activo:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        .ficha-categoria-indicador--activo.ficha-indicador--abierto {
+            opacity: 0.75;
+        }
+
+        .ficha-categoria-indicador--activo.ficha-indicador--abierto .ficha-categoria-btn__icon {
+            outline: 3px solid #fff;
+            outline-offset: 2px;
         }
 
         .ficha-categoria-indicador .ficha-categoria-btn__icon {
@@ -1377,6 +1393,11 @@
             line-height: 1.65;
             color: #fff;
             margin-bottom: 12px;
+            transition: opacity 0.2s ease;
+        }
+
+        .ficha-resultado__resumen-texto--categoria {
+            opacity: 0.95;
         }
 
         .ficha-resultado__resumen-disclaimer {
