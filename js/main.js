@@ -654,14 +654,14 @@ function toggleHallazgoCard(id, categoria, clickedCard, color) {
         const l2 = (c.link_detalle_dinero_2 || '').trim();
         if (l1 || l2) {
             btnsHTML = '<div class="hcard-detail__btns">';
-            if (l1) btnsHTML += `<a href="${l1}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>DJI 2021</a>`;
-            if (l2) btnsHTML += `<a href="${l2}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>DJI 2025</a>`;
+            if (l1) btnsHTML += `<a href="${l1}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Declaración Jurada de Ingresos 2021</a>`;
+            if (l2) btnsHTML += `<a href="${l2}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Declaración Jurada de Ingresos 2025</a>`;
             btnsHTML += '</div>';
         }
     } else {
         const lnk = (c[`link_detalle_${categoria}`] || '').trim();
         if (lnk) {
-            btnsHTML = `<div class="hcard-detail__btns"><a href="${lnk}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>VER DOCUMENTACIÓN</a></div>`;
+            btnsHTML = `<div class="hcard-detail__btns"><a href="${lnk}" target="_blank" rel="noopener noreferrer" class="hcard-detail__btn"><svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>Ver Hoja de Vida</a></div>`;
         }
     }
 
