@@ -1961,19 +1961,21 @@
 }
 
 .box-embed{
-    margin: 20px auto;
+    margin: 20px auto 80px;
 }
     .box-embed iframe{
         display: block;
         margin: 0 auto;
         max-width: 1300px;
     }
-    .box-embed h3{
+    .box-embed h3,
+    .box-main-mapa h3{
         font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
         font-size: 1.8rem;
         text-align: center;
     }
-    .box-embed p{
+    .box-embed p,
+    .box-main-mapa p{
         font-size: 1rem;
         line-height: 1.5;
         color: var(--gray-dark);
@@ -2068,4 +2070,10 @@ span.separador-logo {
     font: 0.9rem/1.6 'Roboto', sans-serif;
     font-weight: 300;
     margin: 0;
+}
+
+
+.box-main-mapa{
+    max-width: 900px;
+    margin: 0 auto;
 }
