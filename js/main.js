@@ -343,6 +343,13 @@ function filtrarGlobalmente(criterio, valor) {
 }
 
 /**
+ * Normaliza texto eliminando tildes y diacríticos para búsqueda
+ */
+function normalizarTexto(texto) {
+    return texto.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+}
+
+/**
  * Configura un buscador individual
  */
 function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = null) {
@@ -398,7 +405,7 @@ function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = nu
 
     // Mostrar TODOS al hacer foco/clic (si el campo está vacío o tiene texto)
     input.addEventListener('focus', () => {
-        const query = input.value.trim().toLowerCase();
+        const query = normalizarTexto(input.value.trim());
         if (query.length < 2) {
             renderDropdown(getListaCompleta());
         }
@@ -406,7 +413,7 @@ function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = nu
 
     // Filtrar al escribir
     input.addEventListener('input', (e) => {
-        const query = e.target.value.toLowerCase().trim();
+        const query = normalizarTexto(e.target.value.trim());
         if (query.length < 2) {
             renderDropdown(getListaCompleta());
             return;
@@ -414,11 +421,11 @@ function configurarBuscador(inputId, dropdownId, tipo, onSelect, dataSubset = nu
         let resultados = [];
         if (tipo === 'partido') {
             const partidosUnicos = [...new Set(data.map(c => c.partido))];
-            resultados = partidosUnicos.filter(p => p && p.toLowerCase().includes(query))
+            resultados = partidosUnicos.filter(p => p && normalizarTexto(p).includes(query))
                 .sort((a, b) => a.localeCompare(b, 'es'))
                 .map(p => ({ tipo: 'partido', valor: p, label: p }));
         } else {
-            resultados = data.filter(c => c.nombre && c.nombre.toLowerCase().includes(query))
+            resultados = data.filter(c => c.nombre && normalizarTexto(c.nombre).includes(query))
                 .sort((a, b) => a.nombre.localeCompare(b.nombre, 'es'))
                 .map(c => ({ tipo: 'congresista', valor: c.nombre, label: c.nombre, sublabel: c.partido, foto: c.foto }));
         }
