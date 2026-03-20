@@ -92,11 +92,14 @@ async function cargarDatosGoogleSheets() {
             'link_detalle_bienes': ['link_detalle_bienes', 'link_bienes'],
             'link_detalle_estudios': ['link_detalle_estudios', 'link_estudios'],
             'resumen_ficha': ['resumen_ficha', 'resumen'],
-            'disclaimer_resumen_ficha': ['disclaimer_resumen_ficha', 'disclaimer_resumen'],
             'resumen_intereses': ['resumen_intereses'],
             'resumen_dinero': ['resumen_dinero'],
             'resumen_bienes': ['resumen_bienes'],
-            'resumen_estudios': ['resumen_estudios']
+            'resumen_estudios': ['resumen_estudios'],
+            'disclaimer_intereses': ['disclaimer_intereses'],
+            'disclaimer_dinero': ['disclaimer_dinero'],
+            'disclaimer_bienes': ['disclaimer_bienes'],
+            'disclaimer_estudios': ['disclaimer_estudios']
         };
         
         // Encontrar índices de columnas
@@ -146,11 +149,14 @@ async function cargarDatosGoogleSheets() {
                 link_detalle_bienes: getValue('link_detalle_bienes'),
                 link_detalle_estudios: getValue('link_detalle_estudios'),
                 resumen_ficha: getValue('resumen_ficha'),
-                disclaimer_resumen_ficha: getValue('disclaimer_resumen_ficha'),
                 resumen_intereses: getValue('resumen_intereses'),
                 resumen_dinero: getValue('resumen_dinero'),
                 resumen_bienes: getValue('resumen_bienes'),
-                resumen_estudios: getValue('resumen_estudios')
+                resumen_estudios: getValue('resumen_estudios'),
+                disclaimer_intereses: getValue('disclaimer_intereses'),
+                disclaimer_dinero: getValue('disclaimer_dinero'),
+                disclaimer_bienes: getValue('disclaimer_bienes'),
+                disclaimer_estudios: getValue('disclaimer_estudios')
             };
         }).filter(c => c.nombre); // Filtrar filas vacías
         
@@ -458,6 +464,7 @@ function mostrarResultadosExplora(resultados) {
     
     grid.innerHTML = resultados.map(c => {
         const tieneHallazgos = c.hallazgo_intereses || c.hallazgo_dinero || c.hallazgo_bienes || c.hallazgo_estudios;
+        const tieneAdicionales = !!(c.resumen_intereses || c.resumen_dinero || c.resumen_bienes || c.resumen_estudios);
         let countHallazgos = 0;
         if (c.hallazgo_intereses) countHallazgos++;
         if (c.hallazgo_dinero) countHallazgos++;
@@ -466,7 +473,9 @@ function mostrarResultadosExplora(resultados) {
 
         const hallazgosTitulo = tieneHallazgos 
             ? '<strong>Hallazgos:</strong> Se identificaron cruces relevantes de información en ' + countHallazgos + ' de las 4 secciones analizadas, a partir de datos públicos.'
-            : '<strong>Sin hallazgos:</strong> El contraste entre lo declarado y registros públicos oficiales no reveló diferencias en las secciones analizadas.';
+            : tieneAdicionales
+                ? '<strong>Sin hallazgos en conflicto:</strong> El contraste no reveló diferencias, pero se incluye información adicional de contexto en las secciones analizadas.'
+                : '<strong>Sin hallazgos:</strong> El contraste entre lo declarado y registros públicos oficiales no reveló diferencias en las secciones analizadas.';
 
         // Íconos de categorías: siempre se muestran los 4, coloreados solo si hay hallazgo
         const iconosData = [
@@ -476,21 +485,35 @@ function mostrarResultadosExplora(resultados) {
             { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes a<br>su nombre',         color: 'pink'   }
         ];
 
-        // Primera categoría activa (para pre-seleccionar)
-        const primeraActiva = iconosData.find(ic => c['hallazgo_' + ic.key]);
+        // Primera categoría activa (para pre-seleccionar): primero conflicto, luego adicional
+        const primeraActiva = iconosData.find(ic => c['hallazgo_' + ic.key]) ||
+                              iconosData.find(ic => !!(c['resumen_' + ic.key]));
 
         // Texto inicial del resumen: resumen de la primera categoría activa (si existe), si no el general
         const resumenInicial = primeraActiva && c['resumen_' + primeraActiva.key]
             ? c['resumen_' + primeraActiva.key]
             : (c.resumen_ficha || '');
 
-        const iconosHTML = '<div class="ficha-resultado__categorias">' +
+        const iconosHTML = '<div class="ficha-resultado__categorias-wrapper">' +
+            '<p class="ficha-resultado__selecciona">Selecciona un hallazgo <img src="./img/icon-clic.png"/ width="100%"></p>' +
+            '<div class="ficha-resultado__leyenda">' +
+                '<span class="ficha-leyenda__item ficha-leyenda__item--conflicto"><span class="ficha-leyenda__dot"></span>Hallazgos en conflicto</span>' +
+                '<span class="ficha-leyenda__item ficha-leyenda__item--adicional"><span class="ficha-leyenda__dot"></span>Información adicional</span>' +
+            '</div>' +
+            '<div class="ficha-resultado__categorias">' +
             iconosData.map(function(ic) {
-                const activo = c['hallazgo_' + ic.key];
+                const esConflicto = c['hallazgo_' + ic.key];
+                const tieneResumen = !!(c['resumen_' + ic.key]);
+                const activo = esConflicto || tieneResumen;
                 const esDefecto = primeraActiva && ic.key === primeraActiva.key;
-                const clases = activo
-                    ? 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color + (esDefecto ? ' ficha-indicador--abierto' : '')
-                    : 'ficha-categoria-indicador ficha-categoria-indicador--inactivo';
+                let clases;
+                if (esConflicto) {
+                    clases = 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color + ' ficha-categoria-indicador--conflicto' + (esDefecto ? ' ficha-indicador--abierto' : '');
+                } else if (tieneResumen) {
+                    clases = 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color + ' ficha-categoria-indicador--adicional' + (esDefecto ? ' ficha-indicador--abierto' : '');
+                } else {
+                    clases = 'ficha-categoria-indicador ficha-categoria-indicador--inactivo';
+                }
                 const extraAttrs = activo
                     ? ' onclick="toggleFichaDetalle(' + c.id + ', \'' + ic.key + '\')" data-categoria="' + ic.key + '" role="button" tabindex="0" title="Ver detalle: ' + ic.label.replace(/<br>/g, ' ') + '"'
                     : '';
@@ -499,16 +522,28 @@ function mostrarResultadosExplora(resultados) {
                     '<span class="ficha-categoria-btn__text">' + ic.label + '</span>' +
                 '</div>';
             }).join('') +
+            '</div>' +
         '</div>';
 
+        // Disclaimer inicial correspondiente a la primera categoría activa
+        const disclaimerInicial = primeraActiva ? (c['disclaimer_' + primeraActiva.key] || '') : '';
+
+        // Etiqueta de tipo para la primera categoría activa
+        const tipoInicial = primeraActiva
+            ? (c['hallazgo_' + primeraActiva.key]
+                ? '<span class="ficha-resumen__tipo ficha-resumen__tipo--conflicto">Hallazgo en conflicto</span>'
+                : '<span class="ficha-resumen__tipo ficha-resumen__tipo--adicional">Información adicional</span>')
+            : '';
+
         // Resumen con IDs únicos para poder actualizar el texto al clic
-        const resumenHTML = (resumenInicial || c.disclaimer_resumen_ficha) ?
+        const resumenHTML = (resumenInicial || disclaimerInicial) ?
             '<div class="ficha-resultado__resumen" id="resumen-bloque-' + c.id + '"' + (primeraActiva ? ' data-categoria-activa="' + primeraActiva.key + '"' : '') + '>' +
+                '<div class="ficha-resumen__tipo-wrap" id="resumen-tipo-' + c.id + '">' + tipoInicial + '</div>' +
                 '<p class="ficha-resultado__resumen-texto' + (primeraActiva && c['resumen_' + primeraActiva.key] ? ' ficha-resumen-texto--categoria' : '') + '" id="resumen-texto-' + c.id + '">' + resumenInicial + '</p>' +
-                (c.disclaimer_resumen_ficha ? '<p class="ficha-resultado__resumen-disclaimer" id="resumen-disclaimer-' + c.id + '">' + c.disclaimer_resumen_ficha + '</p>' : '') +
+                (disclaimerInicial ? '<p class="ficha-resultado__resumen-disclaimer" id="resumen-disclaimer-' + c.id + '">' + disclaimerInicial + '</p>' : '<p class="ficha-resultado__resumen-disclaimer" id="resumen-disclaimer-' + c.id + '" style="display:none"></p>') +
             '</div>' : '';
 
-        return '<div class="ficha-resultado ' + (tieneHallazgos ? '' : 'ficha-resultado--sin-hallazgos') + '" data-id="' + c.id + '">' +
+        return '<div class="ficha-resultado ' + (!tieneHallazgos && !tieneAdicionales ? 'ficha-resultado--sin-hallazgos' : '') + '" data-id="' + c.id + '">' +
             '<button class="ficha-resultado__close" onclick="cerrarFichaResultado(' + c.id + ')">' +
                 '<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">' +
                     '<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />' +
@@ -923,16 +958,24 @@ function toggleFichaDetalle(fichaId, categoria) {
 
     var resumenTextoEl = document.getElementById('resumen-texto-' + fichaId);
     var resumenBloqueEl = document.getElementById('resumen-bloque-' + fichaId);
+    var resumenTipoEl  = document.getElementById('resumen-tipo-' + fichaId);
 
     // Quitar estado abierto de todos los indicadores
     indicadores.forEach(function(ind) { ind.classList.remove('ficha-indicador--abierto'); });
 
+    var resumenDisclaimerEl = document.getElementById('resumen-disclaimer-' + fichaId);
+
     if (estabaActivo) {
-        // Toggle off: volver al resumen general
+        // Toggle off: volver al resumen general (sin etiqueta de tipo ni disclaimer)
         if (resumenTextoEl) {
             resumenTextoEl.textContent = congresista.resumen_ficha || '';
             resumenTextoEl.classList.remove('ficha-resumen-texto--categoria');
         }
+        if (resumenDisclaimerEl) {
+            resumenDisclaimerEl.textContent = '';
+            resumenDisclaimerEl.style.display = 'none';
+        }
+        if (resumenTipoEl) resumenTipoEl.innerHTML = '';
         if (resumenBloqueEl) resumenBloqueEl.removeAttribute('data-categoria-activa');
         return;
     }
@@ -940,17 +983,37 @@ function toggleFichaDetalle(fichaId, categoria) {
     // Activar el indicador clickeado
     if (indicadorActual) indicadorActual.classList.add('ficha-indicador--abierto');
 
-    // Obtener resumen propio de la categoría (si existe)
+    // Determinar si es conflicto o información adicional
+    var esConflicto = congresista['hallazgo_' + categoria] === true;
+
+    // Actualizar etiqueta de tipo
+    if (resumenTipoEl) {
+        resumenTipoEl.innerHTML = esConflicto
+            ? '<span class="ficha-resumen__tipo ficha-resumen__tipo--conflicto">Hallazgo en conflicto</span>'
+            : '<span class="ficha-resumen__tipo ficha-resumen__tipo--adicional">Información adicional</span>';
+    }
+
+    // Obtener resumen y disclaimer propios de la categoría
     var resumenCategoria = congresista['resumen_' + categoria] || '';
+    var disclaimerCategoria = congresista['disclaimer_' + categoria] || '';
 
     if (resumenTextoEl) {
         if (resumenCategoria) {
             resumenTextoEl.textContent = resumenCategoria;
             resumenTextoEl.classList.add('ficha-resumen-texto--categoria');
         } else {
-            // Sin resumen propio: mostrar el general sin cambio visual
             resumenTextoEl.textContent = congresista.resumen_ficha || '';
             resumenTextoEl.classList.remove('ficha-resumen-texto--categoria');
+        }
+    }
+
+    if (resumenDisclaimerEl) {
+        if (disclaimerCategoria) {
+            resumenDisclaimerEl.textContent = disclaimerCategoria;
+            resumenDisclaimerEl.style.display = '';
+        } else {
+            resumenDisclaimerEl.textContent = '';
+            resumenDisclaimerEl.style.display = 'none';
         }
     }
 
@@ -1008,16 +1071,23 @@ function mostrarFichaEjemplo(tipo) {
         { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes a<br>su nombre',              color: 'pink',   activo: false }
     ];
 
-    const iconosHTML = '<div class="ficha-resultado__categorias">' +
+    const iconosHTML = '<div class="ficha-resultado__categorias-wrapper">' +
+        '<p class="ficha-resultado__selecciona">Selecciona un hallazgo <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M9.813 15.904L9 18.75l-.813-2.846a4.5 4.5 0 00-3.09-3.09L2.25 12l2.846-.813a4.5 4.5 0 003.09-3.09L9 5.25l.813 2.846a4.5 4.5 0 003.09 3.09L15.75 12l-2.846.813a4.5 4.5 0 00-3.09 3.09z"/></svg></p>' +
+        '<div class="ficha-resultado__leyenda">' +
+            '<span class="ficha-leyenda__item ficha-leyenda__item--conflicto"><span class="ficha-leyenda__dot"></span>Hallazgos en conflicto</span>' +
+            '<span class="ficha-leyenda__item ficha-leyenda__item--adicional"><span class="ficha-leyenda__dot"></span>Información adicional</span>' +
+        '</div>' +
+        '<div class="ficha-resultado__categorias">' +
         iconosConfig.map(function(ic) {
             const cls = ic.activo
-                ? 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color
+                ? 'ficha-categoria-indicador ficha-categoria-indicador--activo ficha-categoria-indicador--' + ic.color + ' ficha-categoria-indicador--conflicto'
                 : 'ficha-categoria-indicador ficha-categoria-indicador--inactivo';
             return '<div class="' + cls + '">' +
                 '<div class="ficha-categoria-btn__icon"><img src="' + ic.img + '" alt="" width="100%"></div>' +
                 '<span class="ficha-categoria-btn__text">' + ic.label + '</span>' +
             '</div>';
         }).join('') +
+        '</div>' +
     '</div>';
 
     const resumenHTML = tieneHallazgos

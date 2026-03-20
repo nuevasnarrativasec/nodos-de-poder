@@ -1317,12 +1317,16 @@
         }
 
         /* Categorías NO clicables: indicadores visuales */
+        .ficha-resultado__categorias-wrapper {
+            padding: 14px 25px 15px;
+            border-top: 1px solid #3a3a3a;
+        }
+
         .ficha-resultado__categorias {
-            padding: 15px 25px;
+            padding: 0;
             display: flex;
             align-items: center;
             gap: 20px;
-            border-top: 1px solid #3a3a3a;
             flex-wrap: wrap;
             justify-content: center;
         }
@@ -1336,6 +1340,8 @@
             flex: 1;
             min-width: 70px;
             max-width: 100px;
+            padding: 10px;
+            border-radius: 5px;
         }
 
         .ficha-categoria-indicador--activo {
@@ -1350,11 +1356,12 @@
         }
 
         .ficha-categoria-indicador--activo.ficha-indicador--abierto {
-            opacity: 0.75;
+            background-color: rgb(194, 194, 194, 0.3);
+            opacity: 1;
         }
 
         .ficha-categoria-indicador--activo.ficha-indicador--abierto .ficha-categoria-btn__icon {
-            outline: 3px solid #fff;
+            /*outline: 3px solid #fff;*/
             outline-offset: 2px;
         }
 
@@ -1373,6 +1380,63 @@
         .ficha-categoria-indicador--blue   .ficha-categoria-btn__icon { background: #85E3FF; }
         .ficha-categoria-indicador--pink   .ficha-categoria-btn__icon { background: #F5A9F2; }
         .ficha-categoria-indicador--inactivo .ficha-categoria-btn__icon { background: #444; }
+
+        /* Borde rojo: hallazgo en conflicto (aparece en bloques de color) */
+        .ficha-categoria-indicador--conflicto .ficha-categoria-btn__icon {
+            box-shadow: 0 0 0 3px #E53935, 0 0 0 5px rgba(229,57,53,0.25);
+        }
+        /* Borde blanco tenue: solo información adicional (no aparece en bloques) */
+        .ficha-categoria-indicador--adicional .ficha-categoria-btn__icon {
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.95);
+        }
+
+        /* Leyenda de tipos de hallazgo */
+        .ficha-resultado__categorias-wrapper {
+            padding: 0;
+        }
+        .ficha-resultado__selecciona {
+            font-size: 0.72rem;
+            color: #888;
+            text-align: center;
+            margin: 0 0 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+        }
+            .ficha-resultado__selecciona img{
+                display: inline-block;
+                max-width: 12px;
+                vertical-align: top;
+            }
+        .ficha-resultado__leyenda {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 10px;
+        }
+        .ficha-leyenda__item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 0.7rem;
+            color: #bbb;
+        }
+        .ficha-leyenda__dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+        .ficha-leyenda__item--conflicto .ficha-leyenda__dot {
+            background: #E53935;
+            box-shadow: 0 0 0 2px rgba(229,57,53,0.3);
+        }
+        .ficha-leyenda__item--adicional .ficha-leyenda__dot {
+            background: transparent;
+            border: 2px solid rgba(255,255,255,0.95);
+        }
 
         .ficha-categoria-indicador .ficha-categoria-btn__text {
             font-size: 0.7rem;
@@ -1475,8 +1539,35 @@
             padding-bottom: 20px;
         }
 
-        .ficha-resultado--sin-hallazgos .ficha-resultado__categorias {
+        .ficha-resultado--sin-hallazgos .ficha-resultado__categorias,
+        .ficha-resultado--sin-hallazgos .ficha-resultado__categorias-wrapper {
             display: none;
+        }
+
+        /* Etiqueta de tipo (Hallazgo en conflicto / Información adicional) */
+        .ficha-resumen__tipo-wrap {
+            margin-bottom: 8px;
+            min-height: 0;
+            display: none;
+        }
+        .ficha-resumen__tipo {
+            display: inline-block;
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            padding: 3px 9px;
+            border-radius: 20px;
+        }
+        .ficha-resumen__tipo--conflicto {
+            background: rgba(229, 57, 53, 0.18);
+            color: #ff6b6b;
+            border: 1px solid rgba(229, 57, 53, 0.45);
+        }
+        .ficha-resumen__tipo--adicional {
+            background: rgba(255, 255, 255, 0.08);
+            color: #ccc;
+            border: 1px solid rgba(255, 255, 255, 0.25);
         }
 
         /* Responsive */
