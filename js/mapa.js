@@ -198,11 +198,24 @@ function showTip(event, dept, info, dd) {
 
 function moveTip(e) {
   const tw = tip.offsetWidth, th = tip.offsetHeight;
-  const vw = window.innerWidth, vh = window.innerHeight;
-  let x = e.clientX + 18, y = e.clientY - 18;
-  if (x + tw > vw - 10) x = e.clientX - tw - 18;
-  if (y + th > vh - 10) y = vh - th - 10;
-  if (y < 8) y = 8;
+  const pad = 8;
+  const mapPanel = document.querySelector('.map-panel');
+  const r = mapPanel
+    ? mapPanel.getBoundingClientRect()
+    : { left: 0, top: 0, right: window.innerWidth, bottom: window.innerHeight };
+
+  let x = e.clientX + 18;
+  let y = e.clientY - 18;
+
+  // Flip horizontalmente si se sale por la derecha del panel
+  if (x + tw > r.right - pad) x = e.clientX - tw - 18;
+  // Clamp izquierda (guarda que faltaba)
+  if (x < r.left + pad) x = r.left + pad;
+  // Clamp inferior
+  if (y + th > r.bottom - pad) y = r.bottom - th - pad;
+  // Clamp superior
+  if (y < r.top + pad) y = r.top + pad;
+
   tip.style.left = x + 'px';
   tip.style.top = y + 'px';
 }
