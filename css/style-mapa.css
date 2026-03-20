@@ -318,6 +318,6 @@
 }
 
 @media (max-width: 900px) {
-  body { padding: 16px 14px 40px; }
+  body { /*padding: 16px 14px 40px;*/ }
   .layout { grid-template-columns: 1fr; }
 }
