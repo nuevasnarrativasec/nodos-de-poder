@@ -96,7 +96,7 @@
         /* --- 2. HERO SECTION CON VIDEO --- */
         .hero {
             position: relative;
-            height: 86vh; /* Ocupa toda la pantalla */
+            height: 650px; /* altura fija */
             margin: 0 auto;
             max-width: 1200px;
             display: flex;
