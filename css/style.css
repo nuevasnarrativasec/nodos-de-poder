@@ -148,7 +148,8 @@
         h2 {
             font: 3.5rem/1.1 'Tungsten SemiBold';
             color: #000;
-            margin-bottom: 10px;
+            max-width: 520px;
+            margin: 0 auto 10px;
         }
 
         p.lead {
@@ -833,7 +834,7 @@
         .hallazgos-section__title {
             color: #BA991B;
             font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
-            font-size: 2rem;
+            font-size: 2.5rem;
             text-transform: uppercase;
             margin-bottom: 15px;
         }
@@ -1383,11 +1384,15 @@
 
         /* Borde rojo: hallazgo en conflicto (aparece en bloques de color) */
         .ficha-categoria-indicador--conflicto .ficha-categoria-btn__icon {
-            box-shadow: 0 0 0 3px #E53935, 0 0 0 5px rgba(229,57,53,0.25);
+            /*box-shadow: 0 0 0 3px #E53935, 0 0 0 5px rgba(229,57,53,0.25);*/
         }
         /* Borde blanco tenue: solo información adicional (no aparece en bloques) */
         .ficha-categoria-indicador--adicional .ficha-categoria-btn__icon {
-            box-shadow: 0 0 0 3px rgba(255,255,255,0.95);
+            /*box-shadow: 0 0 0 3px rgba(255,255,255,0.95);*/
+            opacity: .4;
+        }
+        .ficha-categoria-indicador--adicional .ficha-categoria-btn__text{
+            opacity: .4;
         }
 
         /* Leyenda de tipos de hallazgo */
@@ -1395,7 +1400,7 @@
             padding: 0;
         }
         .ficha-resultado__selecciona {
-            font-size: 0.72rem;
+            font-size: 0.85rem;
             color: #888;
             text-align: center;
             margin: 0 0 6px;
@@ -1415,6 +1420,7 @@
             justify-content: center;
             gap: 18px;
             margin-bottom: 10px;
+            display: none;
         }
         .ficha-leyenda__item {
             display: flex;
@@ -2069,6 +2075,13 @@
         font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
         font-size: 1.8rem;
         text-align: center;
+    }
+    .box-embed h3,
+    .box-main-mapa h3,
+    .box-derecho h3{
+        color: #BA991B;
+        font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+        font-size: 2.5rem;
     }
     .box-embed p,
     .box-main-mapa p{

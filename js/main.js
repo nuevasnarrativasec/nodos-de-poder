@@ -480,9 +480,9 @@ function mostrarResultadosExplora(resultados) {
         // Íconos de categorías: siempre se muestran los 4, coloreados solo si hay hallazgo
         const iconosData = [
             { key: 'intereses', img: './img/bg-ficha-1.png', label: 'Intereses<br>cruzados',        color: 'yellow' },
-            { key: 'dinero',    img: './img/bg-ficha-2.png', label: 'El rastro<br>del dinero',       color: 'green'  },
-            { key: 'estudios',  img: './img/bg-ficha-4.png', label: 'Lo que respalda<br>su trayectoria', color: 'blue' },
-            { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes a<br>su nombre',         color: 'pink'   }
+            { key: 'dinero',    img: './img/bg-ficha-2.png', label: 'El flujo<br>del dinero',       color: 'green'  },
+            { key: 'estudios',  img: './img/bg-ficha-4.png', label: 'Trayectoria<br>académica', color: 'blue' },
+            { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes <br>declarados',         color: 'pink'   }
         ];
 
         // Primera categoría activa (para pre-seleccionar): primero conflicto, luego adicional
@@ -495,7 +495,7 @@ function mostrarResultadosExplora(resultados) {
             : (c.resumen_ficha || '');
 
         const iconosHTML = '<div class="ficha-resultado__categorias-wrapper">' +
-            '<p class="ficha-resultado__selecciona">Selecciona un hallazgo <img src="./img/icon-clic.png"/ width="100%"></p>' +
+            '<p class="ficha-resultado__selecciona">Has clic en una sección <img src="./img/icon-clic.png"/ width="100%"></p>' +
             '<div class="ficha-resultado__leyenda">' +
                 '<span class="ficha-leyenda__item ficha-leyenda__item--conflicto"><span class="ficha-leyenda__dot"></span>Hallazgos en conflicto</span>' +
                 '<span class="ficha-leyenda__item ficha-leyenda__item--adicional"><span class="ficha-leyenda__dot"></span>Información adicional</span>' +

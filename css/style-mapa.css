@@ -59,7 +59,7 @@
   transition: filter 0.15s, opacity 0.2s;
 }
 .region:hover { filter: brightness(1.12) drop-shadow(0 2px 6px rgba(0,0,0,0.22)); }
-.region.dimmed { opacity: 0.2; }
+.region.dimmed { opacity: 0.8; }
 .region.lake { fill: #a8c8d8; stroke: #88aabb; cursor: default; pointer-events: none; }
 
 /* ─── RIGHT PANEL ─── */
@@ -173,16 +173,16 @@
 /* ─── RESUMEN ─── */
 .resumen-section { padding: 18px 0 16px; }
 .resumen-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 17px;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+  font-size: 2rem;
   font-weight: 700;
   color: var(--ink);
   letter-spacing: 0.01em;
   margin-bottom: 1px;
 }
 .resumen-name {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 26px;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+  font-size: 2rem;
   font-weight: 900;
   color: var(--ink);
   line-height: 1.1;
@@ -208,7 +208,7 @@
   color: var(--ink-light);
 }
 .stat-val {
-  font-family: 'Barlow Condensed', sans-serif;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
   font-size: 22px;
   font-weight: 800;
   color: var(--ink);
@@ -218,8 +218,8 @@
 /* ─── LEGEND ─── */
 .legend-section { padding: 18px 0 16px; }
 .legend-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 22px;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+  font-size: 1.8rem;
   font-weight: 900;
   line-height: 1.15;
   margin-bottom: 16px;
@@ -238,8 +238,8 @@
 /* ─── TOP REGIONS ─── */
 .top-section { padding: 18px 0 0; }
 .top-title {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 22px;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+  font-size: 1.8rem;
   font-weight: 900;
   margin-bottom: 14px;
   color: var(--ink);
@@ -261,8 +261,8 @@
   color: var(--ink-light);
 }
 .top-monto {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-size: 20px;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+  font-size: 1.7rem;
   font-weight: 800;
   color: var(--ink);
   letter-spacing: 0.01em;

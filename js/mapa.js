@@ -167,8 +167,19 @@ function updateTopList(dd) {
 // ─── TOOLTIP ──────────────────────────────────────────────────────────────
 const tip = document.getElementById('tip');
 
+function restoreTipStructure() {
+  tip.innerHTML =
+    `<div class="tip-region" id="t-region"></div>` +
+    `<div class="tip-row"><span class="tip-val" id="t-contratos"></span><span>&nbsp;contratos / servicios</span></div>` +
+    `<div class="tip-row"><span class="tip-val" id="t-monto"></span></div>` +
+    `<div class="tip-row"><span class="tip-val" id="t-fam"></span><span>&nbsp;familiares vinculados</span></div>` +
+    `<hr class="tip-hr">` +
+    `<div class="tip-congs" id="t-congs"></div>`;
+}
+
 function showTip(event, dept, info, dd) {
   if (!info) return;
+  if (!document.getElementById('t-contratos')) restoreTipStructure();
   document.getElementById('t-region').textContent = dept;
   document.getElementById('t-contratos').textContent =
     info.contratos.toLocaleString('es-PE');
@@ -201,8 +212,19 @@ function onRegionEnter(e, id) {
   if (!dept) return;
   const dd = getDisplayData(currentCong);
   const info = dd[dept];
-  if (!info) return;
+  if (!info) {
+    showNoDataTip(e, dept);
+    return;
+  }
   showTip(e, dept, info, dd);
+}
+
+function showNoDataTip(event, dept) {
+  tip.innerHTML =
+    `<div class="tip-region" id="t-region">${dept}</div>` +
+    `<div class="tip-row tip-nodata">No se detectaron contratos u órdenes de servicios en esta región.</div>`;
+  tip.style.display = 'block';
+  moveTip(event);
 }
 
 function onMouseMove(e) {
