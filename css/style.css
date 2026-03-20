@@ -2056,7 +2056,7 @@
 }
 
 .box-embed{
-    margin: 20px auto 80px;
+    margin: 60px auto 80px;
 }
     .box-embed iframe{
         display: block;
@@ -2087,7 +2087,7 @@
 .box-metodologia {
     border: 1px solid #707070;
     box-sizing: border-box;
-    margin: 90px auto 30px;
+    margin: 0 auto 30px;
     max-width: 600px;
     padding: 30px 40px;
 }
@@ -2170,5 +2170,5 @@ span.separador-logo {
 
 .box-main-mapa{
     max-width: 900px;
-    margin: 0 auto;
+    margin: 0 auto 80px;
 }
