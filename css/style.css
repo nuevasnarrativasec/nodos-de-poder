@@ -2064,7 +2064,8 @@
         max-width: 1300px;
     }
     .box-embed h3,
-    .box-main-mapa h3{
+    .box-main-mapa h3,
+    .box-derecho h3{
         font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
         font-size: 1.8rem;
         text-align: center;
@@ -2172,3 +2173,24 @@ span.separador-logo {
     max-width: 900px;
     margin: 0 auto 80px;
 }
+
+.box-derecho{
+    margin-bottom: 80px;
+}
+    .box-derecho ul{
+        list-style: none;
+        padding: 0;
+        text-align: center;
+    }
+        .box-derecho ul li{
+            display: inline-block;
+            font: 1rem / 1.5 "Roboto", sans-serif;
+            margin: 10px;
+            max-width: 350px;
+            vertical-align: top;
+        }
+            .box-derecho ul li p a{
+                color: #000;
+                text-decoration: underline;
+                font-weight: bold;
+            }
