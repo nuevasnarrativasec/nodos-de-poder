@@ -59,7 +59,7 @@
   transition: filter 0.15s, opacity 0.2s;
 }
 .region:hover { filter: brightness(1.12) drop-shadow(0 2px 6px rgba(0,0,0,0.22)); }
-.region.dimmed { opacity: 0.8; }
+.region.dimmed { opacity: 0.7; }
 .region.lake { fill: #a8c8d8; stroke: #88aabb; cursor: default; pointer-events: none; }
 
 /* ─── RIGHT PANEL ─── */
