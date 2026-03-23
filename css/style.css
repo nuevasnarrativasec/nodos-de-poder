@@ -1341,6 +1341,15 @@
             margin-bottom: 8px;
             line-height: 1.5;
         }
+            .ficha-resultado__hallazgos-title i{
+                background-color: #fff;
+                border-radius: 30px;
+                display: inline-block;
+                height: 13px;
+                margin: 3px 5px 5px 0;
+                vertical-align: middle;
+                width: 13px;
+            }
 
         .ficha-resultado__hallazgos-title strong {
             font-weight: 700;
