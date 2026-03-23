@@ -143,11 +143,16 @@
         }
 
         h1 {
-            font: 5rem / 1 'Tungsten SemiBold';
+            font: 7rem / .8 'Tungsten SemiBold';
             text-transform: uppercase;
             color: #000;
-            margin: 0 auto;
+            margin: 0 auto 10px;
         }
+            h1 span{
+                display: block;
+                text-transform: none;
+                font-size: 3.5rem;
+            }
 
         h2 {
             font: 3.5rem/1.1 'Tungsten SemiBold';
@@ -157,10 +162,10 @@
         }
 
         p.lead {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             line-height: 1.5;
             font-weight: 400;
-            max-width: 750px;
+            max-width: 550px;
             margin: 0 auto 30px auto;
             color: #222;
         }
@@ -227,7 +232,7 @@
         }
 
         @media (max-width: 768px) {
-            h1 { font-size: 3.5rem; }
+            h1 { font-size: 4.5rem; }
             h2 { font-size: 1.5rem; }
 
             header {
@@ -407,15 +412,27 @@
         .steps-container {
             flex-direction: column; /* Apilar uno sobre otro */
             align-items: center;
+            display: block; 
         }
 
         .step-item {
             border-right: none; /* Quitar líneas verticales */
             border-bottom: 1px solid #e0e0e0; /* Agregar líneas horizontales */
-            padding: 40px 20px;
+            padding: 0 15px 30px;
             width: 100%;
-            max-width: 400px;
+            max-width: 47%;
+            display: inline-block;
+            vertical-align: top;
+            border: none;
         }
+            .icon-circle{
+                display: block;
+                margin: 0 auto 10px;
+            }
+            .step-item h4{
+                max-width: 100px;
+                margin: 0 auto 10px;
+            }
 
         .step-item:last-child {
             border-bottom: none;
@@ -431,6 +448,10 @@
         }
         .video-bg{
             object-fit: cover;
+        }
+
+        .how-to-read-section{
+            padding: 80px 20px 0;
         }
 
     }
@@ -1894,6 +1915,9 @@
 }
 @media (max-width: 640px) {
     .hcard-grid { grid-template-columns: repeat(3, 1fr); }
+    h1 span{
+        font-size: 2.5rem;
+    }
 }
 
 .hcard {
