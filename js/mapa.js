@@ -153,7 +153,7 @@ function render(cong) {
 function updateStats(cong, dd) {
   const vals = Object.values(dd);
   document.getElementById('s-name').textContent =
-    cong === '__all__' ? 'Todos los congresistas' : cong;
+    cong === '__all__' ? 'Todos los congresistas' : (NOMBRE_COMPLETO[cong] || cong);
   document.getElementById('s-regs').textContent = vals.length;
 
   if (cong === '__all__') {
@@ -274,12 +274,75 @@ function onMouseOut() {
   tip.style.display = 'none';
 }
 
+// ─── NOMBRES COMPLETOS (igual que gráfico de nodos) ───────────────────────
+const NOMBRE_COMPLETO = {
+  "Alegria Luis":       "Arturo Alegría García",
+  "Amuruz Rosselli":    "Rosselli Amuruz",
+  "Aragon Angel":       "Angel Aragon Carreño",
+  "Arriola Alberto":    "José Arriola Tueros",
+  "Barbaran Rosangella":"Rosangella Barbaran",
+  "Bellido Guido":      "Guido Bellido Ugarte",
+  "Bustamante Ernesto": "Ernesto Bustamante Donayre",
+  "Castillo Eduardo":   "Enrique Castillo Rivas",
+  "Chacon Nilza":       "Nilza Chacón Trujillo",
+  "Chiabra Roberto":    "Roberto Chiabra",
+  "Chirinos Rosa":      "Patricia Chirinos Venegas",
+  "Cruz Mamani":        "Flavio Cruz Mamani",
+  "Cueto Jose":         "Jose Cueto",
+  "Davila Neomias":     "Pasión Dávila",
+  "Echaiz Margot":      "Gladys Echaiz de Nuñez Izaga",
+  "Flores Seferino":    "Victor Flores Ruiz",
+  "Gonza Américo":      "Américo Gonza",
+  "Gonzales Diana":     "Diana Gonzales",
+  "Huaman Raul":        "Raul Huaman Coronado",
+  "Infantes Eliana":    "Mery Infantes Castañeda",
+  "Juarez Patricia":    "Patricia Juarez Gallegos",
+  "Julon Elva":         "Elva Julón Irigoin",
+  "Limachi Esmeralda":  "Esmeralda Limachi Quispe",
+  "Lopez Luz":          "Jeny Lopez Morales",
+  "Luna Leon":          "José Luna Gálvez",
+  "Luque Ruth":         "Ruth Luque",
+  "Marticorena Alfonso":"Jorge Marticorena Mendoza",
+  "Medina Esdras":      "Esdras Medina Minaya",
+  "Medina Sara":        "Elizabeth Medina Hermosilla",
+  "Miguel Ciccia":      "Miguel Ciccia",
+  "Mita Alanoca":       "Isaac Mita Alanoca",
+  "Montoya Jorge":      "Jorge Montoya",
+  "Muñante Alejandro":  "Alejandro Muñante",
+  "Obando Ana":         "Ana Obando Morgan",
+  "Orue Ariana":        "Ariana Orue",
+  "Padilla Rommel":     "Javier Padilla Romero",
+  "Palacios Margot":    "Palacios Margot",
+  "Paredes Alex":       "Alex Paredes",
+  "Paredes Francis":    "Francis Paredes Castro",
+  "Portalatino Roxana": "Kelly Portalatino",
+  "Quito Jaime":        "Bernardo Quito Sarmiento",
+  "Ramirez Tania":      "Tania Ramírez García",
+  "Revilla Cesar":      "César Revilla Villanueva",
+  "Reyes Augusto":      "Abel Reyes Cam",
+  "Robles Emperatriz":  "Silvana Robles",
+  "Sanchez Helbert":    "Roberto Sánchez Palomino",
+  "Soto Alejandro":     "Alejandro Soto Reyes",
+  "Taipe Maria":        "Elizabeth Taipe",
+  "Tello Edgar":        "Nivardo Tello",
+  "Torres Rosio":       "Rosio Torres Salinas",
+  "Trigozo Cheryl":     "Cheryl Trigozo",
+  "Valer Hector":       "Héctor Valer Pinto",
+  "Varas Marcial":      "Elías Varas",
+  "Victor Cutipa":      "Victor Cutipa Ccama",
+  "Zegarra Zadith":     "Ana Zegarra"
+};
+
 // ─── CUSTOM DROPDOWN ──────────────────────────────────────────────────────
 const congInput    = document.getElementById('cong-input');
 const dropList     = document.getElementById('dropdown-list');
 const chevron      = document.getElementById('search-chevron');
 const searchWrap   = document.getElementById('search-wrap');
-const ALL_NAMES    = Object.keys(DATA.por_congresista).sort((a, b) => a.localeCompare(b, 'es'));
+const ALL_NAMES    = Object.keys(DATA.por_congresista).sort((a, b) => {
+  const da = NOMBRE_COMPLETO[a] || a;
+  const db = NOMBRE_COMPLETO[b] || b;
+  return da.localeCompare(db, 'es');
+});
 
 let dropOpen = false;
 
@@ -294,7 +357,9 @@ function buildDropItems(filter) {
   dropList.appendChild(reset);
 
   const q = (filter || '').toLowerCase().trim();
-  const matches = q ? ALL_NAMES.filter(n => n.toLowerCase().includes(q)) : ALL_NAMES;
+  const matches = q
+    ? ALL_NAMES.filter(n => (NOMBRE_COMPLETO[n] || n).toLowerCase().includes(q))
+    : ALL_NAMES;
 
   if (!matches.length) {
     const empty = document.createElement('div');
@@ -307,7 +372,7 @@ function buildDropItems(filter) {
   matches.forEach(name => {
     const item = document.createElement('div');
     item.className = 'dropdown-item' + (name === currentCong ? ' active' : '');
-    item.textContent = name;
+    item.textContent = NOMBRE_COMPLETO[name] || name;
     item.addEventListener('mousedown', e => { e.preventDefault(); selectCong(name); });
     dropList.appendChild(item);
   });
@@ -331,8 +396,8 @@ function closeDrop() {
   chevron.classList.remove('rotated');
   dropList.classList.remove('open');
   dropOpen = false;
-  // Restore display value
-  congInput.value = currentCong === '__all__' ? '' : currentCong;
+  // Restore display value (nombre completo)
+  congInput.value = currentCong === '__all__' ? '' : (NOMBRE_COMPLETO[currentCong] || currentCong);
 }
 
 function selectCong(name) {
