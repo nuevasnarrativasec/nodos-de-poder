@@ -1306,7 +1306,7 @@
 
         .ficha-resultado__dato {
             font-size: 0.9rem;
-            color: #FFD700;
+            color: #FFDE26;
         }
 
         .ficha-resultado__dato-label {
@@ -1414,7 +1414,7 @@
             padding: 8px;
         }
 
-        .ficha-categoria-indicador--yellow .ficha-categoria-btn__icon { background: #FFF85F; }
+        .ficha-categoria-indicador--yellow .ficha-categoria-btn__icon { background: #ffdf00; }
         .ficha-categoria-indicador--green  .ficha-categoria-btn__icon { background: #85FF85; }
         .ficha-categoria-indicador--blue   .ficha-categoria-btn__icon { background: #85E3FF; }
         .ficha-categoria-indicador--pink   .ficha-categoria-btn__icon { background: #F5A9F2; }
@@ -1970,7 +1970,7 @@
 .hcard__bg {
     position: absolute;
     inset: 0;
-    background: var(--hcard-color, #FFF85F);
+    background: var(--hcard-color, #FFDE26);
     z-index: 0;
 }
 

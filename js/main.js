@@ -592,7 +592,7 @@ function mostrarResultadosExplora(resultados) {
  */
 function inicializarHallazgos() {
     const colores = {
-        intereses: '#FFF85F',
+        intereses: '#FFDE26',
         dinero:    '#85FF85',
         bienes:    '#F5A9F2',
         estudios:  '#85E3FF'
@@ -615,12 +615,12 @@ function mostrarResultadosHallazgo(categoria, resultados, colorOverride) {
     if (detailContainer) detailContainer.style.display = 'none';
 
     const colores = {
-        intereses: '#FFF85F',
+        intereses: '#FFDE26',
         dinero:    '#85FF85',
         bienes:    '#F5A9F2',
         estudios:  '#85E3FF'
     };
-    const color = colorOverride || colores[categoria] || '#FFF85F';
+    const color = colorOverride || colores[categoria] || '#FFDE26';
 
     grid.className = 'hcard-grid';
 
