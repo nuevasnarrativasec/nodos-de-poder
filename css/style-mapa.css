@@ -216,13 +216,21 @@
 }
 
 /* ─── LEGEND ─── */
-.legend-section { padding: 18px 0 16px; }
+.legend-section {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  background: rgba(241, 240, 235, 0.88);
+  padding: 10px 14px 12px;
+  border-radius: 6px;
+  max-width: 200px;
+}
 .legend-title {
   font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   font-weight: 900;
   line-height: 1.15;
-  margin-bottom: 16px;
+  margin-bottom: 8px;
   color: var(--ink);
 }
 .choro-scale-labels {

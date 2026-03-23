@@ -8,8 +8,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
 
-    <link rel="stylesheet" href="./css/style.css?v54">
-    <link rel="stylesheet" href="./css/style-mapa.css?v54">
+    <link rel="stylesheet" href="./css/style.css?v52">
+    <link rel="stylesheet" href="./css/style-mapa.css?v52">
     
 </head>
 <body>
@@ -411,6 +411,15 @@
                             <!-- Label layer removed -->
                             <g id="labels-g" style="display:none"></g>
                     </svg>
+                    <!-- Color legend (dentro del map box) -->
+                    <div class="legend-section">
+                        <div class="legend-title">Monto total de contrataciones</div>
+                        <div class="choro-scale-labels">
+                            <span>menos</span>
+                            <span>más</span>
+                        </div>
+                        <div class="choro-swatches" id="choro-swatches"></div>
+                    </div>
                 </div>
                 <div class="viz-footer">
                     <strong>FUENTE:</strong>SEACE · Declaraciones juradas JNE (2021–2025).</span>
@@ -449,18 +458,6 @@
                     <div class="stat-row"><span class="stat-label">Contratos/Servicios</span><span class="stat-val" id="s-contratos">—</span></div>
                     <div class="stat-row"><span class="stat-label">Familiares</span><span class="stat-val" id="s-fam">—</span></div>
                     <div class="stat-row"><span class="stat-label">Monto Total</span><span class="stat-val" id="s-monto">—</span></div>
-                </div>
-
-                <hr class="panel-rule">
-
-                <!-- Color legend -->
-                <div class="legend-section">
-                    <div class="legend-title">Monto total de contrataciones</div>
-                    <div class="choro-scale-labels">
-                        <span>menos</span>
-                        <span>más</span>
-                    </div>
-                    <div class="choro-swatches" id="choro-swatches"></div>
                 </div>
 
                 <hr class="panel-rule">
@@ -848,8 +845,8 @@
         </div>
     </div>
 
-    <script src="./js/main.js?v54"></script>
-    <script src="./js/mapa.js?v54"></script>
+    <script src="./js/main.js?v51"></script>
+    <script src="./js/mapa.js?v51"></script>
 
     <script>
         document.addEventListener("DOMContentLoaded", () => {
