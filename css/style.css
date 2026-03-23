@@ -2125,6 +2125,18 @@
         text-align: center;
         max-width: 900px;
     }
+    p.fuente-grafico-nodos{
+        padding-top: 10px;
+        font-size: 10px;
+        color: var(--ink-xlight);
+        font-size: 0.75rem;
+        color: var(--gray-dark);
+        max-width: 1300px;
+        text-align: left;
+    }
+        p.fuente-grafico-nodos span{
+            font-weight: bold;
+        }
 
 
 /* ============================================
