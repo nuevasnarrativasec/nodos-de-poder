@@ -323,9 +323,13 @@
   font-size: 10px;
   color: var(--ink-xlight);
   display: flex;
-  justify-content: space-between;
-  gap: 12px;
+  gap: 5px;
   flex-wrap: wrap;
+
+  font-size: 0.75rem;
+  color: var(--gray-dark);
+
+
 }
 
 @media (max-width: 900px) {
