@@ -146,7 +146,7 @@ function render(cong) {
   });
 
   updateStats(cong, dd);
-  updateTopList(dd);
+  updateTopList(cong, dd);
 }
 
 // ─── STATS ────────────────────────────────────────────────────────────────
@@ -173,10 +173,15 @@ function updateStats(cong, dd) {
   }
 }
 
-function updateTopList(dd) {
+function updateTopList(cong, dd) {
   const sorted = Object.entries(dd)
     .sort((a, b) => b[1].monto - a[1].monto)
     .slice(0, 5);
+  const n = sorted.length;
+  const title = cong === '__all__'
+    ? 'Top 5 regiones por monto'
+    : `${n === 1 ? '1 región' : `${n} regiones`} por monto`;
+  document.querySelector('.top-title').textContent = title;
   document.getElementById('top-list').innerHTML = sorted.map(([dept, info]) =>
     `<li class="top-row">
       <span class="top-name">${dept}</span>

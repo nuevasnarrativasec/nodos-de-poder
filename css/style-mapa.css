@@ -225,6 +225,17 @@
   margin-bottom: 16px;
   color: var(--ink);
 }
+.choro-scale-labels {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.72rem;
+  color: var(--ink);
+  opacity: 0.55;
+  margin-bottom: 4px;
+  font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
 .choro-swatches {
   display: flex;
   gap: 3px;
