@@ -566,7 +566,7 @@ function mostrarResultadosExplora(resultados) {
                 '</div>' +
             '</div>' +
             '<div class="ficha-resultado__hallazgos-summary">' +
-                '<p class="ficha-resultado__hallazgos-title">' + hallazgosTitulo + '</p>' +
+                '<p class="ficha-resultado__hallazgos-title"><i></i>' + hallazgosTitulo + '</p>' +
             '</div>' +
             iconosHTML +
             resumenHTML +

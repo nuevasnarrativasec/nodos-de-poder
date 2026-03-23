@@ -11,6 +11,43 @@
     <link rel="stylesheet" href="./css/style.css?v52">
     <link rel="stylesheet" href="./css/style-mapa.css?v52">
     
+    <style>
+        .ficha-categoria-indicador--activo.ficha-indicador--abierto .ficha-categoria-btn__icon {
+            /*outline: 3px solid #fff;*/
+            outline-offset: 2px;
+        }
+        .ficha-categoria-indicador--adicional .ficha-categoria-btn__icon {
+            /*box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.95); */
+            opacity: 1; 
+        }
+        /* ─── ANIMACIÓN LATIDO (conflicto) ─── */
+        @keyframes latido {
+            0%   { box-shadow: 0 0 0 3px #ffffff; }
+            40%  { box-shadow: 0 0 0 6px rgba(255,255,255,0.4); }
+            70%  { box-shadow: 0 0 0 10px rgba(255,255,255,0.1); }
+            100% { box-shadow: 0 0 0 3px #ffffff; }
+        }
+
+        @keyframes latido-menor {
+            0%   { box-shadow: 0 0 0 2px #ffffff; }
+            40%  { box-shadow: 0 0 0 4px rgba(255,255,255,0.4); }
+            70%  { box-shadow: 0 0 0 5px rgba(255,255,255,0.1); }
+            100% { box-shadow: 0 0 0 2px #ffffff; }
+        }
+
+        .ficha-categoria-indicador--conflicto .ficha-categoria-btn__icon{
+            box-shadow: 0 0 0 4px #ffffff;
+            /*animation: latido 1.6s ease-out infinite;*/
+        }
+        .ficha-resultado__hallazgos-title i {
+            box-shadow: 0 0 0 2px #ffffff;
+            /*animation: latido-menor 1.6s ease-out infinite;*/
+        }
+        .ficha-categoria-indicador--adicional .ficha-categoria-btn__text {
+            opacity: 1; 
+        }
+    </style>
+
 </head>
 <body>
 
