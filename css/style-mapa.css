@@ -179,6 +179,7 @@
   color: var(--ink);
   letter-spacing: 0.01em;
   margin-bottom: 1px;
+  display: none;
 }
 .resumen-name {
   font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
