@@ -625,7 +625,10 @@ function mostrarResultadosHallazgo(categoria, resultados, colorOverride) {
     grid.className = 'hcard-grid';
 
     if (resultados.length === 0) {
-        grid.innerHTML = '<p style="color:#666;padding:20px 0;grid-column:1/-1;">No se encontraron congresistas con hallazgos en esta categoría.</p>';
+        const emptyMsg = categoria === 'estudios'
+            ? 'Todos los congresistas indican correctamente sus estudios de pregrado y posgrado.'
+            : 'No se encontraron congresistas con hallazgos en esta categoría.';
+        grid.innerHTML = `<p style="color:#666;padding:20px 0;grid-column:1/-1;">${emptyMsg}</p>`;
         return;
     }
 
