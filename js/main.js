@@ -626,7 +626,7 @@ function mostrarResultadosHallazgo(categoria, resultados, colorOverride) {
 
     if (resultados.length === 0) {
         const emptyMsg = categoria === 'estudios'
-            ? 'Todos los congresistas indican correctamente sus estudios de pregrado y posgrado.'
+            ? '100% sin diferencias identificadas en este cruce'
             : 'No se encontraron congresistas con hallazgos en esta categoría.';
         grid.innerHTML = `<p style="color:#666;padding:20px 0;grid-column:1/-1; text-align:center;">${emptyMsg}</p>`;
         return;
