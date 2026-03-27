@@ -553,12 +553,12 @@ function mostrarResultadosExplora(resultados) {
                 '<div class="ficha-resultado__info">' +
                     '<h2 class="ficha-resultado__name">' + c.nombre + '</h2>' +
                     '<div class="ficha-resultado__datos">' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Edad</span> <span class="ficha-resultado__dato-value">' + (c.edad || '---') + '</span></p>' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Partido</span> <span class="ficha-resultado__dato-value">' + c.partido + '</span></p>' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cargo al que postula</span> <span class="ficha-resultado__dato-value">' + (c.cargo || 'Congresista') + '</span></p>' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Región</span> <span class="ficha-resultado__dato-value">' + (c.region || 'No especificada') + '</span></p>' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cambio partidario</span> <span class="ficha-resultado__dato-value">' + (c.cambio_partidario || '---') + '</span></p>' +
-                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector público</span> <span class="ficha-resultado__dato-value">' + (c.experiencia_publico || '---') + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Edad:</span> <span class="ficha-resultado__dato-value">' + (c.edad || '---') + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Partido por el que postula:</span> <span class="ficha-resultado__dato-value">' + c.partido + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cargo al que postula:</span> <span class="ficha-resultado__dato-value">' + (c.cargo || 'Congresista') + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Región:</span> <span class="ficha-resultado__dato-value">' + (c.region || 'No especificada') + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cambio partidario:</span> <span class="ficha-resultado__dato-value">' + (c.cambio_partidario || '---') + '</span></p>' +
+                        '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector público:</span> <span class="ficha-resultado__dato-value">' + (c.experiencia_publico || '---') + '</span></p>' +
                     '</div>' +
                 '</div>' +
                 '<div class="ficha-resultado__photo-container">' +
@@ -1110,12 +1110,12 @@ function mostrarFichaEjemplo(tipo) {
             '<div class="ficha-resultado__info">' +
                 '<h2 class="ficha-resultado__name">Nilza Chacón</h2>' +
                 '<div class="ficha-resultado__datos">' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Edad</span> <span class="ficha-resultado__dato-value">57 años</span></p>' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Partido</span> <span class="ficha-resultado__dato-value">Alianza para el Progreso</span></p>' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cargo al que postula</span> <span class="ficha-resultado__dato-value">Senadora</span></p>' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Región</span> <span class="ficha-resultado__dato-value">Lima</span></p>' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cambio partidario</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
-                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector público</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Edad:</span> <span class="ficha-resultado__dato-value">57 años</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Partido por el que postula:</span> <span class="ficha-resultado__dato-value">Alianza para el Progreso</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cargo al que postula:</span> <span class="ficha-resultado__dato-value">Senadora</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Región:</span> <span class="ficha-resultado__dato-value">Lima</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Cambio partidario:</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
+                    '<p class="ficha-resultado__dato"><span class="ficha-resultado__dato-label">Experiencia en sector público:</span> <span class="ficha-resultado__dato-value">Sí</span></p>' +
                 '</div>' +
             '</div>' +
             '<div class="ficha-resultado__photo-container">' +
