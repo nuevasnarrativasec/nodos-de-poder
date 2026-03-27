@@ -217,13 +217,12 @@
 
 /* ─── LEGEND ─── */
 .legend-section {
-  position: absolute;
-  bottom: 18px;
-  left: 18px;
-  background: rgba(241, 240, 235, 0.88);
-  padding: 10px 14px 12px;
-  border-radius: 6px;
-  max-width: 200px;
+    position: absolute;
+    bottom: 3px;
+    left: 3px;
+    padding: 10px 14px 12px;
+    border-radius: 6px;
+    max-width: 170px;
 }
 .legend-title {
   font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
