@@ -456,6 +456,9 @@
 
     /* --- RESPONSIVE (CELULARES) --- */
     @media (max-width: 900px) {
+        #social{
+            display: none;
+        }
         #wst{
             display: inline-block;
         }
