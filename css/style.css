@@ -1283,7 +1283,7 @@
             display: flex;
             justify-content: space-between;
             align-items: flex-start;
-            gap: 20px;
+            gap: 100px;
         }
 
         .ficha-resultado__info {
@@ -1629,6 +1629,7 @@
                 align-items: center;
                 text-align: center;
                 padding: 50px 20px 15px;
+                gap: 20px;
             }
 
             .ficha-resultado__photo {
