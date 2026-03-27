@@ -2294,6 +2294,10 @@ span.separador-logo {
     max-width: 900px;
     margin: 0 auto 80px;
 }
+span.leyenda-montos-mapa{
+    color: var(--gray-dark);
+    font: 0.75rem/1.6 'Roboto', sans-serif;
+}
 
 .box-derecho{
     margin-bottom: 80px;
