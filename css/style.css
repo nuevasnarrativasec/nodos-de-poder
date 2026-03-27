@@ -46,6 +46,48 @@
             gap: 10px;
         }
 
+        /* ============================================
+        SOCIAL BUTTONS
+        ============================================ */
+        #social {
+            margin: 0;
+            position: absolute;
+            right: 10px;
+            text-align: right;
+            top: 10px;   
+            z-index: 10;
+        }
+
+        #social ul {
+            display: inline-block;
+            margin: 0 auto;
+            padding: 0;
+            vertical-align: middle;
+        }
+
+        #social ul li {
+            cursor: pointer;
+            display: inline-block;
+            margin: 0 3px;
+            vertical-align: middle;
+        }
+
+        .sharer {
+            border: none;
+            cursor: pointer;
+            display: inline-block;
+            height: 36px;
+            text-indent: -9999px;
+            width: 36px;
+            background-size: 100% !important;
+        }
+
+        #fb { background: url(https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales-multimedia/abuso-infantil/img/fb-icon-negro.png?v2) no-repeat 0 0; }
+        #wst { background: url(https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales-multimedia/abuso-infantil/img/wsp-icon-negro.png?v2) no-repeat 0 0; display: none; }
+        #tw { background: url(https://d1ts5g4ys243sh.cloudfront.net/proyectos_especiales_prod/especiales-multimedia/abuso-infantil/img/tw-icon-negro.png?v2) no-repeat 0 0; }
+
+
+
         /* Simulamos el logo de la caja amarilla/roja */
         .logo-box {
             background-color: #E30613; /* Rojo perú */
@@ -414,6 +456,9 @@
 
     /* --- RESPONSIVE (CELULARES) --- */
     @media (max-width: 900px) {
+        #wst{
+            display: inline-block;
+        }
         .steps-container {
             flex-direction: column; /* Apilar uno sobre otro */
             align-items: center;
