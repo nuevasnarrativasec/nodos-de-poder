@@ -1537,5 +1537,20 @@
             });
         });
     </script>
+
+    <script>
+        /* ============================================
+        SCROLL DESDE IFRAME - VER OTRAS RESPUESTAS
+        ============================================ */
+        window.addEventListener('message', function(e) {
+            if (e.data && e.data.action === 'scrollTo') {
+                var target = document.querySelector(e.data.target);
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    </script>
+
 </body>
 </html>
