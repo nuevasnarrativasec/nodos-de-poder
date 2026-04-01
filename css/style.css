@@ -908,7 +908,7 @@
 
         /* --- SECCIÃ“N: VER POR TIPO DE HALLAZGO --- */
         .hallazgos-section {
-            padding: 60px 20px 80px;
+            padding: 60px 20px 20px;
             background: var(--gray-light);
         }
 
@@ -2177,10 +2177,16 @@
     }
     .box-embed h3,
     .box-main-mapa h3,
-    .box-derecho h3{
+    .box-derecho h3,
+    .box-descargos h3{
         color: #BA991B;
         font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
         font-size: 2.5rem;
+    }
+    .box-descargos h3{
+        text-align: center;
+        font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
+        font-size: 1.8rem;
     }
     .box-embed p,
     .box-main-mapa p{
@@ -2322,3 +2328,62 @@ span.leyenda-montos-mapa{
                 text-decoration: underline;
                 font-weight: bold;
             }
+.box-descargos{
+    margin: 0 auto 80px;
+    max-width: 1100px;
+    text-align: center;    
+}
+    .box-descargo-congresista{
+        border: 1px solid #ececec;
+        border-radius: 10px;
+        display: inline-block;
+        margin: 20px;
+        max-width: 300px;
+        padding: 10px 20px 20px;
+        vertical-align: top;
+        position: relative;
+        max-height: 170px;
+        overflow: hidden;
+    }
+    .box-descargo-congresista.expandido{
+        max-height: none;
+        overflow: visible;
+    }
+    .box-descargo-congresista.colapsado::after{
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 40px;
+        background: linear-gradient(#ffffffe3, #fff);
+        pointer-events: none;
+    }
+    .btn-ver-mas-descargo{
+        position: absolute;
+        bottom: 0;
+        left: 20px;
+        right: 0;
+        background: none;
+        border: none;
+        color: #ba991b;
+        cursor: pointer;
+        font: .8rem/1.4 'Roboto', sans-serif;
+        font-weight: 700;
+        text-align: left;
+        padding: 6px 0 4px;
+        text-decoration: underline;
+        z-index: 1;
+    }
+        .box-descargo-congresista h4{
+            border-bottom: 1px solid #ba991b;
+            font: 1rem/1.4 'Roboto', sans-serif;
+            font-weight: 700;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .box-descargo-congresista p{
+            font: .9rem/1.6 'Roboto', sans-serif;       
+            padding: 5px 0;     
+            text-align: left;
+        }
