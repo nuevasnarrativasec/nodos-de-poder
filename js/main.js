@@ -479,7 +479,7 @@ function mostrarResultadosExplora(resultados) {
 
         // Íconos de categorías: siempre se muestran los 4, coloreados solo si hay hallazgo
         const iconosData = [
-            { key: 'intereses', img: './img/bg-ficha-1.png', label: 'Relaciones y<br>vínculos',        color: 'yellow' },
+            { key: 'intereses', img: './img/bg-ficha-1.png', label: 'Relaciones<br>y vínculos',        color: 'yellow' },
             { key: 'dinero',    img: './img/bg-ficha-2.png', label: 'El flujo<br>del dinero',       color: 'green'  },
             { key: 'estudios',  img: './img/bg-ficha-4.png', label: 'Trayectoria<br>académica', color: 'blue' },
             { key: 'bienes',    img: './img/bg-ficha-3.png', label: 'Bienes <br>declarados',         color: 'pink'   }
