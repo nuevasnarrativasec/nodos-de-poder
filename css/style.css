@@ -999,7 +999,7 @@
             margin-bottom: 30px;
             padding: 10px 0;
             text-align: center;
-            max-width: 590px;
+            max-width: 560px;
             margin: 0 auto;
             line-height: 1.5;
         }
@@ -2407,3 +2407,19 @@ span.leyenda-montos-mapa{
             padding: 5px 0;     
             text-align: left;
         }
+
+#grid-intereses .hcard[data-id="1"] .hcard__bg,   
+#grid-intereses .hcard[data-id="5"] .hcard__bg,       
+#grid-intereses .hcard[data-id="9"] .hcard__bg, 
+#grid-intereses .hcard[data-id="18"] .hcard__bg,
+#grid-intereses .hcard[data-id="27"] .hcard__bg,
+#grid-intereses .hcard[data-id="28"] .hcard__bg,
+#grid-intereses .hcard[data-id="29"] .hcard__bg,
+#grid-intereses .hcard[data-id="42"] .hcard__bg,
+#grid-intereses .hcard[data-id="44"] .hcard__bg,
+#grid-intereses .hcard[data-id="49"] .hcard__bg,
+#grid-intereses .hcard[data-id="50"] .hcard__bg,
+#grid-intereses .hcard[data-id="60"] .hcard__bg,
+#grid-intereses .hcard[data-id="71"] .hcard__bg   {
+    background-color: #faf0ac;
+}
