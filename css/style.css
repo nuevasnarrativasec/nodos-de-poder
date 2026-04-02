@@ -933,7 +933,7 @@
             font-family: 'Tungsten SemiBold', 'Oswald', sans-serif;
             font-size: 2.5rem;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin: 0 auto 15px;
         }
 
         .hallazgos-section__subtitle {
