@@ -12,7 +12,7 @@ const STATS_POR_CONG = {"Torres Rosio":{"contratos":14,"ordenes":74,"monto":2324
 const TOTAL_CONTRATOS  = 32;
 const TOTAL_ORDENES    = 1886;
 const TOTAL_OPERACIONES = TOTAL_CONTRATOS + TOTAL_ORDENES; // 1918
-const TOTAL_MONTO      = 41819856.72;
+const TOTAL_MONTO      = 30646811.48;
 
 // Map SVG region IDs to DATA keys
 const ID_TO_DEPT = {
@@ -107,7 +107,7 @@ const STATS_IMPEDIDOS_POR_CONG = {"Torres Rosio":{"contratos":0,"ordenes":10,"mo
 
 // ─── STATE ────────────────────────────────────────────────────────────────
 let currentCong    = '__all__';
-let currentMapMode = 'todos'; // 'todos' | 'impedidos'
+let currentMapMode = 'impedidos'; // 'todos' | 'impedidos'
 
 // ─── BUILD COLOR SWATCHES ─────────────────────────────────────────────────
 (function buildSwatches() {
