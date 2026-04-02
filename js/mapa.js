@@ -76,8 +76,38 @@ function choroplethColor(t) {
   return `rgb(${r},${g},${b2})`;
 }
 
+// ─── IMPEDIDOS (Ley N° 30225 – 2° grado consanguinidad/afinidad) ─────────
+// Fuente: data_v4.js (NETWORK_DATA_IMPEDIDOS). Totales verificados:
+//   42 congresistas | 69 familiares | 10 contratos | 1011 órdenes | S/ 10,077,984.63
+const IMPEDIDOS_KEYS = new Set([
+  "Torres Rosio","Chiabra Roberto","Juarez Patricia","Cruz Mamani","Zegarra Zadith",
+  "Miguel Ciccia","Taipe Maria","Bellido Guido","Paredes Francis","Reyes Augusto",
+  "Medina Esdras","Sanchez Helbert","Limachi Esmeralda","Revilla Cesar","Palacios Margot",
+  "Paredes Alex","Padilla Rommel","Barbaran Rosangella","Medina Sara","Luque Ruth",
+  "Ramirez Tania","Valer Hector","Portalatino Roxana","Arriola Alberto","Julon Elva",
+  "Huaman Raul","Mita Alanoca","Alegria Luis","Obando Ana","Bustamante Ernesto",
+  "Gonza Américo","Tello Edgar","Lopez Luz","Davila Neomias","Infantes Eliana",
+  "Luna Leon","Muñante Alejandro","Marticorena Alfonso","Aragon Angel","Orue Ariana",
+  "Amuruz Rosselli","Cueto Jose"
+]);
+
+// Totales exactos derivados de data_v4.js
+const TOTAL_FAMILIARES_IMP  = 69;
+const TOTAL_MONTO_IMP       = 10077984.63;
+const TOTAL_OPERACIONES_IMP = 1021; // 10 contratos + 1011 órdenes
+
+// Distribución geográfica por impedido (derivada de data_v4.js)
+const DATA_IMPEDIDOS_GLOBAL = {"LORETO":{"contratos":0,"monto":1577191.52,"familiares":5,"congresistas":["Torres Rosio","Zegarra Zadith","Luque Ruth"]},"LIMA":{"contratos":6,"monto":3073342.6,"familiares":45,"congresistas":["Chiabra Roberto","Juarez Patricia","Cruz Mamani","Zegarra Zadith","Miguel Ciccia","Taipe Maria","Reyes Augusto","Medina Esdras","Sanchez Helbert","Limachi Esmeralda","Palacios Margot","Revilla Cesar","Padilla Rommel","Valer Hector","Portalatino Roxana","Arriola Alberto","Julon Elva","Alegria Luis","Obando Ana","Bustamante Ernesto","Gonza Américo","Tello Edgar","Luna Leon","Muñante Alejandro","Marticorena Alfonso","Amuruz Rosselli","Cueto Jose"]},"CALLAO":{"contratos":0,"monto":49500.0,"familiares":8,"congresistas":["Chiabra Roberto","Medina Esdras"]},"CUSCO":{"contratos":1,"monto":1104627.21,"familiares":5,"congresistas":["Juarez Patricia","Bellido Guido","Luque Ruth","Aragon Angel"]},"AREQUIPA":{"contratos":0,"monto":528271.98,"familiares":9,"congresistas":["Juarez Patricia","Medina Esdras","Paredes Alex","Amuruz Rosselli"]},"LA LIBERTAD":{"contratos":0,"monto":14000.0,"familiares":2,"congresistas":["Juarez Patricia"]},"PUNO":{"contratos":0,"monto":300.0,"familiares":3,"congresistas":["Cruz Mamani"]},"HUANCAVELICA":{"contratos":3,"monto":2159834.4,"familiares":4,"congresistas":["Zegarra Zadith","Paredes Francis","Orue Ariana"]},"AMAZONAS":{"contratos":0,"monto":3640.0,"familiares":2,"congresistas":["Miguel Ciccia","Infantes Eliana"]},"ICA":{"contratos":0,"monto":1281631.69,"familiares":6,"congresistas":["Paredes Francis","Barbaran Rosangella","Huaman Raul","Marticorena Alfonso"]},"TACNA":{"contratos":0,"monto":20150.0,"familiares":3,"congresistas":["Limachi Esmeralda","Mita Alanoca"]},"PIURA":{"contratos":0,"monto":43579.03,"familiares":3,"congresistas":["Revilla Cesar"]},"SAN MARTIN":{"contratos":0,"monto":7040.0,"familiares":2,"congresistas":["Medina Sara"]},"UCAYALI":{"contratos":0,"monto":19972.5,"familiares":5,"congresistas":["Medina Sara","Lopez Luz","Davila Neomias"]},"HUANUCO":{"contratos":0,"monto":851.8,"familiares":2,"congresistas":["Medina Sara"]},"ANCASH":{"contratos":0,"monto":4699.0,"familiares":2,"congresistas":["Portalatino Roxana"]},"CAJAMARCA":{"contratos":0,"monto":134502.9,"familiares":3,"congresistas":["Ramirez Tania"]},"PASCO":{"contratos":0,"monto":10000.0,"familiares":2,"congresistas":["Davila Neomias"]}};
+
+// Distribución geográfica por congresista impedido
+const DATA_IMPEDIDOS_POR_CONG = {"Torres Rosio":{"LORETO":{"contratos":0,"monto":47000.0,"familiares":2,"congresistas":["Torres Rosio"]}},"Chiabra Roberto":{"LIMA":{"contratos":1,"monto":383179.54,"familiares":3,"congresistas":["Chiabra Roberto"]},"CALLAO":{"contratos":0,"monto":32000.0,"familiares":3,"congresistas":["Chiabra Roberto"]}},"Juarez Patricia":{"LIMA":{"contratos":0,"monto":1176456.59,"familiares":2,"congresistas":["Juarez Patricia"]},"CUSCO":{"contratos":0,"monto":562999.96,"familiares":2,"congresistas":["Juarez Patricia"]},"AREQUIPA":{"contratos":0,"monto":347199.99,"familiares":2,"congresistas":["Juarez Patricia"]},"LA LIBERTAD":{"contratos":0,"monto":14000.0,"familiares":2,"congresistas":["Juarez Patricia"]}},"Cruz Mamani":{"LIMA":{"contratos":1,"monto":45100.0,"familiares":3,"congresistas":["Cruz Mamani"]},"PUNO":{"contratos":0,"monto":300.0,"familiares":3,"congresistas":["Cruz Mamani"]}},"Zegarra Zadith":{"LIMA":{"contratos":2,"monto":248715.0,"familiares":2,"congresistas":["Zegarra Zadith"]},"LORETO":{"contratos":0,"monto":1529191.52,"familiares":2,"congresistas":["Zegarra Zadith"]},"HUANCAVELICA":{"contratos":0,"monto":38534.0,"familiares":2,"congresistas":["Zegarra Zadith"]}},"Miguel Ciccia":{"LIMA":{"contratos":2,"monto":416527.5,"familiares":1,"congresistas":["Miguel Ciccia"]},"AMAZONAS":{"contratos":0,"monto":560.0,"familiares":1,"congresistas":["Miguel Ciccia"]}},"Taipe Maria":{"LIMA":{"contratos":0,"monto":21800.0,"familiares":1,"congresistas":["Taipe Maria"]}},"Bellido Guido":{"CUSCO":{"contratos":1,"monto":518427.25,"familiares":1,"congresistas":["Bellido Guido"]}},"Paredes Francis":{"HUANCAVELICA":{"contratos":3,"monto":2118800.4,"familiares":1,"congresistas":["Paredes Francis"]},"ICA":{"contratos":0,"monto":313093.3,"familiares":1,"congresistas":["Paredes Francis"]}},"Reyes Augusto":{"LIMA":{"contratos":0,"monto":39500.0,"familiares":1,"congresistas":["Reyes Augusto"]}},"Medina Esdras":{"AREQUIPA":{"contratos":0,"monto":105776.99,"familiares":5,"congresistas":["Medina Esdras"]},"LIMA":{"contratos":0,"monto":14950.0,"familiares":5,"congresistas":["Medina Esdras"]},"CALLAO":{"contratos":0,"monto":17500.0,"familiares":5,"congresistas":["Medina Esdras"]}},"Sanchez Helbert":{"LIMA":{"contratos":0,"monto":4300.0,"familiares":1,"congresistas":["Sanchez Helbert"]}},"Limachi Esmeralda":{"LIMA":{"contratos":0,"monto":60000.0,"familiares":2,"congresistas":["Limachi Esmeralda"]},"TACNA":{"contratos":0,"monto":9450.0,"familiares":2,"congresistas":["Limachi Esmeralda"]}},"Revilla Cesar":{"LIMA":{"contratos":0,"monto":41250.0,"familiares":3,"congresistas":["Revilla Cesar"]},"PIURA":{"contratos":0,"monto":43579.03,"familiares":3,"congresistas":["Revilla Cesar"]}},"Palacios Margot":{"LIMA":{"contratos":0,"monto":16120.0,"familiares":1,"congresistas":["Palacios Margot"]}},"Paredes Alex":{"AREQUIPA":{"contratos":0,"monto":25000.0,"familiares":1,"congresistas":["Paredes Alex"]}},"Padilla Rommel":{"LIMA":{"contratos":0,"monto":160569.2,"familiares":2,"congresistas":["Padilla Rommel"]}},"Barbaran Rosangella":{"ICA":{"contratos":0,"monto":4200.0,"familiares":1,"congresistas":["Barbaran Rosangella"]}},"Medina Sara":{"SAN MARTIN":{"contratos":0,"monto":7040.0,"familiares":2,"congresistas":["Medina Sara"]},"UCAYALI":{"contratos":0,"monto":1448.0,"familiares":2,"congresistas":["Medina Sara"]},"HUANUCO":{"contratos":0,"monto":851.8,"familiares":2,"congresistas":["Medina Sara"]}},"Luque Ruth":{"CUSCO":{"contratos":0,"monto":12700.0,"familiares":1,"congresistas":["Luque Ruth"]},"LORETO":{"contratos":0,"monto":1000.0,"familiares":1,"congresistas":["Luque Ruth"]}},"Ramirez Tania":{"CAJAMARCA":{"contratos":0,"monto":134502.9,"familiares":3,"congresistas":["Ramirez Tania"]}},"Valer Hector":{"LIMA":{"contratos":0,"monto":31666.66,"familiares":1,"congresistas":["Valer Hector"]}},"Portalatino Roxana":{"ANCASH":{"contratos":0,"monto":4699.0,"familiares":2,"congresistas":["Portalatino Roxana"]},"LIMA":{"contratos":0,"monto":3000.0,"familiares":2,"congresistas":["Portalatino Roxana"]}},"Arriola Alberto":{"LIMA":{"contratos":0,"monto":23450.0,"familiares":1,"congresistas":["Arriola Alberto"]}},"Julon Elva":{"LIMA":{"contratos":0,"monto":12000.0,"familiares":1,"congresistas":["Julon Elva"]}},"Huaman Raul":{"ICA":{"contratos":0,"monto":26865.0,"familiares":2,"congresistas":["Huaman Raul"]}},"Mita Alanoca":{"TACNA":{"contratos":0,"monto":10700.0,"familiares":1,"congresistas":["Mita Alanoca"]}},"Alegria Luis":{"LIMA":{"contratos":0,"monto":27500.0,"familiares":2,"congresistas":["Alegria Luis"]}},"Obando Ana":{"LIMA":{"contratos":0,"monto":7500.0,"familiares":1,"congresistas":["Obando Ana"]}},"Bustamante Ernesto":{"LIMA":{"contratos":0,"monto":67760.1,"familiares":2,"congresistas":["Bustamante Ernesto"]}},"Gonza Américo":{"LIMA":{"contratos":0,"monto":103000.0,"familiares":2,"congresistas":["Gonza Américo"]}},"Tello Edgar":{"LIMA":{"contratos":0,"monto":36000.0,"familiares":3,"congresistas":["Tello Edgar"]}},"Lopez Luz":{"UCAYALI":{"contratos":0,"monto":12524.5,"familiares":1,"congresistas":["Lopez Luz"]}},"Davila Neomias":{"PASCO":{"contratos":0,"monto":10000.0,"familiares":2,"congresistas":["Davila Neomias"]},"UCAYALI":{"contratos":0,"monto":6000.0,"familiares":2,"congresistas":["Davila Neomias"]}},"Infantes Eliana":{"AMAZONAS":{"contratos":0,"monto":3080.0,"familiares":1,"congresistas":["Infantes Eliana"]}},"Luna Leon":{"LIMA":{"contratos":0,"monto":24000.0,"familiares":1,"congresistas":["Luna Leon"]}},"Muñante Alejandro":{"LIMA":{"contratos":0,"monto":10922.0,"familiares":1,"congresistas":["Muñante Alejandro"]}},"Marticorena Alfonso":{"ICA":{"contratos":0,"monto":937473.39,"familiares":2,"congresistas":["Marticorena Alfonso"]},"LIMA":{"contratos":0,"monto":108876.0,"familiares":2,"congresistas":["Marticorena Alfonso"]}},"Aragon Angel":{"CUSCO":{"contratos":0,"monto":10500.0,"familiares":1,"congresistas":["Aragon Angel"]}},"Orue Ariana":{"HUANCAVELICA":{"contratos":0,"monto":2500.0,"familiares":1,"congresistas":["Orue Ariana"]}},"Amuruz Rosselli":{"LIMA":{"contratos":0,"monto":20126.92,"familiares":1,"congresistas":["Amuruz Rosselli"]},"AREQUIPA":{"contratos":0,"monto":50295.0,"familiares":1,"congresistas":["Amuruz Rosselli"]}},"Cueto Jose":{"LIMA":{"contratos":0,"monto":10323.09,"familiares":1,"congresistas":["Cueto Jose"]}}};
+
+// Stats individuales por congresista impedido (data_v4.js)
+const STATS_IMPEDIDOS_POR_CONG = {"Torres Rosio":{"contratos":0,"ordenes":10,"monto":47000.0,"familiares":2},"Chiabra Roberto":{"contratos":1,"ordenes":19,"monto":415179.54,"familiares":3},"Juarez Patricia":{"contratos":0,"ordenes":77,"monto":2100656.54,"familiares":2},"Cruz Mamani":{"contratos":1,"ordenes":3,"monto":45400.0,"familiares":3},"Zegarra Zadith":{"contratos":2,"ordenes":176,"monto":1816440.52,"familiares":2},"Miguel Ciccia":{"contratos":2,"ordenes":5,"monto":417087.5,"familiares":1},"Taipe Maria":{"contratos":0,"ordenes":5,"monto":21800.0,"familiares":1},"Bellido Guido":{"contratos":1,"ordenes":40,"monto":518427.25,"familiares":1},"Paredes Francis":{"contratos":3,"ordenes":34,"monto":2431893.7,"familiares":1},"Reyes Augusto":{"contratos":0,"ordenes":21,"monto":39500.0,"familiares":1},"Medina Esdras":{"contratos":0,"ordenes":33,"monto":138226.99,"familiares":5},"Sanchez Helbert":{"contratos":0,"ordenes":2,"monto":4300.0,"familiares":1},"Limachi Esmeralda":{"contratos":0,"ordenes":7,"monto":69450.0,"familiares":2},"Revilla Cesar":{"contratos":0,"ordenes":12,"monto":84829.03,"familiares":3},"Palacios Margot":{"contratos":0,"ordenes":2,"monto":16120.0,"familiares":1},"Paredes Alex":{"contratos":0,"ordenes":5,"monto":25000.0,"familiares":1},"Padilla Rommel":{"contratos":0,"ordenes":9,"monto":160569.2,"familiares":2},"Barbaran Rosangella":{"contratos":0,"ordenes":6,"monto":4200.0,"familiares":1},"Medina Sara":{"contratos":0,"ordenes":7,"monto":9339.8,"familiares":2},"Luque Ruth":{"contratos":0,"ordenes":7,"monto":13700.0,"familiares":1},"Ramirez Tania":{"contratos":0,"ordenes":32,"monto":134502.9,"familiares":3},"Valer Hector":{"contratos":0,"ordenes":4,"monto":31666.66,"familiares":1},"Portalatino Roxana":{"contratos":0,"ordenes":4,"monto":7699.0,"familiares":2},"Arriola Alberto":{"contratos":0,"ordenes":7,"monto":23450.0,"familiares":1},"Julon Elva":{"contratos":0,"ordenes":2,"monto":12000.0,"familiares":1},"Huaman Raul":{"contratos":0,"ordenes":15,"monto":26865.0,"familiares":2},"Mita Alanoca":{"contratos":0,"ordenes":5,"monto":10700.0,"familiares":1},"Alegria Luis":{"contratos":0,"ordenes":2,"monto":27500.0,"familiares":2},"Obando Ana":{"contratos":0,"ordenes":1,"monto":7500.0,"familiares":1},"Bustamante Ernesto":{"contratos":0,"ordenes":21,"monto":67760.1,"familiares":2},"Gonza Américo":{"contratos":0,"ordenes":14,"monto":103000.0,"familiares":2},"Tello Edgar":{"contratos":0,"ordenes":8,"monto":36000.0,"familiares":3},"Lopez Luz":{"contratos":0,"ordenes":4,"monto":12524.5,"familiares":1},"Davila Neomias":{"contratos":0,"ordenes":4,"monto":16000.0,"familiares":2},"Infantes Eliana":{"contratos":0,"ordenes":1,"monto":3080.0,"familiares":1},"Luna Leon":{"contratos":0,"ordenes":7,"monto":24000.0,"familiares":1},"Muñante Alejandro":{"contratos":0,"ordenes":3,"monto":10922.0,"familiares":1},"Marticorena Alfonso":{"contratos":0,"ordenes":383,"monto":1046349.39,"familiares":2},"Aragon Angel":{"contratos":0,"ordenes":3,"monto":10500.0,"familiares":1},"Orue Ariana":{"contratos":0,"ordenes":1,"monto":2500.0,"familiares":1},"Amuruz Rosselli":{"contratos":0,"ordenes":7,"monto":70421.92,"familiares":1},"Cueto Jose":{"contratos":0,"ordenes":2,"monto":10323.09,"familiares":1}};
+
 // ─── STATE ────────────────────────────────────────────────────────────────
-let currentCong = '__all__';
+let currentCong    = '__all__';
+let currentMapMode = 'todos'; // 'todos' | 'impedidos'
 
 // ─── BUILD COLOR SWATCHES ─────────────────────────────────────────────────
 (function buildSwatches() {
@@ -93,6 +123,10 @@ let currentCong = '__all__';
 
 // ─── GET DISPLAY DATA ─────────────────────────────────────────────────────
 function getDisplayData(cong) {
+  if (currentMapMode === 'impedidos') {
+    if (cong === '__all__') return DATA_IMPEDIDOS_GLOBAL;
+    return DATA_IMPEDIDOS_POR_CONG[cong] || {};
+  }
   if (cong === '__all__') return DATA.global;
   const raw = DATA.por_congresista[cong];
   if (!raw) return {};
@@ -157,19 +191,21 @@ function updateStats(cong, dd) {
   document.getElementById('s-regs').textContent = vals.length;
 
   if (cong === '__all__') {
-    // Totales globales exactos derivados de data_v3.js
+    const imp = currentMapMode === 'impedidos';
     document.getElementById('s-contratos').textContent =
-      TOTAL_OPERACIONES.toLocaleString('es-PE');
-    document.getElementById('s-monto').textContent = fmtS(TOTAL_MONTO);
-    document.getElementById('s-fam').textContent = TOTAL_FAMILIARES;
+      (imp ? TOTAL_OPERACIONES_IMP : TOTAL_OPERACIONES).toLocaleString('es-PE');
+    document.getElementById('s-monto').textContent = fmtS(imp ? TOTAL_MONTO_IMP : TOTAL_MONTO);
+    document.getElementById('s-fam').textContent = imp ? TOTAL_FAMILIARES_IMP : TOTAL_FAMILIARES;
   } else {
-    // Totales individuales exactos derivados de data_v3.js
-    const st = STATS_POR_CONG[cong] || {};
+    const st = currentMapMode === 'impedidos'
+      ? (STATS_IMPEDIDOS_POR_CONG[cong] || {})
+      : (STATS_POR_CONG[cong] || {});
     const ops = (st.contratos || 0) + (st.ordenes || 0);
-    document.getElementById('s-contratos').textContent =
-      ops.toLocaleString('es-PE');
+    document.getElementById('s-contratos').textContent = ops.toLocaleString('es-PE');
     document.getElementById('s-monto').textContent = fmtS(st.monto || 0);
-    document.getElementById('s-fam').textContent = FAMILIARES_POR_CONG[cong] || 0;
+    document.getElementById('s-fam').textContent = currentMapMode === 'impedidos'
+      ? (st.familiares || 0)
+      : (FAMILIARES_POR_CONG[cong] || 0);
   }
 }
 
@@ -357,9 +393,12 @@ function buildDropItems(filter) {
   dropList.appendChild(reset);
 
   const q = (filter || '').toLowerCase().trim();
-  const matches = q
-    ? ALL_NAMES.filter(n => (NOMBRE_COMPLETO[n] || n).toLowerCase().includes(q))
+  const pool = currentMapMode === 'impedidos'
+    ? ALL_NAMES.filter(n => IMPEDIDOS_KEYS.has(n))
     : ALL_NAMES;
+  const matches = q
+    ? pool.filter(n => (NOMBRE_COMPLETO[n] || n).toLowerCase().includes(q))
+    : pool;
 
   if (!matches.length) {
     const empty = document.createElement('div');
@@ -445,6 +484,24 @@ congInput.addEventListener('keydown', function(e) {
   items.forEach(i => i.classList.remove('active'));
   if (items[idx]) { items[idx].classList.add('active'); items[idx].scrollIntoView({ block: 'nearest' }); }
 });
+
+// ─── MAP MODE SWITCH ──────────────────────────────────────────────────────
+function switchMapMode(mode) {
+  if (currentMapMode === mode) return;
+  currentMapMode = mode;
+
+  // If the selected congressperson is not in impedidos, reset to all
+  if (mode === 'impedidos' && currentCong !== '__all__' && !IMPEDIDOS_KEYS.has(currentCong)) {
+    currentCong = '__all__';
+    congInput.value = '';
+  }
+
+  document.getElementById('btn-map-todos').classList.toggle('active', mode === 'todos');
+  document.getElementById('btn-map-impedidos').classList.toggle('active', mode === 'impedidos');
+
+  if (dropOpen) buildDropItems(congInput.value);
+  render(currentCong);
+}
 
 // ─── INIT ─────────────────────────────────────────────────────────────────
 render('__all__');

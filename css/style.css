@@ -356,6 +356,16 @@
 
     /* --- ESTILOS SECCIÓN: CÓMO LEER LAS FICHAS --- */
 
+    p.bajada{
+        color: #333;
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.95rem;        
+        line-height: 1.4;
+        margin: 80px auto 40px;
+        max-width: 500px;
+        text-align: center;
+    }
+
     .how-to-read-section {
         padding: 80px 20px;
         background-color: #fff;
@@ -399,7 +409,7 @@
     /* Cada ítem individual */
     .step-item {
         flex: 1; /* Todos ocupan el mismo ancho */
-        padding: 0 30px;
+        padding: 0 25px;
         border-right: 1px solid #e0e0e0; /* La línea vertical gris */
         display: flex;
         flex-direction: column;
@@ -471,7 +481,7 @@
         .step-item {
             border-right: none; /* Quitar líneas verticales */
             border-bottom: 1px solid #e0e0e0; /* Agregar líneas horizontales */
-            padding: 0 15px 30px;
+            padding: 0 5px 30px;
             width: 100%;
             max-width: 47%;
             display: inline-block;
@@ -1233,6 +1243,10 @@
 
             .results-grid {
                 grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            }
+
+            p.bajada{
+                padding: 0 20px;
             }
 
             

@@ -179,6 +179,10 @@
         <div class="ia-label">VIDEO GENERADO CON IA</div>
     </section>
 
+    <p class="bajada">
+        La información presentada en este especial proviene de fuentes públicas y ha sido organizada para identificar vínculos familiares y contrataciones con el Estado. Este análisis no implica la existencia de irregularidades ni establece responsabilidades, sino que busca aportar contexto y transparencia sobre relaciones de interés público.
+    </p>
+
     <section class="how-to-read-section">
     
         <!--<h3 class="section-title">cómo leer las fichas</h3>-->
@@ -190,7 +194,7 @@
                     <img src="./img/bg-ficha-1.png" alt="" width="100%">
                 </div>
                 <h4>Intereses cruzados</h4>
-                <p>Servicios y contratos con el Estado vinculados a familiares de congresistas en reelección.</p>
+                <p>Contratos y servicios con el Estado de familiares de congresistas en reelección, dentro y fuera del alcance de la normativa vigente (2021–2025).</p>
             </div>
 
             <div class="step-item">
@@ -420,6 +424,11 @@
         <p>
             <strong>Mapa de las regiones del Perú donde se concentran contratos y órdenes de servicio vinculados a familiares de congresistas (2021–2025).</strong> El color de cada región indica el volumen total de contratación. Usa el menú para explorar los datos por congresista o pasa el cursor sobre el mapa para ver el detalle.
         </p>
+
+        <div class="map-mode-btns">
+            <button id="btn-map-todos" class="map-mode-btn active" onclick="switchMapMode('todos')">Familiares sin observaciones según ley vigente (2021–2025)</button>
+            <button id="btn-map-impedidos" class="map-mode-btn" onclick="switchMapMode('impedidos')">Familiares con observaciones según ley vigente (2021–2025)</button>
+        </div>
 
         <div class="layout">
             <!-- MAP PANEL -->
