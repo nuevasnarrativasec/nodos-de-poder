@@ -2210,7 +2210,8 @@
         font-size: 1.8rem;
     }
     .box-embed p,
-    .box-main-mapa p{
+    .box-main-mapa p,
+    p.explicacion-mapa{
         font-size: 1rem;
         line-height: 1.5;
         color: var(--gray-dark);
@@ -2218,6 +2219,9 @@
         padding: 10px 0;
         text-align: center;
         max-width: 750px;
+    }
+    p.explicacion-mapa{
+        margin-bottom: 60px;
     }
     p.fuente-grafico-nodos{
         padding-top: 10px;
@@ -2322,7 +2326,7 @@ span.separador-logo {
 
 .box-main-mapa{
     max-width: 900px;
-    margin: 0 auto 80px;
+    margin: 0 auto 20px;
 }
 span.leyenda-montos-mapa{
     color: var(--gray-dark);
