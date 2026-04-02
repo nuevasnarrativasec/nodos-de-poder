@@ -10,7 +10,7 @@
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Roboto', sans-serif !important;
             color: #000;
             overflow-x: hidden;
             scroll-behavior: smooth; /* Desplazamiento suave nativo */
@@ -116,6 +116,7 @@
         nav ul li a {
             color: #fff;
             text-decoration: none;
+            font-family: 'Roboto', sans-serif;
             font-size: 0.9rem;
             font-weight: 800;
             transition: color 0.3s;
@@ -190,7 +191,7 @@
         }
 
         h1 {
-            font: 7rem / .8 'Tungsten SemiBold';
+            font: 7rem / .8 'Tungsten SemiBold' !important;
             text-transform: uppercase;
             color: #000;
             margin: 0 auto 10px;
@@ -540,7 +541,7 @@
             font-size: 2.5rem;
             color: #BA991B;
             text-transform: uppercase;
-            margin-bottom: 15px;
+            margin: 0 auto 15px;
         }
 
         .section-explora__subtitle {
