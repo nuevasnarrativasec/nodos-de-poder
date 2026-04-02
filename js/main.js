@@ -472,7 +472,7 @@ function mostrarResultadosExplora(resultados) {
         if (c.hallazgo_estudios) countHallazgos++;
 
         const hallazgosTitulo = tieneHallazgos 
-            ? '<strong>Hallazgos:</strong> Se identificaron cruces relevantes de información en ' + countHallazgos + ' de las 4 secciones analizadas, a partir de datos públicos.'
+            ? '<strong></strong> Se identificaron cruces relevantes de información en ' + countHallazgos + ' de las 4 secciones analizadas, a partir de datos públicos.'
             : tieneAdicionales
                 ? '<strong>Sin hallazgos en conflicto:</strong> El contraste no reveló diferencias, pero se incluye información adicional de contexto en las secciones analizadas.'
                 : '<strong>Sin hallazgos:</strong> El contraste entre lo declarado y registros públicos oficiales no reveló diferencias en las secciones analizadas.';
@@ -1063,7 +1063,7 @@ function mostrarFichaEjemplo(tipo) {
     
     const tieneHallazgos = tipo === 'con-hallazgos';
     const hallazgosTitulo = tieneHallazgos 
-        ? '<strong>Hallazgos:</strong> Se identificaron cruces relevantes de información en 3 de las 4 secciones analizadas, a partir de datos públicos.'
+        ? '<strong></strong> Se identificaron cruces relevantes de información en 3 de las 4 secciones analizadas, a partir de datos públicos.'
         : '<strong>Sin hallazgos:</strong> El contraste entre lo declarado y registros públicos oficiales no reveló diferencias en las secciones analizadas.';
 
     // Íconos indicadores (no clicables): si es "con-hallazgos" mostrar 3 activos, 1 inactivo
