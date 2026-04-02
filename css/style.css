@@ -18,8 +18,8 @@
 
         @font-face {
             font-family: 'Tungsten SemiBold';
-            src: url('../fonts/Tungsten-SemiBold.woff2') format('woff2'),
-                url('../fonts/Tungsten-SemiBold.woff') format('woff');
+            src: url('https://nuevasnarrativasec.github.io/nodos-de-poder/fonts/Tungsten-SemiBold.woff2') format('woff2'),
+                url('https://nuevasnarrativasec.github.io/nodos-de-poder/fonts/Tungsten-SemiBold.woff') format('woff');
             font-display: swap;
         }
 
