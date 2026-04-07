@@ -2426,5 +2426,5 @@ span.leyenda-montos-mapa{
 #grid-intereses .hcard[data-id="50"] .hcard__bg,
 #grid-intereses .hcard[data-id="60"] .hcard__bg,
 #grid-intereses .hcard[data-id="71"] .hcard__bg   {
-    background-color: #faf0ac;
+    /*background-color: #faf0ac;*/
 }
