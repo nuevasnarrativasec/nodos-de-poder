@@ -1621,6 +1621,12 @@
             body .footer-content ul{
                 display: block;
             }
+            .hero-content{
+                margin-top: 45px;
+            }
+            h1{
+                margin-bottom: 10px;
+            }
         }
 
         /* --- LINKS DE DESCARGA DE DOCUMENTOS --- */
