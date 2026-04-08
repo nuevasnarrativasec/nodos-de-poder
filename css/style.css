@@ -2242,6 +2242,7 @@
     }
     p.explicacion-mapa{
         margin-bottom: 60px;
+        max-width: 800px;
     }
     p.fuente-grafico-nodos{
         padding-top: 10px;
